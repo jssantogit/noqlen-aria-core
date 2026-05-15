@@ -2,11 +2,11 @@
 
 ## Preparation checklist
 
-- [ ] Read `aria/specs/features/aria-core-contracts/requirements.md`.
-- [ ] Read `aria/specs/features/aria-core-contracts/design.md`.
-- [ ] Confirm Bloco 0 validation passes (CLI help, doctor, py_compile, pytest).
-- [ ] Confirm no source/test files exist at `src/noqlen_aria/contracts.py` or `tests/test_contracts.py`.
-- [ ] Confirm `pyproject.toml` has no external dependencies to add.
+- [x] Read `aria/specs/features/aria-core-contracts/requirements.md`.
+- [x] Read `aria/specs/features/aria-core-contracts/design.md`.
+- [x] Confirm Bloco 0 validation passes (CLI help, doctor, py_compile, pytest).
+- [x] Confirm no source/test files exist at `src/noqlen_aria/contracts.py` or `tests/test_contracts.py`.
+- [x] Confirm `pyproject.toml` has no external dependencies to add.
 
 ## TDD classification
 
@@ -31,55 +31,56 @@
 
 ### Task 1: Create source file skeleton
 
-- Create `src/noqlen_aria/contracts.py` with module docstring and imports.
-- Create `tests/test_contracts.py` with test imports and pytest markers.
-- Validate: `python3 -m py_compile src/noqlen_aria/contracts.py` passes.
+- [x] Create `src/noqlen_aria/contracts.py` with module docstring and imports.
+- [x] Create `tests/test_contracts.py` with test imports and pytest markers.
+- [x] Validate: `python3 -m py_compile src/noqlen_aria/contracts.py` passes.
 
 ### Task 2: Implement AriaResult, AriaError, AriaWarning
 
-- Define `AriaError`, `AriaWarning` dataclasses.
-- Define `AriaResult[T]` with `ok`, `data`, `error` fields.
-- Write TDD tests for success case, error case, and edge cases.
-- Validate: pytest passes for result/error/warning tests.
+- [x] Define `AriaError`, `AriaWarning` dataclasses.
+- [x] Define `AriaResult[T]` with `ok`, `data`, `error` fields.
+- [x] Write TDD tests for success case, error case, and edge cases.
+- [x] Validate: pytest passes for result/error/warning tests.
 
 ### Task 3: Implement view-state contracts
 
-- Define `ServerViewState`, `LibraryViewState`, `DiagnosticsViewState`, `ReadinessViewState` dataclasses.
-- Write tests for default values and composition.
-- Validate: imports work, tests pass.
+- [x] Define `ServerViewState`, `LibraryViewState`, `DiagnosticsViewState`, `ReadinessViewState` dataclasses.
+- [x] Write tests for default values and composition.
+- [x] Validate: imports work, tests pass.
 
 ### Task 4: Implement LifecycleIntent enum
 
-- Define `LifecycleIntent` enum with `INITIALIZE`, `SHUTDOWN`, `RESET`.
-- Write tests for enum membership and value handling.
-- Validate: tests pass.
+- [x] Define `LifecycleIntent` enum with `INITIALIZE`, `SHUTDOWN`, `RESET`.
+- [x] Write tests for enum membership and value handling.
+- [x] Validate: tests pass.
 
 ### Task 5: Implement PermissionState and StorageAccessState enums
 
-- Define `PermissionState` enum with `UNKNOWN`, `GRANTED`, `DENIED`, `NOT_APPLICABLE`.
-- Define `StorageAccessState` enum with `UNKNOWN`, `AVAILABLE`, `UNAVAILABLE`.
-- Write tests for enum membership and default factory usage.
-- Validate: tests pass.
+- [x] Define `PermissionState` enum with `UNKNOWN`, `GRANTED`, `DENIED`, `NOT_APPLICABLE`.
+- [x] Define `StorageAccessState` enum with `UNKNOWN`, `AVAILABLE`, `UNAVAILABLE`.
+- [x] Write tests for enum membership and default factory usage.
+- [x] Validate: tests pass.
 
 ### Task 6: Implement AnchorClient protocol
 
-- Define `AnchorClient` as a `typing.Protocol` with all proposed methods.
-- Write structural typing verification tests (e.g., `isinstance(FakeAnchorClient(), AnchorClient)` or type-checker tests).
-- Validate: tests pass.
+- [x] Define `AnchorClient` as a `typing.Protocol` with all proposed methods.
+- [x] Decorated with `@runtime_checkable` for structural typing verification at runtime.
+- [x] Write structural typing verification tests (e.g., `isinstance(FakeAnchorClient(), AnchorClient)`).
+- [x] Validate: tests pass.
 
 ### Task 7: Implement FakeAnchorClient
 
-- Implement `FakeAnchorClient` with deterministic fake returns for all `AnchorClient` methods.
-- Write TDD tests for each method: verify return type, return values, and determinism.
-- Test edge cases: repeated calls, calls before any setup.
-- Validate: all FakeAnchorClient tests pass.
+- [x] Implement `FakeAnchorClient` with deterministic fake returns for all `AnchorClient` methods.
+- [x] Write TDD tests for each method: verify return type, return values, and determinism.
+- [x] Test edge cases: repeated calls, calls before any setup.
+- [x] Validate: all FakeAnchorClient tests pass.
 
 ### Task 8: Final validation
 
-- Run full validation suite: `py_compile`, import check, pytest, contamination check.
-- Confirm no regression in Bloco 0 tests.
-- Confirm no forbidden files tracked.
-- Commit implementation artifacts.
+- [x] Run full validation suite: `py_compile`, import check, pytest, contamination check.
+- [x] Confirm no regression in Bloco 0 tests.
+- [x] Confirm no forbidden files tracked.
+- [x] Commit implementation artifacts.
 
 ## Subagent packages
 
@@ -87,24 +88,23 @@ None required for Bloco 1. The implementation is a single source file and a sing
 
 ## Validation checklist
 
-- [ ] `pwd` — confirmed working directory.
-- [ ] `git status --short --branch` — clean or only expected changes.
-- [ ] `git diff --check` — no whitespace issues.
-- [ ] `find aria/specs/features/aria-core-contracts -maxdepth 3 -type f | sort` — all spec files present.
-- [ ] `python3 -m py_compile src/noqlen_aria/*.py` — compiles clean.
-- [ ] `PYTHONPATH=src python3 -m noqlen_aria.cli --help` — works.
-- [ ] `PYTHONPATH=src python3 -m noqlen_aria.cli doctor` — works.
-- [ ] `python3 -m pytest` — passes when available.
-- [ ] `git ls-files | grep -E '(^\.opencode/|^\.skills/|opencode\.json|docs/development|audit-report|model-routing|\.env|credentials\.json|\.secrets)' || true` — clean.
-- [ ] `git show --name-only --oneline --stat HEAD` — only expected files.
+- [x] `pwd` — confirmed working directory.
+- [x] `git status --short --branch` — clean or only expected changes.
+- [x] `git diff --check` — no whitespace issues.
+- [x] `find aria/specs/features/aria-core-contracts -maxdepth 3 -type f | sort` — all spec files present.
+- [x] `python3 -m py_compile src/noqlen_aria/*.py` — compiles clean.
+- [x] `PYTHONPATH=src python3 -m noqlen_aria.cli --help` — works.
+- [x] `PYTHONPATH=src python3 -m noqlen_aria.cli doctor` — works.
+- [x] `python3 -m pytest` — 50/50 passed.
+- [x] `git ls-files | grep -E '(^\.opencode/|^\.skills/|opencode\.json|docs/development|audit-report|model-routing|\.env|credentials\.json|\.secrets)' || true` — clean.
+- [x] `git show --name-only --oneline --stat HEAD` — only expected files.
 
 ## Review checklist
 
-- [ ] Confirm non-goals: no real Anchor, no Navidrome, no Android, no playback, no queue, no cache.
-- [ ] Confirm no source code changed (spec-only phase).
-- [ ] Confirm no tests changed (spec-only phase).
-- [ ] Confirm no pyproject.toml changed.
-- [ ] Confirm no local/private/tooling artifacts staged.
-- [ ] Confirm spec completeness: requirements, design, tasks, review all present.
-- [ ] Confirm TDD classification is explicit.
-- [ ] Confirm contract list matches requirements.
+- [x] Confirm non-goals: no real Anchor, no Navidrome, no Android, no playback, no queue, no cache.
+- [x] Confirm no source code changed outside spec scope.
+- [x] Confirm no pyproject.toml changed.
+- [x] Confirm no local/private/tooling artifacts staged.
+- [x] Confirm spec completeness: requirements, design, tasks, review all present.
+- [x] Confirm TDD classification is explicit.
+- [x] Confirm contract list matches requirements.

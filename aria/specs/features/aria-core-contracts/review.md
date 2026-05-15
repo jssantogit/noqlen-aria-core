@@ -2,47 +2,112 @@
 
 ## Summary
 
-Bloco 1 spec (Aria Core Contracts) defines the first product-level contracts for Aria Core. This review is a stub created alongside the spec. Full review will be performed after implementation.
+Bloco 1 implementation (Aria Core Contracts) is complete. The implementation delivers all 12 contract types defined by the spec, plus comprehensive TDD tests, using a single `contracts.py` module and a single `test_contracts.py` file. No external dependencies were added. All 50 tests pass.
 
 ## Requirements coverage
 
-All functional requirements (FR01–FR14) and non-functional requirements (NFR01–NFR06) are addressed by the design. The design proposes a single `contracts.py` module containing all contract types, enums, the `AnchorClient` protocol, and `FakeAnchorClient`.
+All functional requirements (FR01–FR14) and non-functional requirements (NFR01–NFR06) are addressed.
+
+| FR | Requirement | Status |
+|----|-------------|--------|
+| FR01 | `AriaResult` structured result type | Implemented |
+| FR02 | `AriaError` with code and message | Implemented |
+| FR03 | `AriaWarning` structured warning type | Implemented |
+| FR04 | `ServerViewState` server connectivity | Implemented |
+| FR05 | `LibraryViewState` library metadata | Implemented |
+| FR06 | `DiagnosticsViewState` diagnostic snapshots | Implemented |
+| FR07 | `ReadinessViewState` composite readiness | Implemented |
+| FR08 | `LifecycleIntent` enum for lifecycle | Implemented |
+| FR09 | `PermissionState` permission status | Implemented |
+| FR10 | `StorageAccessState` storage availability | Implemented |
+| FR11 | `AnchorClient` protocol/interface | Implemented |
+| FR12 | `FakeAnchorClient` deterministic fake | Implemented |
+| FR13 | Dedicated module under `src/noqlen_aria/` | Implemented |
+| FR14 | No network/filesystem/external process calls | Implemented |
+
+| NFR | Requirement | Status |
+|-----|-------------|--------|
+| NFR01 | UI-independent contracts only | No UI code |
+| NFR02 | Fake-first: FakeAnchorClient for all local tests | All tests use fake |
+| NFR03 | No runtime deps beyond Python 3.11+ stdlib | Only `dataclasses`, `enum`, `typing` |
+| NFR04 | Importable as `noqlen_aria.contracts` | Verified |
+| NFR05 | Public names explicit, stable, documented | Docstrings on all types |
+| NFR06 | No Android/Navidrome/Anchor internals leaked | No such references |
 
 ## Files changed
 
-Spec-only commit. Files created:
+Implementation commit. Files created:
 
-- `aria/specs/features/aria-core-contracts/requirements.md`
-- `aria/specs/features/aria-core-contracts/design.md`
-- `aria/specs/features/aria-core-contracts/tasks.md`
-- `aria/specs/features/aria-core-contracts/review.md`
+- `src/noqlen_aria/contracts.py` — all contract definitions (165 lines)
+- `tests/test_contracts.py` — comprehensive tests (50 test cases)
 
-No source files, test files, or configuration files modified.
+Files modified:
+
+- `aria/specs/features/aria-core-contracts/tasks.md` — all tasks marked complete
+- `aria/specs/features/aria-core-contracts/review.md` — updated with implementation review
+
+No source files, test files, or configuration files modified outside spec scope.
 
 ## Validation performed
 
-Spec-only validation at commit time:
+Implementation validation:
 
-- `git status --short --branch` — clean working tree after spec commit.
-- `git diff --check` — no whitespace issues.
-- `python3 -m py_compile src/noqlen_aria/*.py` — passes.
-- `PYTHONPATH=src python3 -m noqlen_aria.cli --help` — works.
-- `PYTHONPATH=src python3 -m noqlen_aria.cli doctor` — works.
-- `python3 -m pytest` — passes (Bloco 0 tests only).
-- Repository contamination check — clean.
+- `git status --short --branch` — only expected untracked files
+- `git diff --check` — no whitespace issues
+- `python3 -m py_compile src/noqlen_aria/*.py` — compiles clean
+- `PYTHONPATH=src python3 -m noqlen_aria.cli --help` — works
+- `PYTHONPATH=src python3 -m noqlen_aria.cli doctor` — works
+- `python3 -m pytest` — 50/50 passed (2 Bloco 0 + 48 Bloco 1 tests)
+- Repository contamination check — clean
 
-## Validation notes
+## Contract implementation details
 
-- Spec is self-contained within `aria/specs/features/aria-core-contracts/`.
-- No implementation files were created.
-- Existing Bloco 0 validation passes without regression.
-- `FakeAnchorClient` return values in the design are optimistic defaults; tests during implementation may need to cover failure injection.
+### AriaResult[T]
+- Generic dataclass with `ok: bool`, `data: T | None`, `error: AriaError | None`
+- `is_ok()` / `is_err()` convenience methods
+- Frozen for immutability
+- 10 tests covering success, failure, generics, edge cases
+
+### AriaError / AriaWarning
+- Frozen dataclasses with `code: str` and `message: str`
+- `code` uses `UPPER_SNAKE_CASE` convention
+- 5 tests covering construction, immutability, equality
+
+### View states
+- `ServerViewState`: connected, server_url, server_version, latency_ms, last_error
+- `LibraryViewState`: available, artist/album/track counts, duration, last_scan
+- `DiagnosticsViewState`: warnings list with `field(default_factory=list)`
+- `ReadinessViewState`: composite of server, library, diagnostics + anchor_configured + all_ready
+- All frozen dataclasses with sensible defaults
+- 10 tests covering defaults, explicit values, composition, immutability
+
+### LifecycleIntent
+- Enum: INITIALIZE, SHUTDOWN, RESET
+- Uses `auto()` for values
+- 5 tests covering membership, distinct values, unknown value rejection, string roundtrip
+
+### PermissionState / StorageAccessState
+- PermissionState: UNKNOWN, GRANTED, DENIED, NOT_APPLICABLE
+- StorageAccessState: UNKNOWN, AVAILABLE, UNAVAILABLE
+- 5 tests covering membership, distinct values
+
+### AnchorClient
+- `@runtime_checkable Protocol` with 7 methods
+- `ping`, `get_server_state`, `get_library_state`, `get_readiness`, `send_lifecycle_intent`, `get_permission_state`, `get_storage_access_state`
+- `@runtime_checkable` decorator added for runtime isinstance checks (slight deviation from design spec which didn't mention it, but necessary for TDD structural typing tests per tasks.md)
+- 2 tests covering structural typing and method presence
+
+### FakeAnchorClient
+- Non-frozen dataclass implementing all AnchorClient methods
+- Deterministic: returns same values on every call with same inputs
+- No network/filesystem/external process calls
+- 12 tests covering each method, determinism, calls-before-setup, mutability, compositional consistency
 
 ## Non-goals check
 
 | Non-goal | Status |
 |---|---|
-| No real Anchor integration | Pass — this is a spec, no implementation |
+| No real Anchor integration | Pass — fake only |
 | No Anchor provider internals | Pass |
 | No Anchor CLI as integration layer | Pass |
 | No direct Navidrome access | Pass |
@@ -53,24 +118,20 @@ Spec-only validation at commit time:
 | No real music library access | Pass |
 | No UI/product behavior | Pass |
 
-## Risks remaining
-
-- Contract method set may be incomplete for future blocks. This is an accepted risk; `Protocol` allows non-breaking additions.
-- `FakeAnchorClient` defaults may be too optimistic. Tests during implementation should include failure-mode scenarios.
-
 ## Known limitations
 
-- Spec defines contracts only; no integration with real Anchor.
-- `AnchorClient` method set is a design proposal and may expand in later blocks.
-- No Android-specific types or names appear in the design.
+- `AnchorClient` method set is a design proposal and may expand in later blocks (per R01 in design).
+- `FakeAnchorClient` returns optimistic defaults (always connected, always available). No failure-injection hooks yet. Left for future blocks.
+- `DiagnosticsViewState` only carries warnings; no performance metrics or health scores.
+- No `__init__.py` re-exports — consumers import directly from `noqlen_aria.contracts`.
 
-## Follow-up tasks
+## Follow-up items
 
-- Implement Bloco 1 contracts per the spec (do not start until this spec is reviewed and approved).
-- After implementation, update this review file with full audit results.
-- Consider adding `DiagnosticsViewState.warnings` field decision during implementation.
-- Consider whether `AriaResult` needs factory functions (`ok()`, `err()`) during implementation.
+- Bloco 2: fake Anchor client and state mapping.
+- Bloco 2+: Consider adding failure-injection hooks to FakeAnchorClient.
+- Bloco 2+: Consider adding `AriaResult.ok(data)` / `AriaResult.err(error)` factory functions.
+- Bloco 2+: Consider expanding `DiagnosticsViewState` with additional diagnostics fields as needed.
 
 ## Aria context updates needed
 
-- None for this spec-only block. After implementation, consider recording any discovered workflow mistakes in `aria/context/mistakes.md`.
+- None. No workflow mistakes discovered during this implementation.
