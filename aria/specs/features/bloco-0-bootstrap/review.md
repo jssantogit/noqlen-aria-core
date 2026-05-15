@@ -6,7 +6,7 @@ Bloco 0 bootstrap creates repository structure, workflow context, docs, minimal 
 
 ## Requirements coverage
 
-Pending final validation.
+Bloco 0 bootstrap requirements are covered by the repository skeleton, Aria Workflow files, minimal CLI, smoke tests, and local-only validation.
 
 ## Files changed
 
@@ -14,11 +14,11 @@ See commit diff.
 
 ## Validation performed
 
-Pending final validation.
+Final Bloco 0 validation was performed during audit.
 
 ## Validation notes
 
-Pending final validation.
+CLI help and doctor run locally. Python compilation and pytest pass. Repository contamination checks show no tracked forbidden local/tooling files.
 
 ## Non-goals check
 
