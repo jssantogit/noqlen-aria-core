@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "noqlen-aria-core"
+version = "0.0.0"
+description = "Noqlen Aria Core bootstrap and workflow context."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [{ name = "Noqlen" }]
+dependencies = []
+
+[project.scripts]
+noqlen-aria = "noqlen_aria.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
