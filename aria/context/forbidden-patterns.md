@@ -1,5 +1,8 @@
 # Forbidden Patterns
 
+Canonical scope rules live in `aria/context/scope-boundaries.md`.
+Canonical repository hygiene rules live in `aria/context/repository-hygiene.md`.
+
 - No secrets, tokens, credentials, or private configs.
 - No real library tests.
 - No direct Navidrome calls.

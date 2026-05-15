@@ -12,7 +12,7 @@ No Android SDK is allowed in early blocks. Android-specific concepts must remain
 
 ## Future Vocabulary
 
-Record these names as future boundary/service vocabulary only. Do not implement them in Bloco 0.
+Future boundary/service vocabulary is canonical in `aria/context/future-product-context.md`. Do not implement these names in Bloco 0.
 
 - `PlaybackEngine`
 - `MediaSessionBridge`
@@ -21,3 +21,5 @@ Record these names as future boundary/service vocabulary only. Do not implement 
 - `LibraryPresentationService`
 - `OfflineCachePolicyService`
 - `AudioCapabilitiesService`
+
+They must not appear as source code classes or services yet.

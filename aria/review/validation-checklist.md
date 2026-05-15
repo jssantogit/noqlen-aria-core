@@ -2,6 +2,8 @@
 
 Before commit, record evidence for relevant commands.
 
+Use `aria/review/repository-hygiene-checklist.md` for repository contamination checks. Use `aria/review/block-audit-checklist.md` or `aria/review/bloco-0-audit-checklist.md` for audit-specific validation.
+
 Bloco 0 baseline:
 
 - `pwd`

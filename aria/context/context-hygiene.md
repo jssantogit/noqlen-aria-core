@@ -2,9 +2,9 @@
 
 Before non-trivial work, read the relevant files in `aria/context/` and `aria/review/`.
 
-Allowed project files are source, tests, docs, and intentional Aria workflow files. Local tool state belongs in `.git/info/exclude` and must not be committed.
+Allowed project files are source, tests, docs, and intentional Aria workflow files. Canonical repository hygiene rules live in `aria/context/repository-hygiene.md`.
 
-Forbidden files include secrets, credentials, logs, temporary scratch files, generated caches, local prompts outside `aria/prompts/`, `.opencode/`, `.skills/`, `opencode.json`, `docs/development/`, audit reports, and model-routing files.
+Local tool state belongs in `.git/info/exclude` and must not be committed.
 
 Stop conditions:
 
