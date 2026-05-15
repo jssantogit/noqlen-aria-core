@@ -18,3 +18,5 @@ Not implemented:
 - Playback, queues, now playing, cache/offline, media controls, Android Auto, or real music-library access.
 
 Next block: define the first product contract/spec before implementation. Do not start it from Bloco 0.
+
+Repository-local handoff: `docs/aria-core-handoff.md` is the local source of truth for future Aria work. Future prompts should not reference chat-only handoff files. If Bloco 0 audit passed, the next step is Bloco 1 spec, not implementation.

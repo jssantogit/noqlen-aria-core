@@ -2,6 +2,8 @@
 
 Noqlen Aria Core is the app/interface orchestration core in the Noqlen ecosystem.
 
+Repository-local handoff: `docs/aria-core-handoff.md`.
+
 Aria Core is the product. Aria Workflow is the development method and is not the product.
 
 Strategic position:

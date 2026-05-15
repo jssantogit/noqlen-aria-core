@@ -2,6 +2,8 @@
 
 Aria Core should expose an app-facing API facade while keeping UI adapters thin.
 
+Repository-local handoff and broader architecture context live in `docs/aria-core-handoff.md`.
+
 Anchor integration belongs behind an `AnchorClient` boundary in a future block. Aria must use Anchor through public API/client contracts and must not call Navidrome directly, import Anchor provider internals, or use Anchor CLI as the integration layer.
 
 Development is fake-first: define contracts, fakes, and local validation before real integration. Tests must not require network, real music libraries, Anchor, or Navidrome.

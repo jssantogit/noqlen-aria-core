@@ -6,7 +6,7 @@ Bootstrap a Python 3.11+ package with a thin local CLI, public docs, Aria contex
 
 ## Context files read
 
-- Bootstrap handoff content provided as `handoff_noqlen_aria_core_complete_v2.md` in the task message.
+- Bootstrap handoff content is now represented locally by `docs/aria-core-handoff.md`.
 - Anchor reference repository page at `https://github.com/jssantogit/noqlen-anchor-core`.
 
 ## Existing project context
