@@ -28,6 +28,8 @@ Verify:
 - No Android UI/SDK was implemented.
 - No playback/queue/cache/now-playing implementation exists.
 - Future product context is documented as planning only.
+- Future app/player-facing features are documented as planning only and require specs before implementation.
+- Bloco 1 boundaries prohibit playback, UI, Android SDK, cache/offline, queue, now playing, MediaSession, Android Auto, and storage/permission UX implementation.
 - Android player references are documented as inspiration only.
 - Future architecture vocabulary is documentation only, not code.
 

@@ -1,6 +1,6 @@
 # Architecture Context
 
-Aria Core should expose an app-facing API facade while keeping UI adapters thin.
+Aria Core should expose an app/player-facing API facade while keeping UI adapters thin.
 
 Repository-local handoff and broader architecture context live in `docs/aria-core-handoff.md`.
 
@@ -10,7 +10,7 @@ Development is fake-first: define contracts, fakes, and local validation before 
 
 App-facing state models should be stable, explicit, and independent from UI frameworks.
 
-No Android SDK is allowed in early blocks. Android-specific concepts must remain future adapter boundaries until explicitly specified.
+No Android SDK, playback, UI, cache/offline, or queue implementation is allowed in Bloco 1. Android-specific concepts must remain future adapter boundaries until explicitly specified.
 
 ## Future Vocabulary
 

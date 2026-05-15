@@ -27,11 +27,11 @@ Future agents must use repository files:
 - Flux prepares, downloads, and stages music artifacts.
 - Forge organizes the final music library.
 - Anchor serves and controls local server/core operations.
-- Aria orchestrates app/interface-facing state and flows on top of stable cores.
+- Aria orchestrates app/player-facing state and flows on top of stable cores.
 
 ## Product definition
 
-- Noqlen Aria Core is the app/interface orchestration core.
+- Noqlen Aria Core is the app/player-facing orchestration core.
 - Aria Core is not the Android app.
 - Aria Core is not UI.
 - Aria Workflow is the development method, not the product.
@@ -39,7 +39,7 @@ Future agents must use repository files:
 
 Expected future flow:
 
-`Future UI/App -> Aria Core -> Anchor Client -> Anchor Core API -> Navidrome`
+`Future UI/App/Player -> Aria Core -> Anchor Client -> Anchor Core API -> Navidrome`
 
 ## What Aria Core should provide
 
@@ -92,7 +92,7 @@ Future planning only:
 - Android Auto as future boundary.
 - Permissions/storage UX as future boundary.
 
-These are not Bloco 0 implementation scope. These are not permission to implement UI/playback/cache now. Each feature family requires a dedicated spec.
+These are planning context only. These are not Bloco 0 or Bloco 1 implementation scope. These are not permission to implement UI, playback, queue, now playing, cache/offline, MediaSession, Android Auto, or storage/permission UX now. Each feature family requires a dedicated spec.
 
 ## Android player inspiration
 
@@ -149,7 +149,7 @@ Planned Bloco 1 scope:
 - `AnchorClient` interface
 - `FakeAnchorClient`
 
-Bloco 1 must not implement real Anchor integration, Android UI, playback, queue, or cache.
+Bloco 1 must not implement real Anchor integration, UI, Android SDK, playback, queue, now playing, cache/offline, MediaSession, Android Auto, or storage/permission UX.
 
 ## Safety rules
 
