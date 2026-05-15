@@ -4,6 +4,18 @@
 
 Bloco 1 implementation (Aria Core Contracts) is complete. The implementation delivers all 12 contract types defined by the spec, plus comprehensive TDD tests, using a single `contracts.py` module and a single `test_contracts.py` file. No external dependencies were added. All 50 tests pass.
 
+### Naming refinement (Bloco 1 refinement)
+
+After initial Bloco 1 implementation, contract names were generalized to avoid Anchor-centric architecture:
+
+| Original name | Refined name | Reason |
+|---|---|---|
+| `AnchorClient` | `ControlClient` | Source-agnostic control-plane boundary; Anchor is a future adapter |
+| `FakeAnchorClient` | `FakeControlClient` | Deterministic fake for the generic boundary |
+| `ReadinessViewState.anchor_configured` | `ReadinessViewState.control_configured` | Field reflects control client status, not Anchor-specific config |
+
+Anchor-specific naming (`AnchorControlClient`, Anchor API adapter) is reserved for future adapter documentation only. No `AnchorControlClient` code exists. Media source boundaries (`MediaSourceClient`) are separate future contracts.
+
 ## Requirements coverage
 
 All functional requirements (FR01–FR14) and non-functional requirements (NFR01–NFR06) are addressed.
@@ -20,15 +32,15 @@ All functional requirements (FR01–FR14) and non-functional requirements (NFR01
 | FR08 | `LifecycleIntent` enum for lifecycle | Implemented |
 | FR09 | `PermissionState` permission status | Implemented |
 | FR10 | `StorageAccessState` storage availability | Implemented |
-| FR11 | `AnchorClient` protocol/interface | Implemented |
-| FR12 | `FakeAnchorClient` deterministic fake | Implemented |
+| FR11 | `ControlClient` protocol/interface (source-agnostic) | Implemented |
+| FR12 | `FakeControlClient` deterministic fake | Implemented |
 | FR13 | Dedicated module under `src/noqlen_aria/` | Implemented |
 | FR14 | No network/filesystem/external process calls | Implemented |
 
 | NFR | Requirement | Status |
 |-----|-------------|--------|
 | NFR01 | UI-independent contracts only | No UI code |
-| NFR02 | Fake-first: FakeAnchorClient for all local tests | All tests use fake |
+| NFR02 | Fake-first: FakeControlClient for all local tests | All tests use fake |
 | NFR03 | No runtime deps beyond Python 3.11+ stdlib | Only `dataclasses`, `enum`, `typing` |
 | NFR04 | Importable as `noqlen_aria.contracts` | Verified |
 | NFR05 | Public names explicit, stable, documented | Docstrings on all types |
@@ -91,14 +103,14 @@ Implementation validation:
 - StorageAccessState: UNKNOWN, AVAILABLE, UNAVAILABLE
 - 5 tests covering membership, distinct values
 
-### AnchorClient
-- `@runtime_checkable Protocol` with 7 methods
+### ControlClient
+- `@runtime_checkable Protocol` with 7 methods (source-agnostic boundary; Anchor is one future adapter)
 - `ping`, `get_server_state`, `get_library_state`, `get_readiness`, `send_lifecycle_intent`, `get_permission_state`, `get_storage_access_state`
 - `@runtime_checkable` decorator added for runtime isinstance checks (slight deviation from design spec which didn't mention it, but necessary for TDD structural typing tests per tasks.md)
 - 2 tests covering structural typing and method presence
 
-### FakeAnchorClient
-- Non-frozen dataclass implementing all AnchorClient methods
+### FakeControlClient
+- Non-frozen dataclass implementing all ControlClient methods
 - Deterministic: returns same values on every call with same inputs
 - No network/filesystem/external process calls
 - 12 tests covering each method, determinism, calls-before-setup, mutability, compositional consistency
@@ -120,18 +132,22 @@ Implementation validation:
 
 ## Known limitations
 
-- `AnchorClient` method set is a design proposal and may expand in later blocks (per R01 in design).
-- `FakeAnchorClient` returns optimistic defaults (always connected, always available). No failure-injection hooks yet. Left for future blocks.
+- `ControlClient` method set is source-agnostic and may expand in later blocks (per R01 in design).
+- `FakeControlClient` returns optimistic defaults (always connected, always available). No failure-injection hooks yet. Left for future blocks.
 - `DiagnosticsViewState` only carries warnings; no performance metrics or health scores.
 - No `__init__.py` re-exports — consumers import directly from `noqlen_aria.contracts`.
 
 ## Follow-up items
 
-- Bloco 2: fake Anchor client and state mapping.
-- Bloco 2+: Consider adding failure-injection hooks to FakeAnchorClient.
+- Bloco 2: build services on top of source-agnostic `ControlClient` boundary.
+- Bloco 3: AnchorControlClient adapter (offline/dry-run only).
+- Bloco 2+: Consider adding failure-injection hooks to FakeControlClient.
 - Bloco 2+: Consider adding `AriaResult.ok(data)` / `AriaResult.err(error)` factory functions.
 - Bloco 2+: Consider expanding `DiagnosticsViewState` with additional diagnostics fields as needed.
 
 ## Aria context updates needed
 
-- None. No workflow mistakes discovered during this implementation.
+- `aria/context/architecture.md`: Updated `AnchorClient` boundary to generic `ControlClient` boundary; clarified Anchor is a future adapter.
+- `docs/aria-core-handoff.md`: Updated Bloco 1 target names and ecosystem position language.
+- `docs/handoff.md`: Updated Bloco 1 status note with generic naming.
+- `aria/specs/features/aria-core-contracts/`: All spec files updated with naming refinement rationale.

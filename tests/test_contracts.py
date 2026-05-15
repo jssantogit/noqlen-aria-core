@@ -1,14 +1,14 @@
-"""Tests for Aria Core contracts and FakeAnchorClient."""
+"""Tests for Aria Core contracts and FakeControlClient."""
 
 import pytest
 
 from noqlen_aria.contracts import (
-    AnchorClient,
+    ControlClient,
     AriaError,
     AriaResult,
     AriaWarning,
     DiagnosticsViewState,
-    FakeAnchorClient,
+    FakeControlClient,
     LibraryViewState,
     LifecycleIntent,
     PermissionState,
@@ -227,7 +227,7 @@ def test_readiness_view_state_defaults():
     assert isinstance(r.diagnostics, DiagnosticsViewState)
     assert r.server.connected is False
     assert r.library.available is False
-    assert r.anchor_configured is False
+    assert r.control_configured is False
     assert r.all_ready is False
 
 
@@ -241,13 +241,13 @@ def test_readiness_view_state_composed():
         server=srv,
         library=lib,
         diagnostics=diag,
-        anchor_configured=True,
+        control_configured=True,
         all_ready=True,
     )
     assert r.server is srv
     assert r.library is lib
     assert r.diagnostics is diag
-    assert r.anchor_configured is True
+    assert r.control_configured is True
     assert r.all_ready is True
 
 
@@ -256,12 +256,12 @@ def test_readiness_view_state_partial_readiness():
     r = ReadinessViewState(
         server=ServerViewState(connected=True),
         library=LibraryViewState(available=False),
-        anchor_configured=False,
+        control_configured=False,
         all_ready=False,
     )
     assert r.server.connected is True
     assert r.library.available is False
-    assert r.anchor_configured is False
+    assert r.control_configured is False
     assert r.all_ready is False
 
 
@@ -329,17 +329,17 @@ def test_storage_access_state_values_are_distinct():
     assert len(vals) == 3
 
 
-# ── AnchorClient protocol ──────────────────────────────────────
+# ── ControlClient protocol ─────────────────────────────────────
 
 
-def test_fake_anchor_client_is_anchor_client():
-    """FakeAnchorClient structurally conforms to AnchorClient protocol."""
-    fake = FakeAnchorClient()
-    assert isinstance(fake, AnchorClient)
+def test_fake_control_client_is_control_client():
+    """FakeControlClient structurally conforms to ControlClient protocol."""
+    fake = FakeControlClient()
+    assert isinstance(fake, ControlClient)
 
 
-def test_anchor_client_protocol_methods_exist():
-    """AnchorClient protocol defines all expected methods."""
+def test_control_client_protocol_methods_exist():
+    """ControlClient protocol defines all expected methods."""
     expected = {
         "ping",
         "get_server_state",
@@ -351,19 +351,19 @@ def test_anchor_client_protocol_methods_exist():
     }
     actual = {
         name
-        for name in dir(AnchorClient)
-        if not name.startswith("_") and callable(getattr(AnchorClient, name, None))
+        for name in dir(ControlClient)
+        if not name.startswith("_") and callable(getattr(ControlClient, name, None))
     }
     for method in expected:
         assert method in actual, f"Missing method: {method}"
 
 
-# ── FakeAnchorClient ───────────────────────────────────────────
+# ── FakeControlClient ──────────────────────────────────────────
 
 
 @pytest.fixture
-def fake() -> FakeAnchorClient:
-    return FakeAnchorClient()
+def fake() -> FakeControlClient:
+    return FakeControlClient()
 
 
 def test_fake_ping(fake):
@@ -404,7 +404,7 @@ def test_fake_get_readiness(fake):
     assert result.ok is True
     readiness = result.data
     assert isinstance(readiness, ReadinessViewState)
-    assert readiness.anchor_configured is True
+    assert readiness.control_configured is True
     assert readiness.all_ready is True
     assert readiness.server.connected is True
     assert readiness.library.available is True
@@ -453,7 +453,7 @@ def test_fake_repeated_calls_deterministic(fake):
 
 
 def test_fake_calls_before_any_setup(fake):
-    """FakeAnchorClient must handle calls before any setup/configuration."""
+    """FakeControlClient must handle calls before any setup/configuration."""
     assert fake.ping().ok is True
     assert fake.get_server_state().ok is True
     assert fake.get_library_state().ok is True
@@ -462,9 +462,9 @@ def test_fake_calls_before_any_setup(fake):
     assert fake.get_storage_access_state().ok is True
 
 
-def test_fake_anchor_client_mutable():
-    """FakeAnchorClient is not frozen; tests may mutate it."""
-    fake = FakeAnchorClient()
+def test_fake_control_client_mutable():
+    """FakeControlClient is not frozen; tests may mutate it."""
+    fake = FakeControlClient()
     fake.custom_flag = True  # type: ignore[attr-defined]
     assert fake.custom_flag is True
 

@@ -2,7 +2,7 @@
 
 ## Summary
 
-Create a single `src/noqlen_aria/contracts.py` module containing all Aria Core contract definitions (data classes, enums, protocols) and a corresponding `tests/test_contracts.py` test file. No other source or test files are created. No external dependencies are added.
+Create a single `src/noqlen_aria/contracts.py` module containing all Aria Core contract definitions (data classes, enums, protocols) and a corresponding `tests/test_contracts.py` test file. No other source or test files are created. No external dependencies are added. The control client boundary is source-agnostic; Anchor is one future adapter.
 
 ## Context files read
 
@@ -154,7 +154,7 @@ class ReadinessViewState:
     server: ServerViewState = field(default_factory=ServerViewState)
     library: LibraryViewState = field(default_factory=LibraryViewState)
     diagnostics: DiagnosticsViewState = field(default_factory=DiagnosticsViewState)
-    anchor_configured: bool = False
+    control_configured: bool = False
     all_ready: bool = False
 
 # ── Lifecycle ────────────────────────────────────────────────
@@ -182,11 +182,13 @@ class StorageAccessState(Enum):
 
 # ── Anchor client contract ───────────────────────────────────
 
-class AnchorClient(Protocol):
-    """Stable contract for Anchor integration.
+class ControlClient(Protocol):
+    """Stable contract for control-plane operations.
 
-    Aria must interact with Anchor through this boundary only.
-    Future real implementations must satisfy this protocol.
+    Aria must interact with any core controller through this boundary only.
+    Future real implementations (e.g. AnchorControlClient adapter) must
+    satisfy this protocol. Anchor is one future adapter; the contract is
+    source-agnostic.
     """
 
     def ping(self) -> AriaResult[bool]:
@@ -219,8 +221,8 @@ class AnchorClient(Protocol):
 
 
 @dataclass
-class FakeAnchorClient:
-    """Deterministic fake Anchor client for local tests and early development.
+class FakeControlClient:
+    """Deterministic fake control client for local tests and early development.
 
     Returns known fake data. Never calls network, filesystem, or external process.
     """
@@ -254,18 +256,18 @@ class FakeAnchorClient:
         ...
 ```
 
-Note: This is a design proposal. Exact field lists, method signatures, and defaults are subject to refinement during implementation. The `FakeAnchorClient` is not a frozen dataclass so that tests can optionally mutate it for edge-case scenarios.
+Note: This is a design proposal. Exact field lists, method signatures, and defaults are subject to refinement during implementation. The `FakeControlClient` is not a frozen dataclass so that tests can optionally mutate it for edge-case scenarios. The contract was generalized from `AnchorClient`/`FakeAnchorClient` to `ControlClient`/`FakeControlClient` during Bloco 1 refinement to avoid Anchor-centric architecture; Anchor is a future adapter only.
 
 ## Data flow
 
 ```
-Future UI -> Aria Core -> AnchorClient (protocol) -> FakeAnchorClient (in Bloco 1)
-                                                    -> Real Anchor Client (in future block)
+Future UI -> Aria Core -> ControlClient (protocol) -> FakeControlClient (in Bloco 1)
+                                                      -> AnchorControlClient adapter (future block)
 ```
 
 In Bloco 1:
-1. Tests instantiate `FakeAnchorClient`.
-2. Tests call `AnchorClient` protocol methods on the fake.
+1. Tests instantiate `FakeControlClient`.
+2. Tests call `ControlClient` protocol methods on the fake.
 3. Tests assert return types and values match expected contracts.
 4. No real network, filesystem, or external process is involved.
 
@@ -273,16 +275,16 @@ In Bloco 1:
 
 - `AriaResult.ok` is the single discriminator for success vs failure.
 - `AriaError.code` uses `UPPER_SNAKE_CASE` convention (e.g., `"SERVER_UNREACHABLE"`, `"LIBRARY_NOT_AVAILABLE"`).
-- `FakeAnchorClient` never returns errors by default; tests may configure it to return errors for edge-case testing.
+- `FakeControlClient` never returns errors by default; tests may configure it to return errors for edge-case testing.
 - `AriaWarning` is informational only and never blocks operations.
 - Unknown `LifecycleIntent` values: if using `Enum`, the Python `Enum` constructor handles validation; if passed as a string, the receiver must validate.
 
 ## Security considerations
 
 - No secrets, tokens, URLs, or credentials in contract definitions.
-- No network calls in `FakeAnchorClient`.
-- No filesystem access in `FakeAnchorClient`.
-- No subprocess execution in `FakeAnchorClient`.
+- No network calls in `FakeControlClient`.
+- No filesystem access in `FakeControlClient`.
+- No subprocess execution in `FakeControlClient`.
 - No real Anchor or Navidrome access.
 
 ## Dependencies
@@ -292,9 +294,9 @@ In Bloco 1:
 
 ## Risks
 
-- R01: Contract method set may be incomplete for future blocks. Mitigation: `AnchorClient` is a `Protocol`, so adding methods is non-breaking for structural typing consumers.
+- R01: Contract method set may be incomplete for future blocks. Mitigation: `ControlClient` is a `Protocol`, so adding methods is non-breaking for structural typing consumers.
 - R02: `AriaResult[T]` generic may introduce complexity for consumers unfamiliar with generics. Mitigation: provide helper constructors (e.g., `AriaResult.ok(data)`, `AriaResult.err(error)`) or factory functions.
-- R03: `FakeAnchorClient` defaults may be too optimistic (always connected, always available). Mitigation: expose configuration hooks for tests to simulate failure states.
+- R03: `FakeControlClient` defaults may be too optimistic (always connected, always available). Mitigation: expose configuration hooks for tests to simulate failure states.
 
 ## Rollback strategy
 

@@ -39,7 +39,7 @@ Future agents must use repository files:
 
 Expected future flow:
 
-`Future UI/App/Player -> Aria Core -> Anchor Client -> Anchor Core API -> Navidrome`
+`Future UI/App/Player -> Aria Core -> ControlClient -> AnchorControlClient adapter -> Navidrome`
 
 ## What Aria Core should provide
 
@@ -48,8 +48,8 @@ Expected future flow:
 - Diagnostics/readiness presentation data.
 - Result/error/warning mapping.
 - Permission/storage state abstractions.
-- Anchor client boundary.
-- Fake-first testing support.
+- Source-agnostic control client boundary (`ControlClient`).
+- Fake-first testing support (`FakeControlClient`).
 - Safe orchestration flows independent of UI.
 
 ## What Aria may consume from Anchor later
@@ -127,8 +127,8 @@ These names are documentation vocabulary only for now. They must not become sour
 2. Bloco 0 Audit — bootstrap/workflow/safety audit.
 3. Bloco 1 Spec — Aria Core contracts spec.
 4. Bloco 1 Implementation — contracts and fake client only.
-5. Bloco 2 — fake Anchor client and state mapping.
-6. Bloco 3 — Anchor API adapter, offline/dry-run only.
+5. Bloco 2 — build services on top of source-agnostic ControlClient boundary.
+6. Bloco 3 — AnchorControlClient adapter, offline/dry-run only.
 7. Bloco 4 — Android boundary contracts, no Android SDK.
 8. Later — minimal UI shell only after stable core.
 
@@ -146,8 +146,8 @@ Planned Bloco 1 scope:
 - `LifecycleIntent`
 - `PermissionState`
 - `StorageAccessState`
-- `AnchorClient` interface
-- `FakeAnchorClient`
+- `ControlClient` protocol (source-agnostic; Anchor is one future adapter)
+- `FakeControlClient`
 
 Bloco 1 must not implement real Anchor integration, UI, Android SDK, playback, queue, now playing, cache/offline, MediaSession, Android Auto, or storage/permission UX.
 

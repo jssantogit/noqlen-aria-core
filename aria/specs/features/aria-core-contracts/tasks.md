@@ -18,7 +18,7 @@
 ### Recommended for TDD
 
 - View-state constructors and defaults: `ServerViewState`, `LibraryViewState`, `DiagnosticsViewState`, `ReadinessViewState`. TDD recommended to ensure default values are consistent and composable.
-- `FakeAnchorClient` behavior: return types, return values, and deterministic behavior. TDD recommended because the fake is the foundation for all local tests in later blocks.
+- `FakeControlClient` behavior: return types, return values, and deterministic behavior. TDD recommended because the fake is the foundation for all local tests in later blocks.
 
 ### TDD approach
 
@@ -61,19 +61,21 @@
 - [x] Write tests for enum membership and default factory usage.
 - [x] Validate: tests pass.
 
-### Task 6: Implement AnchorClient protocol
+### Task 6: Implement ControlClient protocol
 
-- [x] Define `AnchorClient` as a `typing.Protocol` with all proposed methods.
+- [x] Define `ControlClient` as a source-agnostic `typing.Protocol` with all proposed methods.
 - [x] Decorated with `@runtime_checkable` for structural typing verification at runtime.
-- [x] Write structural typing verification tests (e.g., `isinstance(FakeAnchorClient(), AnchorClient)`).
+- [x] Write structural typing verification tests (e.g., `isinstance(FakeControlClient(), ControlClient)`).
 - [x] Validate: tests pass.
+- [x] Naming refined from `AnchorClient` to `ControlClient` in Bloco 1 refinement to avoid Anchor-centric architecture.
 
-### Task 7: Implement FakeAnchorClient
+### Task 7: Implement FakeControlClient
 
-- [x] Implement `FakeAnchorClient` with deterministic fake returns for all `AnchorClient` methods.
+- [x] Implement `FakeControlClient` with deterministic fake returns for all `ControlClient` methods.
 - [x] Write TDD tests for each method: verify return type, return values, and determinism.
 - [x] Test edge cases: repeated calls, calls before any setup.
-- [x] Validate: all FakeAnchorClient tests pass.
+- [x] Validate: all FakeControlClient tests pass.
+- [x] Naming refined from `FakeAnchorClient` to `FakeControlClient` in Bloco 1 refinement.
 
 ### Task 8: Final validation
 

@@ -6,11 +6,11 @@ Draft for Bloco 1 — Aria Core Contracts.
 
 ## Problem
 
-Aria Core has no app-facing product contracts. Bloco 0 is a bootstrap only. Without explicit contracts for results, errors, view states, lifecycle intents, permission state, storage access state, and an Anchor client boundary, future blocks cannot build product behavior safely and no fake-first development is possible.
+Aria Core has no app-facing product contracts. Bloco 0 is a bootstrap only. Without explicit contracts for results, errors, view states, lifecycle intents, permission state, storage access state, and a source-agnostic control client boundary, future blocks cannot build product behavior safely and no fake-first development is possible.
 
 ## Goal
 
-Define UI-independent contracts and a fake Anchor client so that future blocks can develop and test product behavior without real Anchor, Navidrome, UI, playback, queue, cache, or offline access.
+Define UI-independent contracts and a fake control client so that future blocks can develop and test product behavior without real Anchor, Navidrome, UI, playback, queue, cache, or offline access.
 
 ## Non-goals
 
@@ -44,8 +44,8 @@ Define UI-independent contracts and a fake Anchor client so that future blocks c
 - FR08: Define `LifecycleIntent` as an enum or equivalent for lifecycle transitions that future UI may request.
 - FR09: Define `PermissionState` to represent runtime permission status independently of any Android API.
 - FR10: Define `StorageAccessState` to represent storage/library availability independently of any Android or OS API.
-- FR11: Define `AnchorClient` as a protocol/interface contract specifying operations that Aria expects from Anchor, without importing Anchor internals.
-- FR12: Define `FakeAnchorClient` implementing `AnchorClient` with deterministic fake behavior suitable for local tests and early development.
+- FR11: Define `ControlClient` as a source-agnostic protocol/interface contract specifying control-plane operations that Aria expects from any core controller (Anchor is one future adapter), without importing Anchor internals.
+- FR12: Define `FakeControlClient` implementing `ControlClient` with deterministic fake behavior suitable for local tests and early development.
 - FR13: All contracts must be defined in a dedicated Python module under `src/noqlen_aria/` and must be importable without any external dependencies.
 - FR14: `FakeAnchorClient` must return known fake data and must not call any network, filesystem, or external process.
 
@@ -80,7 +80,7 @@ Define UI-independent contracts and a fake Anchor client so that future blocks c
 
 ## Open questions
 
-- OQ01: Should `AnchorClient` be a `typing.Protocol` or an ABC? (Settled in design: `Protocol` for structural typing, fake-first compatibility.)
+- OQ01: Should `ControlClient` be a `typing.Protocol` or an ABC? (Settled in design: `Protocol` for structural typing, fake-first compatibility.)
 - OQ02: Should `AriaResult` use a generic type parameter for the success data? (Settled in design: Yes, `AriaResult[T]`.)
 - OQ03: Should `DiagnosticsViewState` include a `warnings: list[AriaWarning]` field? (Deferred to implementation: design will propose the field list.)
-- OQ04: Exact `AnchorClient` method set. (Deferred to implementation: design will propose initial methods and note that methods are subject to expansion in later blocks.)
+- OQ04: Exact `ControlClient` method set. (Deferred to implementation: design will propose initial methods and note that methods are subject to expansion in later blocks.)

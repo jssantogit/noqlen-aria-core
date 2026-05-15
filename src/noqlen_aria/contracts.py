@@ -81,7 +81,7 @@ class ReadinessViewState:
     server: ServerViewState = field(default_factory=ServerViewState)
     library: LibraryViewState = field(default_factory=LibraryViewState)
     diagnostics: DiagnosticsViewState = field(default_factory=DiagnosticsViewState)
-    anchor_configured: bool = False
+    control_configured: bool = False
     all_ready: bool = False
 
 
@@ -111,11 +111,14 @@ class StorageAccessState(Enum):
 
 
 @runtime_checkable
-class AnchorClient(Protocol):
-    """Stable contract for Anchor integration.
+class ControlClient(Protocol):
+    """Stable contract for app/core control-plane operations.
 
-    Aria must interact with Anchor through this boundary only.
-    Future real implementations must satisfy this protocol.
+    Aria must interact with any core controller through this boundary only.
+    Future real implementations (e.g. AnchorControlClient adapter) must
+    satisfy this protocol.
+
+    Anchor is one future adapter; the contract is source-agnostic.
     """
 
     def ping(self) -> AriaResult[bool]:
@@ -135,7 +138,7 @@ class AnchorClient(Protocol):
         ...
 
     def send_lifecycle_intent(self, intent: LifecycleIntent) -> AriaResult[bool]:
-        """Send a lifecycle intent to Anchor."""
+        """Send a lifecycle intent to the control service."""
         ...
 
     def get_permission_state(self) -> AriaResult[PermissionState]:
@@ -148,8 +151,8 @@ class AnchorClient(Protocol):
 
 
 @dataclass
-class FakeAnchorClient:
-    """Deterministic fake Anchor client for local tests and early development.
+class FakeControlClient:
+    """Deterministic fake control client for local tests and early development.
 
     Returns known fake data. Never calls network, filesystem, or external
     process. Not a frozen dataclass so tests can optionally mutate it for
@@ -190,7 +193,7 @@ class FakeAnchorClient:
                 server=self.get_server_state().data,
                 library=self.get_library_state().data,
                 diagnostics=DiagnosticsViewState(),
-                anchor_configured=True,
+                control_configured=True,
                 all_ready=True,
             ),
         )
