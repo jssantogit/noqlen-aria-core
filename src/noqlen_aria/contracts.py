@@ -157,12 +157,42 @@ class FakeControlClient:
     Returns known fake data. Never calls network, filesystem, or external
     process. Not a frozen dataclass so tests can optionally mutate it for
     edge-case scenarios.
+
+    Failure-injection hooks (set to an AriaError to simulate failures):
+        _ping_error, _server_state_error, _library_state_error,
+        _readiness_error, _lifecycle_error, _permission_state_error,
+        _storage_access_error
+
+    Value overrides (set to override the default return data):
+        _server_state_override, _library_state_override,
+        _readiness_override, _permission_state_override,
+        _storage_access_override
     """
 
+    _ping_error: AriaError | None = field(default=None, repr=False)
+    _server_state_error: AriaError | None = field(default=None, repr=False)
+    _library_state_error: AriaError | None = field(default=None, repr=False)
+    _readiness_error: AriaError | None = field(default=None, repr=False)
+    _lifecycle_error: AriaError | None = field(default=None, repr=False)
+    _permission_state_error: AriaError | None = field(default=None, repr=False)
+    _storage_access_error: AriaError | None = field(default=None, repr=False)
+
+    _server_state_override: ServerViewState | None = field(default=None, repr=False)
+    _library_state_override: LibraryViewState | None = field(default=None, repr=False)
+    _readiness_override: ReadinessViewState | None = field(default=None, repr=False)
+    _permission_state_override: PermissionState | None = field(default=None, repr=False)
+    _storage_access_override: StorageAccessState | None = field(default=None, repr=False)
+
     def ping(self) -> AriaResult[bool]:
+        if self._ping_error is not None:
+            return AriaResult(ok=False, error=self._ping_error)
         return AriaResult(ok=True, data=True)
 
     def get_server_state(self) -> AriaResult[ServerViewState]:
+        if self._server_state_error is not None:
+            return AriaResult(ok=False, error=self._server_state_error)
+        if self._server_state_override is not None:
+            return AriaResult(ok=True, data=self._server_state_override)
         return AriaResult(
             ok=True,
             data=ServerViewState(
@@ -174,6 +204,10 @@ class FakeControlClient:
         )
 
     def get_library_state(self) -> AriaResult[LibraryViewState]:
+        if self._library_state_error is not None:
+            return AriaResult(ok=False, error=self._library_state_error)
+        if self._library_state_override is not None:
+            return AriaResult(ok=True, data=self._library_state_override)
         return AriaResult(
             ok=True,
             data=LibraryViewState(
@@ -187,11 +221,21 @@ class FakeControlClient:
         )
 
     def get_readiness(self) -> AriaResult[ReadinessViewState]:
+        if self._readiness_error is not None:
+            return AriaResult(ok=False, error=self._readiness_error)
+        if self._readiness_override is not None:
+            return AriaResult(ok=True, data=self._readiness_override)
+        server_result = self.get_server_state()
+        if server_result.is_err():
+            return AriaResult(ok=False, error=server_result.error)
+        library_result = self.get_library_state()
+        if library_result.is_err():
+            return AriaResult(ok=False, error=library_result.error)
         return AriaResult(
             ok=True,
             data=ReadinessViewState(
-                server=self.get_server_state().data,
-                library=self.get_library_state().data,
+                server=server_result.data,
+                library=library_result.data,
                 diagnostics=DiagnosticsViewState(),
                 control_configured=True,
                 all_ready=True,
@@ -199,10 +243,20 @@ class FakeControlClient:
         )
 
     def send_lifecycle_intent(self, intent: LifecycleIntent) -> AriaResult[bool]:
+        if self._lifecycle_error is not None:
+            return AriaResult(ok=False, error=self._lifecycle_error)
         return AriaResult(ok=True, data=True)
 
     def get_permission_state(self) -> AriaResult[PermissionState]:
+        if self._permission_state_error is not None:
+            return AriaResult(ok=False, error=self._permission_state_error)
+        if self._permission_state_override is not None:
+            return AriaResult(ok=True, data=self._permission_state_override)
         return AriaResult(ok=True, data=PermissionState.GRANTED)
 
     def get_storage_access_state(self) -> AriaResult[StorageAccessState]:
+        if self._storage_access_error is not None:
+            return AriaResult(ok=False, error=self._storage_access_error)
+        if self._storage_access_override is not None:
+            return AriaResult(ok=True, data=self._storage_access_override)
         return AriaResult(ok=True, data=StorageAccessState.AVAILABLE)
