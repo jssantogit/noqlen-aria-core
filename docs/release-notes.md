@@ -109,7 +109,7 @@ Key future areas:
 - Profiles, preferences, backup, and restore for Aria config/state (Bloco 17)
 - Smart playlists, smart mixes, saved filters, and rule-based playlist planning (Bloco 18)
 - State snapshots, API snapshot behavior, and fake end-to-end flows (Bloco 19)
-- Additional providers via Anchor/provider boundaries, without direct provider internals (Bloco 20)
+- Provider extension readiness through generic provider/source abstractions, without direct provider internals or assuming current Anchor multi-provider support (Bloco 20)
 - Android real integration planning for media controls, Bluetooth/headset, Android Auto, foreground service, and widgets (Bloco 21)
 - Android shell handoff for the separate future app/UI (Bloco 22)
 - Post-core release prep and next steps for the real app (Bloco 23)

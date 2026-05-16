@@ -12,6 +12,7 @@
 - Bloco 6 implemented: explicit package/module exports, safe serialization and sanitization helpers, safer Anchor adapter exception output, hardening tests. No Android/UI/playback/queue/cache/provider implementation.
 - Bloco 7 implemented: release readiness checklist, release notes, public API surface summary, safety summary, post-core backlog summary, handoff update, and README refresh. Documentation only; no publish, source, version, or implementation changes.
 - Roadmap alignment update: Aria Core MVP is Blocos 0-7; post-core feature expansion is being restored explicitly as Blocos 8-23. Advanced library/player features and Android real integration remain backlog.
+- Bloco 20 wording update: provider extension readiness, not real multi-provider support through current Anchor.
 - Local tag `v0.1.0` exists. No publish action is recorded in this delta.
 - Release artifacts created: `docs/release-checklist.md`, `docs/release-notes.md`, `docs/api-surface.md`, `docs/safety-summary.md`, `docs/post-core-backlog.md`.
 - Workflow improvements from Noqlen Playbook comparison added: broader repository hygiene categories, PR template, read-only local repository study prompt, clearer audit finding/status fields, and Workflow vNext references. Workflow/template changes only.
@@ -42,7 +43,7 @@
 
 ## Next step
 
-- Complete roadmap alignment patch.
+- Complete provider roadmap wording patch.
 - Next after this patch: Bloco 8 spec.
 - Post-core features (Blocos 8-23 in the roadmap) require dedicated specs before implementation.
 

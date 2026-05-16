@@ -12,7 +12,7 @@
 - Bloco 6 Aria MVP hardening is complete.
 - Bloco 7 Aria Core Release Preparation is complete.
 - Local tag `v0.1.0` exists; Aria Core MVP is complete.
-- Active next step: restore explicit post-core roadmap wording. Next after this patch: Bloco 8 spec.
+- Active next step: clarify Bloco 20 provider extension readiness wording. Next after this patch: Bloco 8 spec.
 
 ## Active spec
 
@@ -25,7 +25,7 @@
 ## Current goal
 
 - Aria Core MVP is Blocos 0-7 and local tag `v0.1.0` exists.
-- Post-core roadmap alignment is active; Bloco 8 spec is next after this docs patch.
+- Provider roadmap wording fix is active; Bloco 8 spec is next after this docs patch.
 - No publish until approved.
 
 ## Allowed scope

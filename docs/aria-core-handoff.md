@@ -123,7 +123,7 @@ Android app/UI remains separate. Future Android real integration, app shell, med
 - Aria must not use Anchor CLI as an integration API.
 - Aria must not call Navidrome directly through provider internals.
 - Future provider/media support should be capability-driven and adapter-based.
-- Other providers must come through Anchor/provider boundaries later, not direct provider internals.
+- Future additional providers depend on public boundaries/adapters exposed by Anchor or another approved integration layer, not direct provider internals. Current Anchor-backed integration remains Navidrome-focused.
 
 Expected adapter direction:
 
@@ -188,7 +188,7 @@ Third-party product and provider names in Aria docs are factual research referen
 - Bloco 18 — Smart Playlists: smart playlists, smart mixes, saved filters and Symfonium-inspired rule-based playlist planning.
 - Bloco 19 — State Snapshots and End-to-End Fake Flows: state snapshots, API snapshot behavior and fake source -> library -> queue -> now playing intent -> diagnostics flows.
 - Audit 17-19 — Profiles/Smart/Snapshots Audit: audit profiles, preferences, backup/restore, smart playlists, snapshots and fake end-to-end flows.
-- Bloco 20 — Multi-provider via Anchor: additional providers beyond Navidrome through Anchor/provider boundaries, no direct provider internals in Aria and provider capability abstraction.
+- Bloco 20 — Provider Extension Readiness: generic provider/source abstractions, no direct Jellyfin/Emby/Navidrome integrations, no assumption that Anchor already supports multiple providers, and future additional providers through public boundaries/adapters exposed by Anchor or another approved integration layer.
 - Bloco 21 — Android Real Integration Planning: real media controls, lock-screen controls, notification controls, Bluetooth/headset, Android Auto, foreground service and widgets planning.
 - Bloco 22 — Android Shell Handoff: handoff for the future Android app/UI to consume Aria Core without moving heavy logic into the interface.
 - Audit 20-22 — Providers/Android Handoff Audit: audit provider boundaries and Android handoff boundaries.
@@ -236,7 +236,7 @@ Bloco 18 defines smart playlists, smart mixes, saved filters, and rule-based pla
 
 Bloco 19 defines state snapshots, API snapshot behavior, and fake end-to-end flows from source to library to queue to now playing intent to diagnostics.
 
-Bloco 20 defines multi-provider support through Anchor/provider boundaries without Aria calling provider internals directly, with provider capability abstraction.
+Bloco 20 defines provider extension readiness. Aria prepares generic provider/source abstractions and provider capability models, but does not implement Jellyfin, Emby, Navidrome, or other direct provider integrations. Current Anchor-backed integration remains Navidrome-focused; future additional providers depend on public boundaries/adapters exposed by Anchor or another approved integration layer.
 
 Bloco 21 defines Android real integration planning for media controls, lock-screen controls, notification controls, Bluetooth/headset, Android Auto, foreground service, and widgets without implementing them in Aria Core.
 

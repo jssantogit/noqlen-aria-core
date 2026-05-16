@@ -24,7 +24,7 @@ The roadmap in `docs/aria-core-handoff.md` defines Aria Core MVP as Blocos 0-7. 
 | 18 | Smart Playlists: smart playlists, smart mixes, saved filters, and rule-based playlists inspired by Symfonium | Not started |
 | 19 | State Snapshots and End-to-End Fake Flows: state snapshots, API snapshot behavior, and fake source -> library -> queue -> now playing intent -> diagnostics flows | Not started |
 | Audit 17-19 | Profiles/Smart/Snapshots Audit | Not started |
-| 20 | Multi-provider via Anchor: additional providers beyond Navidrome through Anchor, no direct provider internals in Aria, and provider capability abstraction | Not started |
+| 20 | Provider Extension Readiness: generic provider/source abstractions, no direct Jellyfin/Emby/Navidrome integrations, no assumption that Anchor already supports multiple providers, and future providers through public boundaries/adapters exposed by Anchor or another approved integration layer | Not started |
 | 21 | Android Real Integration Planning: real media controls, lock-screen controls, notification controls, Bluetooth/headset, Android Auto, foreground service, and widgets planning | Not started |
 | 22 | Android Shell Handoff: handoff for future Android app/UI; UI consumes Aria Core and does not own heavy logic | Not started |
 | Audit 20-22 | Providers/Android Handoff Audit | Not started |
@@ -48,7 +48,7 @@ The post-core roadmap includes these required feature families:
 - Profiles, preferences, backup/restore for Aria config/state.
 - Smart playlists, smart mixes, saved filters, and rule-based playlist planning.
 - State snapshots, API snapshot behavior, and fake end-to-end flows.
-- Additional providers via Anchor/provider boundaries, without direct provider internals.
+- Provider extension readiness through generic provider/source abstractions and provider capability models.
 
 ## Boundary Clarifications
 
@@ -56,7 +56,7 @@ The post-core roadmap includes these required feature families:
 - Bit-perfect means capability/readiness/intention first, not low-level audio implementation.
 - Renderer selection means intent/boundary first, not a real renderer.
 - Backup/restore means Aria config/state first, not destructive music library mutation.
-- Multi-provider means through Anchor/provider boundaries, not direct provider internals.
+- Provider extension readiness does not mean real multi-provider support through current Anchor. Current Anchor-backed integration remains Navidrome-focused; future additional providers depend on public boundaries/adapters exposed by Anchor or another approved integration layer.
 - Automation intents are public/core intents, not UI automation scripts.
 
 ## Still Out of Scope Without Future Specs
@@ -80,6 +80,6 @@ The post-core roadmap includes these required feature families:
 4. New features must not couple to specific providers, platforms, or engines without abstraction layers.
 5. The `ControlClient` remains source-agnostic.
 6. Anchor remains one adapter, not the center of Aria.
-7. Other providers come through Anchor/provider boundaries later, not direct provider internals.
+7. Future additional providers come through public boundaries/adapters exposed by Anchor or another approved integration layer, not direct provider internals.
 8. Android app/UI remains separate and consumes Aria Core.
 9. Repository hygiene and scope boundaries must be preserved.
