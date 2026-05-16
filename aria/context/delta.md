@@ -52,6 +52,8 @@
 
 ## Next step
 
+- Roadmap documentation update: Bloco 16 wording clarified to include bit-perfect capability, USB DAC capability, exclusive output capability, audio output route state, sample-rate support, bit-depth support, output/device readiness, playback quality preferences, and driver bridge vocabulary for a future Android player. Bloco 16 remains capability/readiness/preference models only; no real audio driver, USB driver, Android USB Host API, JNI/NDK, AAudio/Oboe, Media3/ExoPlayer, real bit-perfect output, real sample-rate switching, real DAC control, or DSP/EQ.
+- Future Android Player audio output phase (phases A–E) added to `docs/aria-core-handoff.md` and `docs/post-core-backlog.md` as a future project outside Aria Core. Invariant added: Aria Core may model requirements for a future custom/exclusive audio output layer; Aria Core must not implement an audio driver; a future Android Player phase may research or implement an exclusive USB/audio output bridge if feasible.
 - Bloco 14 (Offline, Cache and Storage Policy) is implemented and validated.
 - Do not start Bloco 15 without explicit approval and a dedicated spec.
 

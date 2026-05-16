@@ -33,6 +33,10 @@ Anchor is not the center of Aria. Current Anchor-backed integration remains Navi
 
 `PlaybackRenderer` and `OutputRoute` are future output boundaries for phone, USB DAC, Bluetooth, remote renderer, and route/capability state. They model capabilities and diagnostics, not real drivers.
 
+Aria Core may model requirements for a future custom/exclusive audio output layer.
+Aria Core must not implement an audio driver.
+A future Android Player phase may research or implement an exclusive USB/audio output bridge if feasible.
+
 `PlaybackEngine` is a future real audio engine boundary. It is not part of the current core implementation.
 
 Development is fake-first: define contracts, fakes, mappers, snapshots, and local validation before real integration. Tests must not require network, real music libraries, Anchor, Navidrome, Android, or playback engines.

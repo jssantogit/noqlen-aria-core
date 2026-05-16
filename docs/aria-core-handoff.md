@@ -183,7 +183,7 @@ Third-party product and provider names in Aria docs are factual research referen
 - Audit 11-13 — Queue/Now Playing/Intents Audit: audit queue, now playing, renderer intent and automation intent boundaries.
 - Bloco 14 — Offline, Cache and Storage Policy: offline availability, cache policy, cache cleanup, storage pressure, pending sync/cache states and safe confirmation states.
 - Bloco 15 — Stream Quality, Transcoding and Network Policy: stream quality policy, transcoding capability/policy, network quality policy and offline quality policy.
-- Bloco 16 — Playback Capability Models: gapless capability, loudness/ReplayGain awareness, crossfade capability, bit-perfect capability and output/device capability state.
+- Bloco 16 — Playback Capability Models: gapless capability, loudness/ReplayGain awareness, crossfade capability, bit-perfect capability, USB DAC capability, exclusive output capability, audio output route state, sample-rate support, bit-depth support, output/device readiness, playback quality preferences, and driver bridge vocabulary for a future Android player.
 - Audit 14-16 — Offline/Quality/Capabilities Audit: audit offline/cache policy, quality/transcoding policy and playback capability models.
 - Bloco 17 — Profiles, Preferences, Backup and Restore: user profiles, preferences, backup/restore for Aria config/state and no destructive real music library mutation.
 - Bloco 18 — Smart Playlists: smart playlists, smart mixes, saved filters and Symfonium-inspired rule-based playlist planning.
@@ -194,6 +194,16 @@ Third-party product and provider names in Aria docs are factual research referen
 - Bloco 22 — Android Shell Handoff: handoff for the future Android app/UI to consume Aria Core without moving heavy logic into the interface.
 - Audit 20-22 — Providers/Android Handoff Audit: audit provider boundaries and Android handoff boundaries.
 - Bloco 23 — Post-core Release Prep: checklist, release notes, backlog update, docs, handoff and release preparation for the post-core phase.
+
+### Future Android Player Audio Output Phase (Outside Aria Core)
+
+These phases are not part of Aria Core. They represent a future Android Player project that may consume Aria Core and research or implement an exclusive USB/audio output bridge if feasible.
+
+- **Future Android Player Phase A — Audio Output Research:** survey Android audio output APIs (AAudio, Oboe), USB DAC accessibility, exclusive mode feasibility, and sample-rate/bit-depth negotiation on target Android versions. No implementation.
+- **Future Android Player Phase B — Playback Engine Adapter:** design and prototype a playback engine adapter that can route Aria Core playback intents to a real audio output layer. Keep Aria Core contracts stable; adapter lives in the Android Player.
+- **Future Android Player Phase C — Exclusive USB Output Prototype:** prototype exclusive USB audio output for a targeted set of USB DACs. Validate stability, latency, and sample-rate switching. Prototype only; not production.
+- **Future Android Player Phase D — Bit-perfect Validation:** validate that the prototype achieves bit-perfect or bit-transparent output under test conditions. Document limitations and device-specific behavior.
+- **Future Android Player Phase E — Production Audio Driver/Bridge Decision:** decide whether to build a production audio driver/bridge, adopt an existing solution, or keep the playback engine adapter as a stable boundary without a custom driver. Aria Core remains driver-free regardless of this decision.
 
 ## Block Summaries
 
@@ -229,7 +239,7 @@ Bloco 14 defines offline/cache/storage policy, including offline availability, c
 
 Bloco 15 defines stream quality, transcoding, and network policy, including stream quality policy, transcoding capability/policy, network quality policy, and offline quality policy. Transcoding is policy/capability first, not a real transcoder.
 
-Bloco 16 defines playback capability models, including gapless capability, loudness/ReplayGain awareness, crossfade capability, bit-perfect capability, and output/device capability state. Bit-perfect means capability/readiness/intention first, not low-level audio implementation.
+Bloco 16 defines playback capability models, including gapless capability, loudness/ReplayGain awareness, crossfade capability, bit-perfect capability, USB DAC capability, exclusive output capability, audio output route state, sample-rate support, bit-depth support, output/device readiness, playback quality preferences, and driver bridge vocabulary for a future Android player. Bloco 16 is capability/readiness/preference models only. It must not implement a real audio driver, USB driver, Android USB Host API, JNI/NDK, AAudio/Oboe, Media3/ExoPlayer, real bit-perfect output, real sample-rate switching, real DAC control, or DSP/EQ.
 
 Bloco 17 defines profiles, preferences, backup, and restore for Aria config/state without destructive real music library mutation.
 
@@ -251,6 +261,9 @@ Bloco 23 defines post-core release preparation with checklist, release notes, ba
 - Dedicated spec before each non-trivial product implementation.
 - No Android UI, Android app shell, Compose, Activity/Fragment, Android SDK, Kotlin, Java, or Gradle code in the current Python core.
 - No Media3/ExoPlayer, real playback engine, real MediaSession, real Android Auto, real audio driver, bit-perfect driver, DSP/EQ, queue engine, or destructive cache/download implementation without explicit future scope.
+- Aria Core may model requirements for a future custom/exclusive audio output layer.
+- Aria Core must not implement an audio driver.
+- A future Android Player phase may research or implement an exclusive USB/audio output bridge if feasible.
 - No real provider integration, provider hard coupling, Anchor internals, Anchor CLI integration API, direct Navidrome calls, real music library mutation, secrets, raw logs, or personal paths.
 - No broad git add; commit only allowlisted files.
 - Aria Core represents and orchestrates states, intents, policies, and boundaries.

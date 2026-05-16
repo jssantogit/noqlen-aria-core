@@ -12,4 +12,6 @@ Related notes live in `docs/product-research/`.
 
 Use generic Aria domain names such as `SmartPlaylist`, `MultipleQueue`, `OutputProfile`, `BitPerfectCapability`, and `MediaProviderRegistry`. Do not use brand-based class or feature names.
 
+Future Android Player audio output phases are tracked in `docs/aria-core-handoff.md` and `docs/post-core-backlog.md` as a project outside Aria Core. Aria Core remains driver-free.
+
 Any future implementation needs a dedicated spec and explicit block scope.

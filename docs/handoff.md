@@ -64,3 +64,5 @@ Audit 8-13 status: the formal audit for Blocos 8-13 has been completed. All bloc
 Bloco 14 status: implemented. `src/noqlen_aria/offline_cache.py` provides offline/cache/storage policy models (OfflineAvailabilityState, CachePolicyState, CacheEligibilityState, CacheOperationIntent, CacheOperationPreview, PendingCacheOperation, StoragePressureState, StoragePressureLevel, StorageBudget, CacheCleanupPolicy, CacheCleanupPreview, CacheConfirmationState, CacheBlockedReason) and three deterministic local services (OfflineCachePolicyService, StoragePressureService, CacheCleanupPreviewService). `tests/test_offline_cache_storage_policy.py` adds 104 tests (746 total). No real download, cache write/delete, destructive cleanup, filesystem traversal, Android storage APIs, provider mutation, stream resolution, playback engine, or Bloco 15 behavior exists.
 
 Next step: Bloco 15 spec after explicit approval. Do not implement post-core features or publish without dedicated scope.
+
+Future Android Player audio output phases (A–E) are documented in `docs/aria-core-handoff.md` and `docs/post-core-backlog.md` as a future project outside Aria Core. Aria Core remains driver-free.

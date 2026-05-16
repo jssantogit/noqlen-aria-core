@@ -18,7 +18,7 @@ The roadmap in `docs/aria-core-handoff.md` defines Aria Core MVP as Blocos 0-7. 
 | Audit 11-13 | Queue/Now Playing/Intents Audit | Not started |
 | 14 | Offline, Cache and Storage Policy: offline availability, cache policy, cache cleanup, storage pressure, pending sync/cache states, and safe confirmation states | Not started |
 | 15 | Stream Quality, Transcoding and Network Policy: stream quality policy, transcoding capability/policy, network quality policy, and offline quality policy | Not started |
-| 16 | Playback Capability Models: gapless capability, loudness/ReplayGain awareness, crossfade capability, bit-perfect capability, and output/device capability state | Not started |
+| 16 | Playback Capability Models: gapless capability, loudness/ReplayGain awareness, crossfade capability, bit-perfect capability, USB DAC capability, exclusive output capability, audio output route state, sample-rate support, bit-depth support, output/device readiness, playback quality preferences, and driver bridge vocabulary for a future Android player | Not started |
 | Audit 14-16 | Offline/Quality/Capabilities Audit | Not started |
 | 17 | Profiles, Preferences, Backup and Restore: user profiles, preferences, backup/restore for Aria config/state, and no destructive real music library mutation | Not started |
 | 18 | Smart Playlists: smart playlists, smart mixes, saved filters, and rule-based playlists inspired by Symfonium | Not started |
@@ -44,7 +44,7 @@ The post-core roadmap includes these required feature families:
 - Offline/cache policy, cache cleanup, pending sync/cache state, safe confirmations, and storage pressure.
 - Stream quality, transcoding capability/policy, network quality policy, and offline quality policy.
 - Real Android media controls, lock-screen controls, notification controls, Bluetooth/headset events, Android Auto, foreground service, and widgets as future Android/platform work.
-- Gapless, loudness/ReplayGain awareness, crossfade capability, bit-perfect capability, and output/device capability state.
+- Gapless, loudness/ReplayGain awareness, crossfade capability, bit-perfect capability, USB DAC capability, exclusive output capability, audio output route state, sample-rate support, bit-depth support, output/device readiness, playback quality preferences, and driver bridge vocabulary for a future Android player.
 - Profiles, preferences, backup/restore for Aria config/state.
 - Smart playlists, smart mixes, saved filters, and rule-based playlist planning.
 - State snapshots, API snapshot behavior, and fake end-to-end flows.
@@ -54,10 +54,15 @@ The post-core roadmap includes these required feature families:
 
 - Stream quality/transcoding means policy and capability first, not a real transcoder.
 - Bit-perfect means capability/readiness/intention first, not low-level audio implementation.
+- USB DAC capability means modeling readiness/capability state and future driver bridge vocabulary, not a real USB driver or Android USB Host API.
+- Exclusive output capability means modeling intent/readiness state for a future custom audio output layer, not a real exclusive audio driver.
 - Renderer selection means intent/boundary first, not a real renderer.
 - Backup/restore means Aria config/state first, not destructive music library mutation.
 - Provider extension readiness does not mean real multi-provider support through current Anchor. Current Anchor-backed integration remains Navidrome-focused; future additional providers depend on public boundaries/adapters exposed by Anchor or another approved integration layer.
 - Automation intents are public/core intents, not UI automation scripts.
+- Aria Core may model requirements for a future custom/exclusive audio output layer.
+- Aria Core must not implement an audio driver.
+- A future Android Player phase may research or implement an exclusive USB/audio output bridge if feasible.
 
 ## Still Out of Scope Without Future Specs
 
@@ -67,6 +72,7 @@ The post-core roadmap includes these required feature families:
 - Real output/renderer/audio driver implementation.
 - DSP/EQ audio processing.
 - Real bit-perfect audio driver behavior.
+- Real sample-rate switching or real DAC control.
 - Real Android app shell implementation.
 - Real Android Auto, MediaSession, and widget implementation.
 - Platform-specific permission and storage adapters.
@@ -83,3 +89,13 @@ The post-core roadmap includes these required feature families:
 7. Future additional providers come through public boundaries/adapters exposed by Anchor or another approved integration layer, not direct provider internals.
 8. Android app/UI remains separate and consumes Aria Core.
 9. Repository hygiene and scope boundaries must be preserved.
+
+## Future Android Player Audio Output Phase (Outside Aria Core)
+
+The following phases are not part of Aria Core. They represent a future Android Player project that may consume Aria Core and research or implement an exclusive USB/audio output bridge if feasible. No Aria Core block implements these.
+
+- **Future Android Player Phase A — Audio Output Research:** survey Android audio output APIs (AAudio, Oboe), USB DAC accessibility, exclusive mode feasibility, and sample-rate/bit-depth negotiation on target Android versions. No implementation.
+- **Future Android Player Phase B — Playback Engine Adapter:** design and prototype a playback engine adapter that can route Aria Core playback intents to a real audio output layer. Keep Aria Core contracts stable; adapter lives in the Android Player.
+- **Future Android Player Phase C — Exclusive USB Output Prototype:** prototype exclusive USB audio output for a targeted set of USB DACs. Validate stability, latency, and sample-rate switching. Prototype only; not production.
+- **Future Android Player Phase D — Bit-perfect Validation:** validate that the prototype achieves bit-perfect or bit-transparent output under test conditions. Document limitations and device-specific behavior.
+- **Future Android Player Phase E — Production Audio Driver/Bridge Decision:** decide whether to build a production audio driver/bridge, adopt an existing solution, or keep the playback engine adapter as a stable boundary without a custom driver. Aria Core remains driver-free regardless of this decision.
