@@ -208,7 +208,7 @@ Bloco 5 defines minimal UI shell planning artifacts for a future thin adapter ov
 
 Bloco 6 hardens the MVP surface with intentional exports, safe serialization/sanitization helpers, optional Anchor absence behavior, dry-run/apply safety tests, documentation consistency, and audit readiness.
 
-Bloco 7 defines library browse/search for artists, albums, tracks, folders, playlists, genres, search queries, filters, sort options, and pagination.
+Bloco 7 implements Aria Core Release Preparation: release checklist, release notes, public API surface summary, safety summary, post-core backlog, handoff update, and README refresh.
 
 Bloco 8 defines user library states including recently added, recently played, favorites, play count, last played, resume points, unavailable/missing media, and health badges.
 

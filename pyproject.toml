@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "noqlen-aria-core"
 version = "0.0.0"
-description = "Noqlen Aria Core bootstrap and workflow context."
+description = "Noqlen Aria Core — modular app/player-facing core of a music player."
 readme = "README.md"
 requires-python = ">=3.11"
 license = { file = "LICENSE" }
