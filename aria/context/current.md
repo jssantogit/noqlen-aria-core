@@ -15,33 +15,38 @@
 - 129 boundary contract tests added; 358 total tests pass.
 - Bloco 5 Minimal UI Shell Planning artifacts are complete (docs only, no implementation).
 - Bloco 6 Aria MVP Hardening is implemented.
-- Do not redo Bloco 3.
-- Next: Blocos 4-6 formal audit. Do not start Bloco 7 until audit is approved.
+- Blocos 4-6 formal audit is complete.
+- Bloco 7 Aria Core Release Preparation spec is the active planning task.
+- Next: Bloco 7 release preparation implementation. Do not create a release tag or publish in this spec task.
 
 ## Active spec
 
 - `aria/specs/features/android-player-boundary-contracts/` — spec and implementation complete.
 - `aria/specs/features/minimal-ui-shell-planning/` — spec/planning artifacts complete. No UI implementation.
 - `aria/specs/features/aria-mvp-hardening/` — spec and implementation complete.
+- `aria/specs/features/aria-release-preparation/` — spec/planning active. No release implementation.
 - No active product implementation.
 
 ## Current goal
 
-- Keep future tasks focused with compact context packages.
-- Preserve existing safety rules while avoiding large repeated prompts.
+- Create an implementation-ready spec for preparing the Aria Core MVP release.
+- No tag, no publish, no source changes, no product behavior in this task.
 
 ## Allowed scope
 
-- Audit-scoped fixes for Blocos 4-6 only.
-- Small architecture naming, safety test, public export, docs/spec/review, context concision, and repository hygiene corrections.
+- Spec creation in `aria/specs/features/aria-release-preparation/**` only.
+- Context updates in `aria/context/current.md`, `aria/context/delta.md`, and `docs/handoff.md` if needed.
+- Validation and contamination checks.
 
 ## Forbidden scope
 
-- Bloco 7 work or release preparation.
+- Release tag creation or package publishing.
+- Source code changes to `src/noqlen_aria/**`.
+- Test changes.
+- `pyproject.toml` or version changes.
 - Product behavior without an approved spec.
 - Android, UI, navigation, player, queue, now playing, playback engine, cache/offline, or storage UX implementation.
 - Real Anchor, Navidrome, Jellyfin, Emby, provider, or media-source integration.
-- Mutation testing policy, Pact Broker setup, or new contract harness implementation unless a future spec adopts them.
 
 ## Key risks
 

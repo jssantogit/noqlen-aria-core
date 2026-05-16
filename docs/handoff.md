@@ -32,6 +32,8 @@ Repository direction updated: Aria Core is now documented as Aria Music Player C
 
 Workflow vNext status: future tasks should start from `aria/context/current.md`, `aria/context/delta.md`, and the context package policy before reading large handoff context.
 
+Bloco 7 status: Aria Core Release Preparation spec created (`aria/specs/features/aria-release-preparation/`). Spec/planning only — no release tag, publish, source, version, or implementation changes yet.
+
 Third-party names in research docs are factual references only. They do not imply Noqlen affiliation, endorsement, sponsorship, association, official support, or compatibility.
 
-Next step after this commit: Blocos 4-6 formal audit. Do not start Bloco 7, UI, Android, playback, queue, now playing, cache, or provider integration without a dedicated future spec.
+Next step after this commit: Bloco 7 release preparation implementation after spec approval. Do not create a release tag or publish until all checklist items pass.

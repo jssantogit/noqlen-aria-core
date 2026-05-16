@@ -41,9 +41,11 @@
 - Bloco 4 implementation is complete. 9 bridge boundaries, all fakes, 129 tests.
 - Bloco 5 Minimal UI Shell Planning artifacts are complete. Documentation only, no implementation.
 - Bloco 6 Aria MVP Hardening is implemented.
-- Next step: Blocos 4-6 formal audit. Do not start Bloco 7 until audit is approved.
+- Blocos 4-6 formal audit is complete.
+- Bloco 7 Aria Core Release Preparation spec is created. Spec/planning only — no release implementation.
+- Next step: Bloco 7 release preparation implementation after spec approval.
 
 ## Open decisions
 
 - Whether to create a short ADR for the source-agnostic `ControlClient` boundary during a future architecture review.
-- Which future Bloco 7 spec should follow after the Blocos 4-6 formal audit is approved.
+- When to bump the version from `0.0.0` — during Bloco 7 implementation or later release prep.
