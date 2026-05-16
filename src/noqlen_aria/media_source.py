@@ -4,9 +4,12 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from enum import Enum, auto
-from typing import NewType, Protocol, runtime_checkable
+from typing import TYPE_CHECKING, Any, NewType, Protocol, runtime_checkable
 
 from noqlen_aria.contracts import AriaError, AriaResult
+
+if TYPE_CHECKING:
+    from noqlen_aria.library import LibraryBrowseRequest, LibraryBrowseResult, LibrarySearchQuery, LibrarySearchResult
 
 # ── Media source identity ────────────────────────────────────
 
@@ -130,6 +133,14 @@ class MediaSourceClient(Protocol):
         """Request a stream handle for a given media ID."""
         ...
 
+    def browse_library(self, request: LibraryBrowseRequest) -> AriaResult[LibraryBrowseResult]:
+        """Browse app-facing library metadata through the source boundary."""
+        ...
+
+    def search_library(self, query: LibrarySearchQuery) -> AriaResult[LibrarySearchResult]:
+        """Search app-facing library metadata through the source boundary."""
+        ...
+
 
 # ── FakeMediaSourceClient ────────────────────────────────────
 
@@ -164,9 +175,107 @@ class FakeMediaSourceClient:
     _capability_summary_override: SourceCapabilitySummary | None = field(default=None, repr=False)
     _stream_handle_override: StreamHandle | None = field(default=None, repr=False)
 
+    _library_browse_items: dict[Any, tuple[Any, ...]] = field(default_factory=dict, repr=False)
+    _library_warnings: tuple[Any, ...] = field(default_factory=tuple, repr=False)
+    _browse_library_error: AriaError | None = field(default=None, repr=False)
+    _search_library_error: AriaError | None = field(default=None, repr=False)
+
     _default_stream_availability: StreamAvailability = field(
         default=StreamAvailability.STREAM_NOT_RESOLVED, repr=False
     )
+
+    @classmethod
+    def with_full_library(cls) -> FakeMediaSourceClient:
+        from noqlen_aria.library import (
+            AlbumSummary,
+            ArtistSummary,
+            FolderSummary,
+            GenreSummary,
+            LibraryBrowseCategory,
+            PlaylistSummary,
+            TrackSummary,
+        )
+
+        source_id = MediaSourceId("fake-source-1")
+        return cls(
+            supported_capabilities=frozenset({
+                SourceCapability.ARTISTS,
+                SourceCapability.ALBUMS,
+                SourceCapability.TRACKS,
+                SourceCapability.PLAYLISTS,
+                SourceCapability.GENRES,
+                SourceCapability.FOLDERS,
+                SourceCapability.SEARCH,
+            }),
+            _library_browse_items={
+                LibraryBrowseCategory.ARTISTS: (
+                    ArtistSummary(source_id, MediaId("artist-1"), "Ada Quartet", album_count=1, track_count=2),
+                ),
+                LibraryBrowseCategory.ALBUMS: (
+                    AlbumSummary(source_id, MediaId("album-1"), "Analytical Engines", artist_name="Ada Quartet", track_count=2),
+                ),
+                LibraryBrowseCategory.TRACKS: (
+                    TrackSummary(source_id, MediaId("track-1"), "First Difference", artist_name="Ada Quartet", album_name="Analytical Engines", duration_seconds=180),
+                    TrackSummary(source_id, MediaId("track-2"), "Safe Folder Song", artist_name="Ada Quartet", album_name="Analytical Engines", duration_seconds=210),
+                ),
+                LibraryBrowseCategory.PLAYLISTS: (
+                    PlaylistSummary(source_id, MediaId("playlist-1"), "Core Favorites", track_count=2),
+                ),
+                LibraryBrowseCategory.GENRES: (
+                    GenreSummary(source_id, MediaId("genre-1"), "Instrumental", track_count=2),
+                ),
+                LibraryBrowseCategory.FOLDERS: (
+                    FolderSummary(source_id, MediaId("folder-1"), "Source Folder", child_count=2),
+                ),
+            },
+        )
+
+    @classmethod
+    def without_playlists(cls) -> FakeMediaSourceClient:
+        fake = cls.with_full_library()
+        fake.supported_capabilities = frozenset(
+            cap for cap in fake.supported_capabilities if cap != SourceCapability.PLAYLISTS
+        )
+        return fake
+
+    @classmethod
+    def without_folders(cls) -> FakeMediaSourceClient:
+        fake = cls.with_full_library()
+        fake.supported_capabilities = frozenset(
+            cap for cap in fake.supported_capabilities if cap != SourceCapability.FOLDERS
+        )
+        return fake
+
+    @classmethod
+    def degraded_with_warnings(cls) -> FakeMediaSourceClient:
+        from noqlen_aria.contracts import AriaWarning
+
+        fake = cls.with_full_library()
+        fake.availability = SourceAvailabilityState.DEGRADED
+        fake._library_warnings = (
+            AriaWarning(code="SOURCE_DEGRADED", message="Source is degraded; results may be partial"),
+        )
+        return fake
+
+    @classmethod
+    def unavailable(cls) -> FakeMediaSourceClient:
+        fake = cls.with_full_library()
+        fake.availability = SourceAvailabilityState.UNAVAILABLE
+        return fake
+
+    @classmethod
+    def empty_library(cls) -> FakeMediaSourceClient:
+        return cls(
+            supported_capabilities=frozenset({
+                SourceCapability.ARTISTS,
+                SourceCapability.ALBUMS,
+                SourceCapability.TRACKS,
+                SourceCapability.PLAYLISTS,
+                SourceCapability.GENRES,
+                SourceCapability.FOLDERS,
+                SourceCapability.SEARCH,
+            })
+        )
 
     def _build_capability_summary(self) -> SourceCapabilitySummary:
         all_caps = frozenset(SourceCapability)
@@ -218,6 +327,95 @@ class FakeMediaSourceClient:
                 media_id=media_id,
                 source_id=self.source_id,
                 availability=self._default_stream_availability,
+            ),
+        )
+
+    def browse_library(self, request: LibraryBrowseRequest) -> AriaResult[LibraryBrowseResult]:
+        from noqlen_aria.library import LibraryBrowseCategory, LibraryBrowseResult
+
+        if self._browse_library_error is not None:
+            return AriaResult(ok=False, error=self._browse_library_error)
+        if self.availability == SourceAvailabilityState.UNAVAILABLE:
+            return AriaResult(
+                ok=False,
+                error=AriaError(
+                    code="SOURCE_UNAVAILABLE",
+                    message=f"Source {self.source_id} is unavailable",
+                ),
+            )
+        capability_by_category = {
+            LibraryBrowseCategory.ARTISTS: SourceCapability.ARTISTS,
+            LibraryBrowseCategory.ALBUMS: SourceCapability.ALBUMS,
+            LibraryBrowseCategory.TRACKS: SourceCapability.TRACKS,
+            LibraryBrowseCategory.PLAYLISTS: SourceCapability.PLAYLISTS,
+            LibraryBrowseCategory.GENRES: SourceCapability.GENRES,
+            LibraryBrowseCategory.FOLDERS: SourceCapability.FOLDERS,
+        }
+        capability = capability_by_category[request.category]
+        if capability not in self.supported_capabilities:
+            return AriaResult(
+                ok=True,
+                data=LibraryBrowseResult(
+                    category=request.category,
+                    available=False,
+                    warnings=self._library_warnings,
+                    error=AriaError(
+                        code="CAPABILITY_NOT_SUPPORTED",
+                        message=f"Library browse category {request.category.name} is not supported",
+                    ),
+                ),
+            )
+        return AriaResult(
+            ok=True,
+            data=LibraryBrowseResult(
+                category=request.category,
+                items=tuple(self._library_browse_items.get(request.category, ())),
+                available=True,
+                warnings=self._library_warnings,
+            ),
+        )
+
+    def search_library(self, query: LibrarySearchQuery) -> AriaResult[LibrarySearchResult]:
+        from noqlen_aria.library import LibrarySearchResult
+
+        if self._search_library_error is not None:
+            return AriaResult(ok=False, error=self._search_library_error)
+        if self.availability == SourceAvailabilityState.UNAVAILABLE:
+            return AriaResult(
+                ok=False,
+                error=AriaError(
+                    code="SOURCE_UNAVAILABLE",
+                    message=f"Source {self.source_id} is unavailable",
+                ),
+            )
+        if SourceCapability.SEARCH not in self.supported_capabilities:
+            return AriaResult(
+                ok=True,
+                data=LibrarySearchResult(
+                    query=query,
+                    valid_query=True,
+                    warnings=self._library_warnings,
+                    error=AriaError(
+                        code="CAPABILITY_NOT_SUPPORTED",
+                        message="Library search is not supported",
+                    ),
+                ),
+            )
+        categories = query.categories or frozenset(self._library_browse_items.keys())
+        candidates = []
+        for category in categories:
+            for item in self._library_browse_items.get(category, ()):
+                library_item = item.as_library_item()
+                searchable = f"{library_item.display_name} {library_item.subtitle}".casefold()
+                if query.normalized_text in searchable:
+                    candidates.append(library_item)
+        return AriaResult(
+            ok=True,
+            data=LibrarySearchResult(
+                query=query,
+                items=tuple(candidates[: query.max_results]),
+                valid_query=True,
+                warnings=self._library_warnings,
             ),
         )
 

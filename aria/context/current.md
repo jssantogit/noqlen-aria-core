@@ -12,10 +12,12 @@
 - Bloco 6 Aria MVP hardening is complete.
 - Bloco 7 Aria Core Release Preparation is complete.
 - Local tag `v0.1.0` exists; Aria Core MVP is complete.
-- Bloco 8 (Media Source Foundation) is implemented. Next step: Bloco 9 spec after explicit approval.
+- Bloco 8 (Media Source Foundation) is implemented.
+- Bloco 9 (Library Browse/Search) is implemented. Next step: Bloco 10 only after explicit approval and a dedicated spec.
 
 ## Active spec
 
+- `aria/specs/features/library-browse-search/` — spec and implementation complete.
 - `aria/specs/features/media-source-foundation/` — spec and implementation complete.
 - `aria/specs/features/android-player-boundary-contracts/` — spec and implementation complete.
 - `aria/specs/features/minimal-ui-shell-planning/` — spec/planning artifacts complete.
@@ -27,13 +29,14 @@
 
 - Aria Core MVP is Blocos 0-7 and local tag `v0.1.0` exists.
 - Bloco 8 Media Source Foundation is implemented and validated.
-- Do not start Bloco 9 without explicit approval.
+- Bloco 9 Library Browse/Search is implemented and validated.
+- Do not start Bloco 10 without explicit approval and a dedicated spec.
 - No publish until approved.
 
 ## Allowed scope
 
 - Context and handoff documentation updates.
-- Bloco 9 spec planning after explicit approval.
+- Bloco 10 spec planning after explicit approval.
 - Publish only when explicitly approved.
 
 ## Forbidden scope

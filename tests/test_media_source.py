@@ -24,6 +24,13 @@ from noqlen_aria.media_source import (
     StreamAvailability,
     StreamHandle,
 )
+from noqlen_aria.library import (
+    LibraryBrowseRequest,
+    LibraryBrowseResult,
+    LibraryBrowseCategory,
+    LibrarySearchQuery,
+    LibrarySearchResult,
+)
 
 
 # ── Test helpers ─────────────────────────────────────────────
@@ -410,7 +417,33 @@ class TestMediaSourceClientProtocol:
                     stream_id="s", media_id=media_id, source_id=MediaSourceId("c"),
                 ))
 
+            def browse_library(self, request):
+                return AriaResult(ok=True, data=LibraryBrowseResult(category=request.category))
+
+            def search_library(self, query):
+                return AriaResult(ok=True, data=LibrarySearchResult(query=query))
+
         assert isinstance(CustomSource(), MediaSourceClient)
+
+    def test_custom_without_library_methods_fails_protocol(self):
+        class OldShapeSource:
+            def get_source_info(self):
+                return AriaResult(ok=True, data=None)
+
+            def get_capability_summary(self):
+                return AriaResult(ok=True, data=None)
+
+            def request_stream(self, media_id):
+                return AriaResult(ok=True, data=None)
+
+        assert not isinstance(OldShapeSource(), MediaSourceClient)
+
+    def test_fake_browse_search_satisfies_protocol(self):
+        fake = FakeMediaSourceClient.with_full_library()
+        browse = fake.browse_library(LibraryBrowseRequest(LibraryBrowseCategory.ARTISTS))
+        search = fake.search_library(LibrarySearchQuery("Ada"))
+        assert browse.ok
+        assert search.ok
 
 
 # ── FakeMediaSourceClient — healthy source ───────────────────
