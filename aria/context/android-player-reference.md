@@ -1,14 +1,11 @@
 # Android Player Reference
 
-This file records product inspiration only.
+This file records product inspiration only. It is not authorization to implement UI, Android SDK code, playback, cache/offline/download, Android Auto, MediaSession, DSP/EQ, or real audio drivers.
 
-- Poweramp: audio polish, customization, EQ/DSP.
-- Musicolet: local/offline UX and queues.
-- Symfonium: server-client model, cache/offline, mature Android UX.
-- Plexamp: now playing polish, gapless, loudness, pre-cache.
-- VLC: robustness and compatibility.
-- AIMP / foobar2000 / Neutron: playlists, ReplayGain, hi-res, DSP.
+- Symfonium: provider registry, provider capability matrix, sync manager, offline/cache/download models, multiple queues, smart playlists/smart mixes, notification/media session buttons, Android Auto, backup/restore, application profiles, and automation/API intents.
+- USB Audio Player PRO (UAPP): USB DAC, hi-res output, bit-perfect capability, sample rate and bit depth support, DSD/MQA awareness as metadata, Bluetooth codec/output state, renderer/output diagnostics, and output troubleshooting hints.
+- Poweramp: local library/folder browsing, dynamic queue, per-output settings, ReplayGain, gapless/crossfade/fade, format support, CUE/radio stream support, lyrics/artwork metadata, and Android controls.
 
-This is not authorization to implement UI. This is not authorization to implement playback. This is not authorization to implement cache/offline. This is not authorization to implement DSP/EQ.
+Related notes live in `docs/product-research/`.
 
 Any future implementation needs a dedicated spec and explicit block scope.

@@ -1,6 +1,7 @@
 # Block Audit Checklist
 
 - Confirm active block and commit being audited.
+- Confirm `docs/aria-core-handoff.md` is the current roadmap/source of truth.
 - Confirm source of truth/context files read.
 - Confirm AGENTS.md reading order was followed.
 - Confirm scope boundaries.

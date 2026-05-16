@@ -1,13 +1,30 @@
 # Architecture
 
-Noqlen Aria Core is core-first. It owns app/interface orchestration boundaries and exposes behavior to future UI adapters without becoming a UI itself.
+Noqlen Aria Core is the modular app/player-facing core of a music player. It owns contracts, states, services, policies, capabilities, fakes, mappers, adapters, snapshots, safe serialization, and tests.
 
-Future flow:
+Canonical architecture details and the roadmap live in `docs/aria-core-handoff.md`.
 
-`Future UI/App -> Aria Core -> Anchor Client -> Anchor Core API -> Navidrome`
+High-level flow:
 
-Aria Core must not bypass Anchor. Anchor integration is expected to happen through a public Anchor client/API boundary in a later block.
+`Future UI/App/Player -> Aria Core -> contracts/adapters -> providers/backends`
 
-Bloco 0 only creates repository structure, workflow context, and a safe local doctor command. It does not implement product contracts, playback, queues, now playing, offline/cache, Android integration, or Anchor integration.
+Layer model:
+
+- Public API / Snapshot Layer
+- Control Plane
+- Media Provider Layer
+- Media Source Layer
+- Library Layer
+- Sync Layer
+- Playlist / Smart Playlist Layer
+- Queue / Now Playing Layer
+- Offline / Cache / Download Policy Layer
+- Stream Quality / Transcoding Layer
+- Output / Renderer / Audio Capability Layer
+- Playback Policy Layer
+- Android Boundary Layer
+- Backup / Profiles / Preferences Layer
+
+Anchor is not the center of Aria. Anchor is one `ControlClient` adapter/control-plane backend. Aria must depend on contracts, not Anchor internals, and must not use Anchor CLI or provider internals as integration APIs.
 
 Future UI must be thin and must not contain core business behavior.

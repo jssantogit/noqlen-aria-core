@@ -1,7 +1,7 @@
 # Anchor Integration
 
-Anchor is a future dependency boundary, not a Bloco 0 implementation dependency.
+Anchor is not the center of Aria. Anchor is one `ControlClient` adapter/control-plane backend.
 
-Aria Core will later consume Anchor through a public API/client boundary. It must not import Anchor provider internals, call provider internals, use Anchor CLI as the integration layer, or call Navidrome directly.
+Aria Core must depend on contracts, not Anchor internals. It must not import Anchor provider internals, call provider internals, use Anchor CLI as the integration layer, call Navidrome directly, or call Navidrome through provider internals.
 
-Bloco 0 documents this boundary only. Any future Anchor integration requires an Aria spec before implementation.
+Future provider/media support should be capability-driven and adapter-based. Any future Anchor or provider integration requires an Aria spec before implementation.

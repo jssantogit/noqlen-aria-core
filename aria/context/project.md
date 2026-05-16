@@ -1,6 +1,6 @@
 # Project Context
 
-Noqlen Aria Core is the app/interface orchestration core in the Noqlen ecosystem.
+Noqlen Aria Core is the modular app/player-facing core of a music player.
 
 Repository-local handoff: `docs/aria-core-handoff.md`.
 
@@ -10,9 +10,11 @@ Strategic position:
 
 `Flux -> Forge -> Anchor -> Aria`
 
-Expected future flow:
+Current architecture direction:
 
-`Future UI/App -> Aria Core -> Anchor Client -> Anchor Core API -> Navidrome`
+`Future UI/App/Player -> Aria Core -> contracts/adapters -> providers/backends`
+
+Anchor is not the center of Aria. Anchor is one `ControlClient` adapter/control-plane backend, and Aria must depend on contracts rather than Anchor internals.
 
 ## Non-Goals
 
