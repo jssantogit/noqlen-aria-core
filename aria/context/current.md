@@ -7,17 +7,18 @@
 - Bloco 1 contracts are complete.
 - Bloco 2 fake control state mapping is complete.
 - Bloco 3 `AnchorControlClient` dry-run/offline adapter is complete.
-- Bloco 4 spec (Android/player boundary contracts) is drafted.
+- Bloco 4 (Android/player boundary contracts) is implemented.
 
 ## Active slice
 
-- Bloco 4 spec is created; implementation is deferred.
+- Bloco 4 is complete: 9 bridge protocols, supporting types, composite snapshot, and 9 fake implementations.
+- 129 boundary contract tests added; 358 total tests pass.
 - Do not redo Bloco 3.
-- Do not implement Bloco 4 before the Blocos 1-3 audit passes.
+- Next: Bloco 5 spec/planning or Blocos 1-3 audit.
 
 ## Active spec
 
-- `aria/specs/features/android-player-boundary-contracts/` — spec complete (requirements, design, tasks, review).
+- `aria/specs/features/android-player-boundary-contracts/` — spec and implementation complete.
 - No active product implementation.
 
 ## Current goal
