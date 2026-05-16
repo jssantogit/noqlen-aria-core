@@ -21,4 +21,6 @@ Bloco 1 status: complete. Aria Core contracts implemented in `src/noqlen_aria/co
 
 Bloco 2 status: complete. Five services implemented in `src/noqlen_aria/services.py` (`ResultMappingService`, `StatusService`, `DiagnosticsService`, `LifecycleIntentService`, `ReadinessService`) plus `LifecycleIntentPreview`. `FakeControlClient` extended with 14 failure-injection/value-override hooks in `contracts.py`. `tests/test_services.py` has 76 tests. All 126 tests pass. No real Anchor, Navidrome, Android, playback, queue, or cache code exists. Next block: Bloco 3 (AnchorControlClient adapter, offline/dry-run only).
 
+Bloco 3 spec status: drafted in `aria/specs/features/anchor-control-dry-run-adapter/`. Implementation pending spec review and Anchor public API callable name confirmation.
+
 Repository-local handoff: `docs/aria-core-handoff.md` is the local source of truth for future Aria work. Future prompts should not reference chat-only handoff files. If Bloco 0 audit passed, the next step is Bloco 1 spec, not implementation.
