@@ -72,3 +72,7 @@ Future Android Player audio output phases (A–E) are documented in `docs/aria-c
 Bloco 22 status: planning complete. `docs/android-real-integration-plan.md` documents future Android media controls, MediaSession, notification/lock-screen controls, Bluetooth/headset, Android Auto, foreground service, widgets, permission/storage UX, playback engine adapter expectations, and audio output/driver boundaries. No Android implementation exists.
 
 Bloco 23 status: handoff complete. `docs/android-shell-handoff.md` documents how the future Android shell consumes Aria Core state/results/intents without moving heavy logic into UI/platform code. No Android shell implementation exists.
+
+Bloco 24 status: release-prep complete. Post-core release-prep artifacts were created: `docs/post-core-release-checklist.md`, `docs/post-core-release-notes.md`, `docs/post-core-api-surface.md`, `docs/post-core-safety-summary.md`, `docs/post-core-known-limitations.md`, `docs/post-core-handoff.md`, and `docs/future-android-player-handoff.md`. This is documentation/release-prep only. No source, tests, package version, tag, publish, Android app, real player, custom audio driver, provider integration, network behavior, or filesystem/device behavior was added.
+
+Next gate: Final Post-core/Core Audit. Do not create a post-core tag or publish packages until final audit passes and a maintainer explicitly approves release actions.

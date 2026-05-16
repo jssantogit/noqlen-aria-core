@@ -6,9 +6,9 @@ Aria Core is not UI and is not an Android app. Future UI must remain a thin adap
 
 Aria Workflow is the development method used in this repository. Aria Workflow is not the product.
 
-## What Is Implemented (MVP)
+## What Is Implemented
 
-MVP scope is Blocos 0-7. Local tag `v0.1.0` exists. Post-core feature expansion starts after `v0.1.0`, is tracked as Blocos 8-24, and remains backlog.
+MVP scope is Blocos 0-7. Local tag `v0.1.0` exists. Post-core foundation Blocos 8-24 are implemented, documented, or release-prepared according to the roadmap. Final Post-core/Core Audit is still required before any post-core tag or publish decision.
 
 - Control-plane contracts and fake-first services.
 - Dry-run/offline Anchor adapter.
@@ -16,9 +16,10 @@ MVP scope is Blocos 0-7. Local tag `v0.1.0` exists. Post-core feature expansion 
 - Minimal UI shell planning artifacts (documentation only).
 - Safe serialization and sanitized output helpers.
 - Intentional public API exports.
-- 368 tests, all passing.
+- Post-core media source, library, queue, now playing, playback intent, offline/cache, radio, quality, capability, profile/preference, smart playlist, snapshot, provider-readiness, Android planning, and release-prep foundations.
+- Existing tests pass as recorded in the post-core release checklist.
 
-For details, see `docs/release-notes.md` and `docs/api-surface.md`.
+For MVP details, see `docs/release-notes.md` and `docs/api-surface.md`. For post-core release-prep details, see `docs/post-core-release-notes.md` and `docs/post-core-api-surface.md`.
 
 ## Architecture
 
@@ -68,5 +69,11 @@ python3 -m pytest
 - `docs/release-notes.md` — release notes for the MVP.
 - `docs/api-surface.md` — public API surface summary.
 - `docs/safety-summary.md` — verified safety boundaries.
+- `docs/post-core-release-checklist.md` — post-core release-prep checklist and final audit gate.
+- `docs/post-core-release-notes.md` — post-core release-prep notes.
+- `docs/post-core-api-surface.md` — post-core public API surface summary.
+- `docs/post-core-safety-summary.md` — post-core safety and boundary summary.
+- `docs/post-core-handoff.md` — handoff to final audit and future phases.
+- `docs/future-android-player-handoff.md` — future Android Player handoff outside Aria Core.
 - `docs/post-core-backlog.md` — post-core features roadmap.
 - `docs/handoff.md` — current project status and handoff.

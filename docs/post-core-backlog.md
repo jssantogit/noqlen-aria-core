@@ -29,7 +29,7 @@ The roadmap in `docs/aria-core-handoff.md` defines Aria Core MVP as Blocos 0-7. 
 | 22 | Android Real Integration Planning: real media controls, lock-screen controls, notification controls, Bluetooth/headset, Android Auto, foreground service, and widgets planning | Planning complete |
 | 23 | Android Shell Handoff: handoff for future Android app/UI; UI consumes Aria Core and does not own heavy logic | Handoff complete |
 | Audit 21-23 | Providers/Android Handoff Audit | Deferred to final post-core/core audit unless explicitly requested |
-| 24 | Post-core Release Prep: checklist, release notes, backlog update, docs, handoff, and release preparation for the post-core phase | Not started |
+| 24 | Post-core Release Prep: checklist, release notes, backlog update, docs, handoff, and release preparation for the post-core phase | Release-prep complete; final audit pending |
 
 ## Backlog Resources Covered
 
@@ -83,6 +83,20 @@ The post-core roadmap includes these required feature families:
 - Real Android Auto, MediaSession, and widget implementation.
 - Platform-specific permission and storage adapters.
 - Package publishing, tag creation, mutation testing, Pact Broker, or CI/CD changes.
+
+## Release Prep Status
+
+Bloco 24 release-prep artifacts are complete:
+
+- `docs/post-core-release-checklist.md`
+- `docs/post-core-release-notes.md`
+- `docs/post-core-api-surface.md`
+- `docs/post-core-safety-summary.md`
+- `docs/post-core-known-limitations.md`
+- `docs/post-core-handoff.md`
+- `docs/future-android-player-handoff.md`
+
+Final Post-core/Core Audit is the next gate. No post-core tag exists, no package has been published, no Android app exists, no real player exists, and no custom audio driver exists.
 
 ## Rules for Post-Core Work
 

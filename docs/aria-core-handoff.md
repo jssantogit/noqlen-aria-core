@@ -21,6 +21,7 @@
 - Blocos 18-21 are implemented. Audit 18-20 is deferred to the final post-core/core audit.
 - Bloco 22 Android Real Integration Planning is complete as documentation only.
 - Bloco 23 Android Shell Handoff is complete as documentation only. Audit 21-23 is deferred to the final post-core/core audit unless explicitly requested.
+- Bloco 24 Post-core Release Prep is complete as documentation/release-prep only. Final Post-core/Core Audit is the next gate before any post-core tag or publish decision.
 
 ## Product Definition
 
@@ -199,7 +200,7 @@ Third-party product and provider names in Aria docs are factual research referen
 - Bloco 22 — Android Real Integration Planning: real media controls, lock-screen controls, notification controls, Bluetooth/headset, Android Auto, foreground service and widgets planning.
 - Bloco 23 — Android Shell Handoff: handoff for the future Android app/UI to consume Aria Core without moving heavy logic into the interface.
 - Audit 21-23 — Providers/Android Handoff Audit: audit provider boundaries and Android handoff boundaries.
-- Bloco 24 — Post-core Release Prep: checklist, release notes, backlog update, docs, handoff and release preparation for the post-core phase.
+- Bloco 24 — Post-core Release Prep: checklist, release notes, backlog update, docs, handoff and release preparation for the post-core phase. Complete as release-prep documentation; final audit pending.
 
 ### Future Android Player Audio Output Phase (Outside Aria Core)
 
@@ -263,6 +264,8 @@ Bloco 23 defines Android shell handoff for the future Android app/UI to consume 
 
 Bloco 24 defines post-core release preparation with checklist, release notes, backlog update, docs, handoff, and release preparation for the post-core phase.
 
+Bloco 24 release-prep artifacts live in `docs/post-core-release-checklist.md`, `docs/post-core-release-notes.md`, `docs/post-core-api-surface.md`, `docs/post-core-safety-summary.md`, `docs/post-core-known-limitations.md`, `docs/post-core-handoff.md`, and `docs/future-android-player-handoff.md`. Bloco 24 creates no tag, publishes no package, and implements no product behavior.
+
 ## Safety Rules
 
 - Fake-first development.
@@ -281,4 +284,4 @@ Bloco 24 defines post-core release preparation with checklist, release notes, ba
 
 ## Current Next Step
 
-Blocos 0-23 are complete through Android shell handoff. Aria Core MVP (Blocos 0-7) is tagged `v0.1.0`. Post-core media/library/queue/now-playing/playback-intent foundation (Blocos 8-13) is implemented and audited. Offline/radio/quality/playback-capability foundation (Blocos 14-17) is implemented and audited. Blocos 18-21 are implemented. Blocos 22-23 are planning/handoff docs only. Do not start Bloco 24 without explicit approval and a dedicated spec.
+Blocos 0-24 are complete through post-core release prep. Aria Core MVP (Blocos 0-7) is tagged `v0.1.0`. Post-core media/library/queue/now-playing/playback-intent foundation (Blocos 8-13) is implemented and audited. Offline/radio/quality/playback-capability foundation (Blocos 14-17) is implemented and audited. Blocos 18-21 are implemented. Blocos 22-23 are planning/handoff docs only. Bloco 24 is release-prep documentation only. Next gate: Final Post-core/Core Audit before any post-core tag or publish decision.

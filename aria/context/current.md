@@ -30,6 +30,7 @@
 - Bloco 21 (Provider Extension Readiness) is implemented.
 - Bloco 22 (Android Real Integration Planning) is complete as planning/docs only.
 - Bloco 23 (Android Shell Handoff) is complete as handoff/docs only.
+- Bloco 24 (Post-core Release Prep) is complete as release-prep/docs only.
 
 ## Active spec
 
@@ -49,11 +50,12 @@
 - `aria/specs/features/provider-extension-readiness/` — spec and implementation complete.
 - `aria/specs/features/android-real-integration-planning/` — spec/planning artifacts complete.
 - `aria/specs/features/android-shell-handoff/` — spec/handoff artifacts complete.
+- `aria/specs/features/post-core-release-prep/` — spec/release-prep artifacts complete.
 - `aria/specs/features/android-player-boundary-contracts/` — spec and implementation complete.
 - `aria/specs/features/minimal-ui-shell-planning/` — spec/planning artifacts complete.
 - `aria/specs/features/aria-mvp-hardening/` — spec and implementation complete.
 - `aria/specs/features/aria-release-preparation/` — spec and implementation complete.
-- Bloco 23 Android Shell Handoff is complete; no active product implementation after commit.
+- Bloco 24 Post-core Release Prep is complete; no active product implementation after commit.
 
 ## Current goal
 
@@ -75,8 +77,9 @@
 - Bloco 21 Provider Extension Readiness is implemented as provider descriptor/readiness/capability/registry models and deterministic local-only readiness/discovery services. Current Anchor remains Navidrome-focused; no real provider integration, provider auth, network, mutation, streaming, playback, Android/UI, or Bloco 22 behavior was added.
 - Bloco 22 Android Real Integration Planning is complete as documentation only in `docs/android-real-integration-plan.md` and `aria/specs/features/android-real-integration-planning/`. No Android SDK, Kotlin/Java/Gradle, MediaSession, Media3/ExoPlayer, Android Auto, notification/lock-screen/Bluetooth/headset/widget, foreground service, playback engine, audio driver, USB output, UI, source, or test implementation was added.
 - Bloco 23 Android Shell Handoff is complete as documentation only in `docs/android-shell-handoff.md` and `aria/specs/features/android-shell-handoff/`. No Android SDK, Kotlin/Java/Gradle, Compose/Activity/Fragment/UI, MediaSession, Media3/ExoPlayer, Android Auto, notification/lock-screen/Bluetooth/headset/widget, playback engine, audio driver, USB output, provider, source, or test implementation was added.
+- Bloco 24 Post-core Release Prep is complete as documentation/release-prep only in `docs/post-core-release-checklist.md`, `docs/post-core-release-notes.md`, `docs/post-core-api-surface.md`, `docs/post-core-safety-summary.md`, `docs/post-core-known-limitations.md`, `docs/post-core-handoff.md`, `docs/future-android-player-handoff.md`, and `aria/specs/features/post-core-release-prep/`. No source, tests, version, tag, publish, Android app, real player, audio driver, provider integration, network behavior, or filesystem/device behavior was added.
 - Future Android Player audio output phase (phases A–E) documented outside Aria Core in `docs/aria-core-handoff.md` and `docs/post-core-backlog.md`.
-- Audit 14-17 is complete. Audit 18-20 was deferred to the final post-core/core audit. Audit 21-23 is deferred to the final post-core/core audit unless explicitly requested. Do not start Bloco 24 without explicit approval and a dedicated spec/task.
+- Audit 14-17 is complete. Audit 18-20 and Audit 21-23 were deferred to the final post-core/core audit. Bloco 24 prepared final audit inputs. Next gate is Final Post-core/Core Audit; do not create a post-core tag or publish packages before it passes and release actions are explicitly approved.
 - No publish until approved.
 
 ## Allowed scope
