@@ -12,6 +12,7 @@ import noqlen_aria.contracts as contracts
 import noqlen_aria.services as services
 import noqlen_aria.state_snapshots as state_snapshots
 import noqlen_aria.smart_playlists as smart_playlists
+import noqlen_aria.provider_extensions as provider_extensions
 from noqlen_aria import safe_serialize
 from noqlen_aria.anchor_adapter import AnchorControlClient
 from noqlen_aria.contracts import (
@@ -133,6 +134,7 @@ def test_top_level_public_exports_are_intentional() -> None:
         "FakeFlowValidationIssue",
         "FakeNowPlayingScenarios",
         "FakePlaybackCapabilityScenarios",
+        "FakeProviderExtensionScenarios",
         "FakeQualityPolicyScenarios",
         "FakeQueueScenarios",
         "FakeRadioScenarios",
@@ -205,6 +207,25 @@ def test_top_level_public_exports_are_intentional() -> None:
         "PreferencesService",
         "PermissionState",
         "PlaylistSummary",
+        "ProviderAdapterDescriptor",
+        "ProviderAdapterReadiness",
+        "ProviderBoundaryPolicy",
+        "ProviderCapabilityDiscoveryIssue",
+        "ProviderCapabilityDiscoveryPreview",
+        "ProviderCapabilityDiscoveryService",
+        "ProviderExtensionCapabilitySummary",
+        "ProviderExtensionCompatibilityState",
+        "ProviderExtensionId",
+        "ProviderExtensionKind",
+        "ProviderExtensionReadinessService",
+        "ProviderExtensionReadinessState",
+        "ProviderExtensionRef",
+        "ProviderExtensionRegistryState",
+        "ProviderExtensionRequirement",
+        "ProviderExtensionStatus",
+        "ProviderExtensionSummary",
+        "ProviderExtensionUnavailableReason",
+        "ProviderExtensionWarning",
         "ProfileOperationIntent",
         "ProfileOperationPreview",
         "ProfileOperationType",
@@ -348,6 +369,11 @@ def test_public_modules_define_intentional_wildcard_exports() -> None:
     assert "AriaSnapshotService" in state_snapshots.__all__
     assert "FakeFlowRunner" in state_snapshots.__all__
     assert "_RedactionTracker" not in state_snapshots.__all__
+
+    assert "ProviderExtensionReadinessService" in provider_extensions.__all__
+    assert "ProviderCapabilityDiscoveryService" in provider_extensions.__all__
+    assert "FakeProviderExtensionScenarios" in provider_extensions.__all__
+    assert "ProviderAPI" not in provider_extensions.__all__
 
     assert anchor_adapter.__all__ == ["AnchorControlClient"]
     assert "AnchorResultMapper" not in anchor_adapter.__all__

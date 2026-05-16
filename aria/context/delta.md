@@ -2,6 +2,8 @@
 
 ## What changed
 
+- Bloco 21 implemented: provider extension readiness models (ProviderExtensionId, ProviderExtensionRef, ProviderExtensionSummary, ProviderExtensionKind, ProviderExtensionStatus, ProviderExtensionCapabilitySummary, ProviderExtensionReadinessState, ProviderExtensionCompatibilityState, ProviderExtensionRequirement, ProviderExtensionUnavailableReason, ProviderExtensionWarning), adapter/registry/discovery contracts (ProviderBoundaryPolicy, ProviderAdapterDescriptor, ProviderAdapterReadiness, ProviderCapabilityDiscoveryPreview, ProviderCapabilityDiscoveryIssue, ProviderExtensionRegistryState), deterministic services (ProviderExtensionReadinessService, ProviderCapabilityDiscoveryService), deterministic fake provider-extension scenarios, and safe serialization support for set-like provider fields. Current Anchor-backed integration remains Navidrome-focused and is not treated as multi-provider. No real provider integration, direct Navidrome/Jellyfin/Emby calls, Anchor provider internals, provider sign-in handling, network behavior, provider mutation, streaming, playback, Android/UI, or Bloco 22 behavior added.
+
 - Bloco 20 implemented: state snapshot models (AriaStateSnapshot, AriaSnapshotId, AriaSnapshotScope, AriaSnapshotMetadata, AriaSnapshotSection, AriaSnapshotRedactionPolicy, AriaSnapshotValidationIssue, AriaSnapshotResult, AriaSnapshotDiff, AriaSnapshotDiffEntry, AriaSnapshotUnavailableReason), deterministic services (AriaSnapshotService, AriaSnapshotDiffService), fake flow models (FakeFlowId, FakeFlowScenario, FakeFlowStep, FakeFlowStepKind, FakeFlowStepResult, FakeFlowTrace, FakeFlowResult, FakeFlowValidationIssue, FakeFlowUnavailableReason), and FakeFlowRunner scenarios for source/library/queue/now-playing/diagnostics, profile/preferences/smart playlist/queue preview, radio unavailable/playback preview, offline/cache/quality/capability summary, and degraded source partial flow. Snapshots are sanitized and in-memory only; fake flows are deterministic and local-only. No real provider integration, network, filesystem persistence/traversal, real music library access, playback, stream resolution, Android/UI, background jobs, provider mutation, or Bloco 21 provider extension behavior added.
 
 - Bloco 19 implemented: smart playlist models (SmartPlaylistId, SmartPlaylistSummary, SmartPlaylistDefinition, SmartPlaylistRule, SmartPlaylistRuleGroup, SmartPlaylistRuleOperator, SmartPlaylistSortRule, SmartPlaylistLimit, SmartPlaylistEvaluationContext, SmartPlaylistEvaluationResult, SmartPlaylistItemCandidate, SmartPlaylistPreview, SmartPlaylistValidationIssue, SmartPlaylistUnavailableReason), smart mix models (SmartMixDefinition, SmartMixStrategy, SmartMixPreview, SmartMixSeed), saved filter models (SavedFilterId, SavedFilterDefinition, SavedFilterPreview, SavedFilterValidationIssue), deterministic services (SmartPlaylistService, SavedFilterService), and FakeSmartPlaylistScenarios. Evaluation is local-only over provided app-facing candidates. No real provider playlist creation, provider mutation/internals, direct provider integration, queue mutation, playback, background jobs, filesystem scans, network behavior, Android/UI, or Bloco 20 state snapshot/e2e fake flows added.
@@ -45,6 +47,8 @@
 
 ## Evidence
 
+- Bloco 21 implementation validation: `python3 -m pytest` 911/911 pass; targeted provider readiness/export tests passed with 24 tests; `py_compile` clean; CLI help/doctor pass; `git diff --check` clean; tracked contamination clean. Required boundary searches show no forbidden implementation; expected matches are limited to historical boundary-test string literals, existing sanitization vocabulary/tests/spec text, Bloco 21 boundary-test string literals, and ignored generated `__pycache__` binary matches after validation.
+
 - Bloco 20 implementation validation: `python3 -m pytest` 897/897 pass; targeted Bloco 20/export tests passed with 30 tests; `py_compile` clean; CLI help/doctor pass; `git diff --check` clean; tracked contamination clean. Required boundary searches show no forbidden implementation; expected matches are limited to historical boundary-test string literals, existing queue `_current_after_remove` substring false positives, explicit sanitization vocabulary, Bloco 20 redaction tests/spec text, and ignored generated `__pycache__` binary matches from validation before cleanup.
 
 - Bloco 19 implementation validation: `python3 -m pytest` 877/877 pass; targeted smart playlist/export tests passed with 26 tests; `py_compile` clean; CLI help/doctor pass; `git diff --check` clean; tracked contamination clean. Required boundary searches show no forbidden implementation; expected matches are limited to historical boundary-test string literals, existing queue service tests, existing playback capability wording, and Bloco 19 explicit `queue_mutated=False` / `playback_started=False` safety fields/tests.
@@ -80,11 +84,11 @@
 
 ## Next step
 
-- Bloco 20 State Snapshots and End-to-End Fake Flows is implemented and validated.
-- Do not start Audit 18-20 or Bloco 21 without explicit approval and a dedicated spec/task.
+- Bloco 21 Provider Extension Readiness is implemented and validated.
+- Do not start Bloco 22 without explicit approval and a dedicated spec/task.
 - Roadmap documentation update: Bloco 17 wording clarified to include bit-perfect capability, USB DAC capability, exclusive output capability, audio output route state, sample-rate support, bit-depth support, output/device readiness, playback quality preferences, and driver bridge vocabulary for a future Android player. Bloco 17 remains capability/readiness/preference models only; no real audio driver, USB driver, Android USB Host API, JNI/NDK, AAudio/Oboe, Media3/ExoPlayer, real bit-perfect output, real sample-rate switching, real DAC control, or DSP/EQ.
 - Future Android Player audio output phase (phases A–E) added to `docs/aria-core-handoff.md` and `docs/post-core-backlog.md` as a future project outside Aria Core. Invariant added: Aria Core may model requirements for a future custom/exclusive audio output layer; Aria Core must not implement an audio driver; a future Android Player phase may research or implement an exclusive USB/audio output bridge if feasible.
-- Blocos 14-20 are implemented and validated.
+- Blocos 14-21 are implemented and validated.
 
 ## Open decisions
 

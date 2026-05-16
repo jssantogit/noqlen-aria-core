@@ -55,6 +55,8 @@ def safe_serialize(value: Any) -> Any:
         return [safe_serialize(item) for item in value]
     if isinstance(value, tuple):
         return [safe_serialize(item) for item in value]
+    if isinstance(value, (set, frozenset)):
+        return [safe_serialize(item) for item in sorted(value, key=str)]
     if isinstance(value, dict):
         return {safe_serialize(key): safe_serialize(item) for key, item in value.items()}
     return SAFE_DETAIL_UNAVAILABLE
