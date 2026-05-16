@@ -21,14 +21,14 @@ The roadmap in `docs/aria-core-handoff.md` defines Aria Core MVP as Blocos 0-7. 
 | 16 | Stream Quality, Transcoding and Network Policy: stream quality policy, transcoding capability/policy, network quality policy, and offline quality policy | Implemented and audited |
 | 17 | Playback Capability Models: gapless capability, loudness/ReplayGain awareness, crossfade capability, bit-perfect capability, USB DAC capability, exclusive output capability, audio output route state, sample-rate support, bit-depth support, output/device readiness, playback quality preferences, and driver bridge vocabulary for a future Android player | Implemented and audited |
 | Audit 14-17 | Offline/Radio/Quality/Capabilities Audit | Complete |
-| 18 | Profiles, Preferences, Backup and Restore: user profiles, preferences, backup/restore for Aria config/state, and no destructive real music library mutation | Not started |
-| 19 | Smart Playlists: smart playlists, smart mixes, saved filters, and rule-based playlists inspired by Symfonium | Not started |
-| 20 | State Snapshots and End-to-End Fake Flows: state snapshots, API snapshot behavior, and fake source -> library -> queue -> now playing intent -> diagnostics flows | Not started |
-| Audit 18-20 | Profiles/Smart/Snapshots Audit | Not started |
-| 21 | Provider Extension Readiness: generic provider/source abstractions, no direct Jellyfin/Emby/Navidrome integrations, no assumption that Anchor already supports multiple providers, and future providers through public boundaries/adapters exposed by Anchor or another approved integration layer | Not started |
-| 22 | Android Real Integration Planning: real media controls, lock-screen controls, notification controls, Bluetooth/headset, Android Auto, foreground service, and widgets planning | Not started |
+| 18 | Profiles, Preferences, Backup and Restore: user profiles, preferences, backup/restore for Aria config/state, and no destructive real music library mutation | Implemented |
+| 19 | Smart Playlists: smart playlists, smart mixes, saved filters, and rule-based playlists inspired by Symfonium | Implemented |
+| 20 | State Snapshots and End-to-End Fake Flows: state snapshots, API snapshot behavior, and fake source -> library -> queue -> now playing intent -> diagnostics flows | Implemented |
+| Audit 18-20 | Profiles/Smart/Snapshots Audit | Deferred to final post-core/core audit |
+| 21 | Provider Extension Readiness: generic provider/source abstractions, no direct Jellyfin/Emby/Navidrome integrations, no assumption that Anchor already supports multiple providers, and future providers through public boundaries/adapters exposed by Anchor or another approved integration layer | Implemented |
+| 22 | Android Real Integration Planning: real media controls, lock-screen controls, notification controls, Bluetooth/headset, Android Auto, foreground service, and widgets planning | Planning complete |
 | 23 | Android Shell Handoff: handoff for future Android app/UI; UI consumes Aria Core and does not own heavy logic | Not started |
-| Audit 21-23 | Providers/Android Handoff Audit | Not started |
+| Audit 21-23 | Providers/Android Handoff Audit | Deferred to final post-core/core audit unless explicitly requested |
 | 24 | Post-core Release Prep: checklist, release notes, backlog update, docs, handoff, and release preparation for the post-core phase | Not started |
 
 ## Backlog Resources Covered
@@ -66,6 +66,7 @@ The post-core roadmap includes these required feature families:
 - Aria Core may model requirements for a future custom/exclusive audio output layer.
 - Aria Core must not implement an audio driver.
 - A future Android Player phase may research or implement an exclusive USB/audio output bridge if feasible.
+- Bloco 22 planning for real Android integration lives in `docs/android-real-integration-plan.md`. It is documentation only; Android app/platform code still requires future dedicated specs.
 
 ## Still Out of Scope Without Future Specs
 

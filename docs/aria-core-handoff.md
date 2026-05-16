@@ -17,7 +17,9 @@
 - Aria Workflow vNext context compression is active for future tasks. Start with `aria/context/current.md`, `aria/context/delta.md`, and `aria/context/context-packages.md` before escalating to this full handoff.
 - This document is the canonical local repository handoff and source of truth for the current Aria direction.
 - Blocos 8-13 are implemented and audited. Audit 8-13 is complete.
-- Blocos 14-17 are implemented and audited. Audit 14-17 is complete. Do not start Bloco 18 or publish without dedicated scope.
+- Blocos 14-17 are implemented and audited. Audit 14-17 is complete.
+- Blocos 18-21 are implemented. Audit 18-20 is deferred to the final post-core/core audit.
+- Bloco 22 Android Real Integration Planning is complete as documentation only. Audit 21-23 is deferred to the final post-core/core audit unless explicitly requested.
 
 ## Product Definition
 
@@ -254,7 +256,7 @@ Bloco 20 defines state snapshots, API snapshot behavior, and fake end-to-end flo
 
 Bloco 21 defines provider extension readiness. Aria prepares generic provider/source abstractions and provider capability models, but does not implement Jellyfin, Emby, Navidrome, or other direct provider integrations. Current Anchor-backed integration remains Navidrome-focused; future additional providers depend on public boundaries/adapters exposed by Anchor or another approved integration layer.
 
-Bloco 22 defines Android real integration planning for media controls, lock-screen controls, notification controls, Bluetooth/headset, Android Auto, foreground service, and widgets without implementing them in Aria Core.
+Bloco 22 defines Android real integration planning for media controls, lock-screen controls, notification controls, Bluetooth/headset, Android Auto, foreground service, widgets, permission/storage UX handoff, MediaSession planning, playback engine adapter expectations, and audio output/driver research boundaries without implementing them in Aria Core.
 
 Bloco 23 defines Android shell handoff for the future Android app/UI to consume Aria Core without moving heavy logic into the interface.
 
@@ -278,4 +280,4 @@ Bloco 24 defines post-core release preparation with checklist, release notes, ba
 
 ## Current Next Step
 
-Blocos 0-17 are complete. Aria Core MVP (Blocos 0-7) is tagged `v0.1.0`. Post-core media/library/queue/now-playing/playback-intent foundation (Blocos 8-13) is implemented and audited. Offline/radio/quality/playback-capability foundation (Blocos 14-17) is implemented and audited. Do not start Bloco 18 without explicit approval and a dedicated spec.
+Blocos 0-22 are complete through Android real integration planning. Aria Core MVP (Blocos 0-7) is tagged `v0.1.0`. Post-core media/library/queue/now-playing/playback-intent foundation (Blocos 8-13) is implemented and audited. Offline/radio/quality/playback-capability foundation (Blocos 14-17) is implemented and audited. Blocos 18-21 are implemented. Bloco 22 is planning/docs only. Do not start Bloco 23 without explicit approval and a dedicated spec.

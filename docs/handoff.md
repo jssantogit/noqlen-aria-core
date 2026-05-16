@@ -63,6 +63,10 @@ Audit 8-13 status: the formal audit for Blocos 8-13 has been completed. All bloc
 
 Bloco 14 status: implemented. `src/noqlen_aria/offline_cache.py` provides offline/cache/storage policy models (OfflineAvailabilityState, CachePolicyState, CacheEligibilityState, CacheOperationIntent, CacheOperationPreview, PendingCacheOperation, StoragePressureState, StoragePressureLevel, StorageBudget, CacheCleanupPolicy, CacheCleanupPreview, CacheConfirmationState, CacheBlockedReason) and three deterministic local services (OfflineCachePolicyService, StoragePressureService, CacheCleanupPreviewService). `tests/test_offline_cache_storage_policy.py` adds 104 tests (746 total). No real download, cache write/delete, destructive cleanup, filesystem traversal, Android storage APIs, provider mutation, stream resolution, playback engine, radio support, or Bloco 15 behavior exists.
 
-Blocos 15-17 status: implemented. Internet radio foundation, stream quality/transcoding/network policy, playback capability models, and fade capability follow-up are model/policy/readiness-only. Audit 14-17 is complete. Do not start Bloco 18 without explicit approval and a dedicated spec.
+Blocos 15-17 status: implemented. Internet radio foundation, stream quality/transcoding/network policy, playback capability models, and fade capability follow-up are model/policy/readiness-only. Audit 14-17 is complete.
+
+Blocos 18-21 status: implemented. Audit 18-20 is deferred to the final post-core/core audit, and Audit 21-23 is deferred unless explicitly requested.
 
 Future Android Player audio output phases (A–E) are documented in `docs/aria-core-handoff.md` and `docs/post-core-backlog.md` as a future project outside Aria Core. Aria Core remains driver-free.
+
+Bloco 22 status: planning complete. `docs/android-real-integration-plan.md` documents future Android media controls, MediaSession, notification/lock-screen controls, Bluetooth/headset, Android Auto, foreground service, widgets, permission/storage UX, playback engine adapter expectations, and audio output/driver boundaries. No Android implementation exists.

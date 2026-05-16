@@ -8,6 +8,8 @@ Bloco 4 defines Android/player boundary contracts as abstract vocabulary only. T
 
 Bloco 5 documents how a future UI/app shell consumes those boundaries: the UI does not call bridge protocols directly. It consumes app-facing Aria state and emits intents. A future platform adapter may wire bridge implementations behind Aria Core, but screens remain thin and display-only.
 
+Bloco 22 adds planning for future real Android integration in `docs/android-real-integration-plan.md`. It covers media controls, MediaSession, notification and lock-screen controls, Bluetooth/headset events, Android Auto, foreground service expectations, widgets, permission/storage UX handoff, playback engine adapter expectations, and the audio output/driver research boundary. It is documentation only and does not implement Android code.
+
 Future Android integration must remain a thin adapter over Aria Core and requires specs before implementation.
 
 Forbidden without a future dedicated spec:
@@ -23,3 +25,4 @@ Allowed at the planning level:
 - Documenting how `PermissionState`, `StorageAccessState`, and `AndroidBoundarySnapshot` may be presented as app-facing state.
 - Documenting how platform permission prompts are delegated to a future Android adapter.
 - Documenting that playback/media controls emit Aria intents rather than owning playback logic.
+- Documenting how future Android platform events become Aria-safe intents through an app/platform adapter.
