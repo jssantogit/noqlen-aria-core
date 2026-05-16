@@ -24,6 +24,8 @@ Bloco 3 status: complete. `AnchorControlClient` adapter implemented in `src/noql
 
 Bloco 4 status: complete. Android/player boundary contracts implemented in `src/noqlen_aria/android_boundaries.py` with 9 bridge protocols, supporting types, `AndroidBoundarySnapshot`, and 9 deterministic fake implementations. 129 tests in `tests/test_android_boundaries.py`; 358 total tests pass.
 
+Bloco 5 status: spec/planning complete. Minimal UI Shell Planning spec created in `aria/specs/features/minimal-ui-shell-planning/`. Defines `AppShellAdapter`, `AppShellState`, `AppShellInput`, per-screen view models, anti-coupling rules, and Bloco 4 boundary consumption plan. No implementation yet.
+
 Repository direction updated: Aria Core is now documented as Aria Music Player Core, the modular app/player-facing core of a music player. The canonical local handoff is `docs/aria-core-handoff.md`.
 
 Workflow vNext status: future tasks should start from `aria/context/current.md`, `aria/context/delta.md`, and the context package policy before reading large handoff context.

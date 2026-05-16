@@ -13,12 +13,14 @@
 
 - Bloco 4 is complete: 9 bridge protocols, supporting types, composite snapshot, and 9 fake implementations.
 - 129 boundary contract tests added; 358 total tests pass.
+- Bloco 5 Minimal UI Shell Planning spec is complete (planning only, no implementation).
 - Do not redo Bloco 3.
-- Next: Bloco 5 spec/planning or Blocos 1-3 audit.
+- Next: Blocos 1-3 audit or Bloco 5 implementation.
 
 ## Active spec
 
 - `aria/specs/features/android-player-boundary-contracts/` — spec and implementation complete.
+- `aria/specs/features/minimal-ui-shell-planning/` — spec/planning complete. No product implementation yet.
 - No active product implementation.
 
 ## Current goal
