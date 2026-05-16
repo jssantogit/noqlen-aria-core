@@ -25,6 +25,9 @@ from noqlen_aria.media_source import (
     StreamHandle,
 )
 from noqlen_aria.library import (
+    FavoritesViewState,
+    LibraryActivityRequest,
+    LibraryActivityResult,
     LibraryBrowseRequest,
     LibraryBrowseResult,
     LibraryBrowseCategory,
@@ -201,9 +204,12 @@ class TestSourceCapability:
         assert "RATINGS" in values
         assert "SCROBBLING" in values
         assert "LYRICS" in values
+        assert "RECENTLY_ADDED" in values
+        assert "RECENTLY_PLAYED" in values
+        assert "FAVORITES_READ" in values
 
     def test_enum_value_count(self):
-        assert len(list(SourceCapability)) == 11
+        assert len(list(SourceCapability)) == 14
 
     def test_no_provider_brand_names(self):
         values = {e.name for e in SourceCapability}
@@ -253,7 +259,7 @@ class TestSourceCapabilitySummary:
             supported=frozenset(SourceCapability),
             unavailable=frozenset(),
         )
-        assert len(s.supported) == 11
+        assert len(s.supported) == 14
         assert len(s.unavailable) == 0
 
 
@@ -423,6 +429,12 @@ class TestMediaSourceClientProtocol:
             def search_library(self, query):
                 return AriaResult(ok=True, data=LibrarySearchResult(query=query))
 
+            def get_library_activity(self, request):
+                return AriaResult(ok=True, data=LibraryActivityResult(request=request))
+
+            def get_favorites(self, max_results=50):
+                return AriaResult(ok=True, data=FavoritesViewState())
+
         assert isinstance(CustomSource(), MediaSourceClient)
 
     def test_custom_without_library_methods_fails_protocol(self):
@@ -546,7 +558,7 @@ class TestFakeCapabilitySummary:
         summary = _value(fake.get_capability_summary())
         assert SourceCapability.STREAM in summary.supported
         assert len(summary.supported) == 1
-        assert len(summary.unavailable) == 10
+        assert len(summary.unavailable) == 13
 
     def test_capability_summary_is_complete(self):
         fake = FakeMediaSourceClient(

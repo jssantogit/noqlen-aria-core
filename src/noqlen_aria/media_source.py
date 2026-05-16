@@ -9,7 +9,15 @@ from typing import TYPE_CHECKING, Any, NewType, Protocol, runtime_checkable
 from noqlen_aria.contracts import AriaError, AriaResult
 
 if TYPE_CHECKING:
-    from noqlen_aria.library import LibraryBrowseRequest, LibraryBrowseResult, LibrarySearchQuery, LibrarySearchResult
+    from noqlen_aria.library import (
+        FavoritesViewState,
+        LibraryActivityRequest,
+        LibraryActivityResult,
+        LibraryBrowseRequest,
+        LibraryBrowseResult,
+        LibrarySearchQuery,
+        LibrarySearchResult,
+    )
 
 # ── Media source identity ────────────────────────────────────
 
@@ -66,6 +74,9 @@ class SourceCapability(Enum):
     RATINGS = auto()
     SCROBBLING = auto()
     LYRICS = auto()
+    RECENTLY_ADDED = auto()
+    RECENTLY_PLAYED = auto()
+    FAVORITES_READ = auto()
 
 
 @dataclass(frozen=True)
@@ -141,6 +152,14 @@ class MediaSourceClient(Protocol):
         """Search app-facing library metadata through the source boundary."""
         ...
 
+    def get_library_activity(self, request: LibraryActivityRequest) -> AriaResult[LibraryActivityResult]:
+        """Get read-only source-derived library activity."""
+        ...
+
+    def get_favorites(self, max_results: int = 50) -> AriaResult[FavoritesViewState]:
+        """Get read-only source-derived favorites state."""
+        ...
+
 
 # ── FakeMediaSourceClient ────────────────────────────────────
 
@@ -176,9 +195,14 @@ class FakeMediaSourceClient:
     _stream_handle_override: StreamHandle | None = field(default=None, repr=False)
 
     _library_browse_items: dict[Any, tuple[Any, ...]] = field(default_factory=dict, repr=False)
+    _recently_added_items: tuple[Any, ...] = field(default_factory=tuple, repr=False)
+    _recently_played_items: tuple[Any, ...] = field(default_factory=tuple, repr=False)
+    _favorite_items: tuple[Any, ...] = field(default_factory=tuple, repr=False)
     _library_warnings: tuple[Any, ...] = field(default_factory=tuple, repr=False)
     _browse_library_error: AriaError | None = field(default=None, repr=False)
     _search_library_error: AriaError | None = field(default=None, repr=False)
+    _library_activity_error: AriaError | None = field(default=None, repr=False)
+    _favorites_error: AriaError | None = field(default=None, repr=False)
 
     _default_stream_availability: StreamAvailability = field(
         default=StreamAvailability.STREAM_NOT_RESOLVED, repr=False
@@ -276,6 +300,48 @@ class FakeMediaSourceClient:
                 SourceCapability.SEARCH,
             })
         )
+
+    @classmethod
+    def with_activity_and_favorites(cls) -> FakeMediaSourceClient:
+        from noqlen_aria.library import LibraryBrowseCategory
+
+        fake = cls.with_full_library()
+        fake.supported_capabilities = fake.supported_capabilities | frozenset({
+            SourceCapability.RECENTLY_ADDED,
+            SourceCapability.RECENTLY_PLAYED,
+            SourceCapability.FAVORITES_READ,
+        })
+        tracks = fake._library_browse_items.get(LibraryBrowseCategory.TRACKS, ())
+        fake._recently_added_items = tuple(reversed(tracks))
+        fake._recently_played_items = tuple(tracks)
+        fake._favorite_items = tuple(tracks[:1])
+        return fake
+
+    @classmethod
+    def with_recently_added(cls) -> FakeMediaSourceClient:
+        from noqlen_aria.library import LibraryBrowseCategory
+
+        fake = cls.with_full_library()
+        fake.supported_capabilities = fake.supported_capabilities | frozenset({SourceCapability.RECENTLY_ADDED})
+        tracks = fake._library_browse_items.get(LibraryBrowseCategory.TRACKS, ())
+        fake._recently_added_items = tuple(reversed(tracks))
+        return fake
+
+    @classmethod
+    def with_empty_activity_and_favorites(cls) -> FakeMediaSourceClient:
+        fake = cls.empty_library()
+        fake.supported_capabilities = fake.supported_capabilities | frozenset({
+            SourceCapability.RECENTLY_ADDED,
+            SourceCapability.RECENTLY_PLAYED,
+            SourceCapability.FAVORITES_READ,
+        })
+        return fake
+
+    @classmethod
+    def without_favorites(cls) -> FakeMediaSourceClient:
+        fake = cls.with_full_library()
+        fake.supported_capabilities = fake.supported_capabilities - frozenset({SourceCapability.FAVORITES_READ})
+        return fake
 
     def _build_capability_summary(self) -> SourceCapabilitySummary:
         all_caps = frozenset(SourceCapability)
@@ -415,6 +481,90 @@ class FakeMediaSourceClient:
                 query=query,
                 items=tuple(candidates[: query.max_results]),
                 valid_query=True,
+                warnings=self._library_warnings,
+            ),
+        )
+
+    def get_library_activity(self, request: LibraryActivityRequest) -> AriaResult[LibraryActivityResult]:
+        from noqlen_aria.library import LibraryActivityResult, LibraryActivityType
+
+        if self._library_activity_error is not None:
+            return AriaResult(ok=False, error=self._library_activity_error)
+        if self.availability == SourceAvailabilityState.UNAVAILABLE:
+            return AriaResult(
+                ok=False,
+                error=AriaError(
+                    code="SOURCE_UNAVAILABLE",
+                    message=f"Source {self.source_id} is unavailable",
+                ),
+            )
+        capability = (
+            SourceCapability.RECENTLY_ADDED
+            if request.activity_type == LibraryActivityType.RECENTLY_ADDED
+            else SourceCapability.RECENTLY_PLAYED
+        )
+        if capability not in self.supported_capabilities:
+            return AriaResult(
+                ok=True,
+                data=LibraryActivityResult(
+                    request=request,
+                    available=False,
+                    warnings=self._library_warnings,
+                    error=AriaError(
+                        code="CAPABILITY_NOT_SUPPORTED",
+                        message=f"Library activity {request.activity_type.name} is not supported",
+                    ),
+                ),
+            )
+        raw_items = (
+            self._recently_added_items
+            if request.activity_type == LibraryActivityType.RECENTLY_ADDED
+            else self._recently_played_items
+        )
+        items = tuple(item.as_library_item() for item in raw_items)[: request.max_results]
+        return AriaResult(
+            ok=True,
+            data=LibraryActivityResult(
+                request=request,
+                items=items,
+                available=True,
+                warnings=self._library_warnings,
+            ),
+        )
+
+    def get_favorites(self, max_results: int = 50) -> AriaResult[FavoritesViewState]:
+        from noqlen_aria.library import FavoriteItemSummary, FavoritesViewState
+
+        if self._favorites_error is not None:
+            return AriaResult(ok=False, error=self._favorites_error)
+        if self.availability == SourceAvailabilityState.UNAVAILABLE:
+            return AriaResult(
+                ok=False,
+                error=AriaError(
+                    code="SOURCE_UNAVAILABLE",
+                    message=f"Source {self.source_id} is unavailable",
+                ),
+            )
+        if SourceCapability.FAVORITES_READ not in self.supported_capabilities:
+            return AriaResult(
+                ok=True,
+                data=FavoritesViewState(
+                    available=False,
+                    warnings=self._library_warnings,
+                    error=AriaError(
+                        code="CAPABILITY_NOT_SUPPORTED",
+                        message="Favorites read state is not supported",
+                    ),
+                ),
+            )
+        favorites = tuple(
+            FavoriteItemSummary(item=item.as_library_item()) for item in self._favorite_items
+        )[:max_results]
+        return AriaResult(
+            ok=True,
+            data=FavoritesViewState(
+                items=favorites,
+                available=True,
                 warnings=self._library_warnings,
             ),
         )
