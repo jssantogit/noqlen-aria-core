@@ -2,6 +2,8 @@
 
 ## What changed
 
+- Audit 8-13 completed: formal audit of Blocos 8-13 post-core media/library/queue/now-playing/playback-intent foundation. Architecture, safety, tests, specs, docs, boundaries, and repository hygiene verified. No real playback, stream resolution, provider integration, Android/UI, offline/cache, smart playlist, network, or filesystem behavior found. Minor fixes: stale handoff/context references corrected, confusing test assertion simplified, unchecked spec task items marked complete.
+
 - Bloco 13 implemented: playback intent models (PlaybackIntent, PlaybackIntentType, PlaybackIntentResult, PlaybackCommandPreview, PlaybackBlockedReason, SeekTarget, SkipDirection, PlaybackIntentValidationIssue), renderer intent models (RendererId, RendererRef, RendererType, RendererAvailabilityState, RendererCapabilitySummary, RendererSelectionIntent, RendererSelectionResult), automation intent models (AutomationIntent, AutomationIntentType, AutomationIntentSource, AutomationIntentResult, AutomationSafetyLevel), and three deterministic local services (PlaybackIntentService, RendererIntentService, AutomationIntentService). No real playback, stream resolution, provider integration, Android/UI, offline/cache, smart playlist, network, or filesystem behavior was added.
 
 - Blocos 4-6 formal audit found stale context/handoff references and CLI/doc wording that still described earlier blocks; audit-scoped corrections were applied.

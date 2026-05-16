@@ -49,7 +49,7 @@
 - [x] Update `tasks.md` and `review.md` after implementation.
 - [x] Update `aria/context/current.md` and `aria/context/delta.md` concisely.
 - [x] Run validation.
-- [ ] Commit spec and implementation together.
+- [x] Commit spec and implementation together.
 
 ## Validation checklist
 

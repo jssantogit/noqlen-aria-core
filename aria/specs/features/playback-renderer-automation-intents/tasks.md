@@ -7,7 +7,7 @@
 - [x] Read existing source (contracts.py, queue.py, now_playing.py, __init__.py).
 - [x] Read existing tests (test_queue_foundation.py, test_now_playing_foundation.py, test_mvp_hardening.py).
 - [x] Create spec directory.
-- [ ] Create spec files (requirements.md, design.md, tasks.md, review.md).
+- [x] Create spec files (requirements.md, design.md, tasks.md, review.md).
 
 ## TDD classification
 
@@ -35,12 +35,12 @@
 
 Confirms each task in this spec stays within the budget defined in `design.md`. Budget items reference `aria/context/behavior-budget.md`.
 
-- [ ] New behaviors: 5 (playback models, renderer models, automation models, preview service, blocked/unavailable handling).
-- [ ] Public API changes: ~25 new export names.
-- [ ] Files allowed: `src/noqlen_aria/playback_intents.py`, `tests/test_playback_renderer_automation_intents.py`, spec files, context/doc updates.
-- [ ] Tests required: covered by TDD classification above.
-- [ ] Dependencies: none external.
-- [ ] Stop: does not require real playback, stream resolution, Android, provider integration.
+- [x] New behaviors: 5 (playback models, renderer models, automation models, preview service, blocked/unavailable handling).
+- [x] Public API changes: ~25 new export names.
+- [x] Files allowed: `src/noqlen_aria/playback_intents.py`, `tests/test_playback_renderer_automation_intents.py`, spec files, context/doc updates.
+- [x] Tests required: covered by TDD classification above.
+- [x] Dependencies: none external.
+- [x] Stop: does not require real playback, stream resolution, Android, provider integration.
 
 ## Implementation tasks
 
@@ -78,31 +78,31 @@ Confirms each task in this spec stays within the budget defined in `design.md`. 
 
 ## Validation checklist
 
-- [ ] `pwd`
-- [ ] `git status --short --branch`
-- [ ] `find src/noqlen_aria tests aria/specs/features/playback-renderer-automation-intents aria/context -maxdepth 6 -type f | sort`
-- [ ] `git diff --check`
-- [ ] `python3 -m py_compile src/noqlen_aria/*.py`
-- [ ] `PYTHONPATH=src python3 -m noqlen_aria.cli --help`
-- [ ] `PYTHONPATH=src python3 -m noqlen_aria.cli doctor`
-- [ ] `python3 -m pytest`
-- [ ] Repository contamination check
-- [ ] Provider integration search
-- [ ] Network/filesystem search
-- [ ] Android/Media3 search
-- [ ] Offline/cache/smart-playlist search
-- [ ] No real playback boundaries crossed
+- [x] `pwd`
+- [x] `git status --short --branch`
+- [x] `find src/noqlen_aria tests aria/specs/features/playback-renderer-automation-intents aria/context -maxdepth 6 -type f | sort`
+- [x] `git diff --check`
+- [x] `python3 -m py_compile src/noqlen_aria/*.py`
+- [x] `PYTHONPATH=src python3 -m noqlen_aria.cli --help`
+- [x] `PYTHONPATH=src python3 -m noqlen_aria.cli doctor`
+- [x] `python3 -m pytest`
+- [x] Repository contamination check
+- [x] Provider integration search
+- [x] Network/filesystem search
+- [x] Android/Media3 search
+- [x] Offline/cache/smart-playlist search
+- [x] No real playback boundaries crossed
 
 ## Review checklist
 
-- [ ] All 8 canonical examples have passing tests.
-- [ ] All edge cases have test coverage.
-- [ ] Behavior Budget not exceeded.
-- [ ] No non-goals violated.
-- [ ] All exports intentional.
-- [ ] No provider/network/filesystem/Android/playback code.
-- [ ] Tests pass.
-- [ ] Context files updated.
+- [x] All 8 canonical examples have passing tests.
+- [x] All edge cases have test coverage.
+- [x] Behavior Budget not exceeded.
+- [x] No non-goals violated.
+- [x] All exports intentional.
+- [x] No provider/network/filesystem/Android/playback code.
+- [x] Tests pass.
+- [x] Context files updated.
 
 ## Delta update
 

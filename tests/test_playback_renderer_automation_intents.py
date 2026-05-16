@@ -157,7 +157,7 @@ def test_idle_now_playing_blocks_pause_intent() -> None:
 
     assert result.allowed is False
     assert result.preview.can_execute is False
-    assert result.blocked_reason == PlaybackBlockedReason.NO_CURRENT_ITEM in {result.blocked_reason}
+    assert result.blocked_reason == PlaybackBlockedReason.NO_CURRENT_ITEM
     assert not hasattr(PlaybackIntentService, "play")
     assert not hasattr(PlaybackIntentService, "execute")
 

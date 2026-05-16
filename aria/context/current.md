@@ -12,12 +12,13 @@
 - Bloco 6 Aria MVP hardening is complete.
 - Bloco 7 Aria Core Release Preparation is complete.
 - Local tag `v0.1.0` exists; Aria Core MVP is complete.
-- Bloco 8 (Media Source Foundation) is implemented.
-- Bloco 9 (Library Browse/Search) is implemented.
-- Bloco 10 (Library Filters, Activity and Favorites) is implemented.
-- Bloco 11 (Queue Foundation) is implemented. Audit 8-10 remains deferred into Audit 8-13.
-- Bloco 12 (Now Playing Foundation) is implemented. Audit 8-13 has not been run.
-- Bloco 13 (Playback, Renderer and Automation Intents) is implemented. Audit 8-13 has not been run.
+- Bloco 8 (Media Source Foundation) is implemented and audited.
+- Bloco 9 (Library Browse/Search) is implemented and audited.
+- Bloco 10 (Library Filters, Activity and Favorites) is implemented and audited.
+- Bloco 11 (Queue Foundation) is implemented and audited.
+- Bloco 12 (Now Playing Foundation) is implemented and audited.
+- Bloco 13 (Playback, Renderer and Automation Intents) is implemented and audited.
+- Audit 8-13 (Media/Library/Queue/Playback Audit) is complete.
 
 ## Active spec
 
@@ -42,13 +43,13 @@
 - Bloco 11 Queue Foundation is implemented and validated.
 - Bloco 12 Now Playing Foundation is implemented and validated.
 - Bloco 13 Playback, Renderer and Automation Intents is implemented and validated.
-- Do not start Audit 8-13 or Bloco 14 without explicit approval and a dedicated spec.
+- Do not start Bloco 14 without explicit approval and a dedicated spec.
 - No publish until approved.
 
 ## Allowed scope
 
 - Context and handoff documentation updates.
-- Audit 8-13 planning only after explicit approval.
+- Audit 8-13 is complete.
 - Publish only when explicitly approved.
 
 ## Forbidden scope

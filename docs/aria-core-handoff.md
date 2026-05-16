@@ -16,7 +16,8 @@
 - Advanced library/player features are post-core backlog, not MVP blockers.
 - Aria Workflow vNext context compression is active for future tasks. Start with `aria/context/current.md`, `aria/context/delta.md`, and `aria/context/context-packages.md` before escalating to this full handoff.
 - This document is the canonical local repository handoff and source of truth for the current Aria direction.
-- The next product step is a Bloco 8 spec. Do not publish or implement post-core features without dedicated scope.
+- Blocos 8-13 are implemented and audited. Audit 8-13 is complete.
+- The next product step is a Bloco 14 spec. Do not implement post-core features or publish without dedicated scope.
 
 ## Product Definition
 
@@ -258,4 +259,4 @@ Bloco 23 defines post-core release preparation with checklist, release notes, ba
 
 ## Current Next Step
 
-Bloco 7 Aria Core Release Preparation is complete and local tag `v0.1.0` exists. The next product step is a Bloco 8 spec. Do not implement post-core features or publish without explicit approval.
+Blocos 0-13 are complete. Aria Core MVP (Blocos 0-7) is tagged `v0.1.0`. Post-core media/library/queue/now-playing/playback-intent foundation (Blocos 8-13) is implemented and audited. The next product step is a Bloco 14 spec. Do not implement post-core features or publish without explicit approval.

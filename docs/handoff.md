@@ -47,6 +47,18 @@ Release artifacts:
 
 Third-party names in research docs are factual references only. They do not imply Noqlen affiliation, endorsement, sponsorship, association, official support, or compatibility.
 
-Next step: Bloco 9 spec after explicit approval. Do not implement post-core features or publish until explicitly scoped and approved.
-
 Bloco 8 status: implemented. `src/noqlen_aria/media_source.py` provides `MediaSourceClient` protocol, `FakeMediaSourceClient`, 11 supporting types (media source identity, abstract media IDs, source capabilities, stream handle, provider capability). `tests/test_media_source.py` adds 100 tests (468 total). No provider integration, streaming, playback, Android, UI, queue, now playing, or cache code exists.
+
+Bloco 9 status: implemented. `src/noqlen_aria/library.py` provides browse/search models and services for artists, albums, tracks, playlists, genres, and safe folder metadata. `tests/test_library_browse_search.py` covers unsupported capabilities, empty/no-match search, degraded/unavailable sources, and boundary enforcement. No provider integration, filesystem traversal, playback, queue, now playing, or cache code exists.
+
+Bloco 10 status: implemented. `src/noqlen_aria/library.py` extended with filter/sort services, recently added/recently played activity, favorites read state, and readiness/health badges. Favorites mutation is blocked as unsupported. No provider mutation, smart playlists, queue, playback, or cache code exists.
+
+Bloco 11 status: implemented. `src/noqlen_aria/queue.py` provides queue state, repeat/shuffle contracts, deterministic `QueueService`, fake queue scenarios, and multiple queue collection state. `tests/test_queue_foundation.py` covers invalid operations, unavailable items, and deterministic shuffle. No playback, stream resolution, provider integration, or cache code exists.
+
+Bloco 12 status: implemented. `src/noqlen_aria/now_playing.py` provides now-playing state, playback availability vocabulary, resumable state, position snapshots, and deterministic `NowPlayingService`. No playback intent execution, stream resolution, provider integration, or cache code exists.
+
+Bloco 13 status: implemented. `src/noqlen_aria/playback_intents.py` provides playback intent models, renderer selection models, automation intent models, and three deterministic preview/validation services. No real playback, stream resolution, provider integration, Android/UI, or cache code exists.
+
+Audit 8-13 status: the formal audit for Blocos 8-13 has been completed. All blocks pass architecture, safety, test, spec, docs, boundary, and repository hygiene checks.
+
+Next step: Bloco 14 spec after explicit approval. Do not implement post-core features or publish without dedicated scope.

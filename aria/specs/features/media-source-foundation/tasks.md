@@ -117,7 +117,7 @@ All tasks complete.
 - [x] Confirm no provider brand names appear in source.
 - [x] Confirm no Anchor internals, provider internals, or real streaming code.
 - [x] Update spec review.md with implementation review.
-- [ ] Commit implementation artifacts.
+- [x] Commit implementation artifacts.
 
 ## Validation checklist
 
@@ -166,9 +166,9 @@ Implementation phase:
 
 ## Delta update
 
-- [ ] Update `aria/context/current.md` to reflect Bloco 8 implementation completion.
-- [ ] Update `aria/context/delta.md` to record Bloco 8 implementation.
-- [ ] Update `docs/handoff.md` with Bloco 8 implementation status note.
+- [x] Update `aria/context/current.md` to reflect Bloco 8 implementation completion.
+- [x] Update `aria/context/delta.md` to record Bloco 8 implementation.
+- [x] Update `docs/handoff.md` with Bloco 8 implementation status note.
 
 ## Delta update checklist
 
