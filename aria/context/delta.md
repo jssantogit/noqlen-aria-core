@@ -11,6 +11,7 @@
 - Bloco 5 Minimal UI Shell Planning spec created: defines `AppShellAdapter` protocol, `AppShellState` composite, `AppShellInput` action enum, per-screen view models, anti-coupling rules, and Bloco 4 boundary consumption plan. Spec/planning only — no implementation.
 - Bloco 5 planning artifacts created: `docs/ui-shell-boundary.md`, architecture/android boundary updates, thin UI examples, and handoff note. Documentation only — no UI/source implementation.
 - Bloco 6 Aria MVP Hardening spec created: defines future hardening scope for public API review, intentional exports, safe serialization, sanitized errors/warnings, optional dependency behavior, Anchor dry-run/apply safety, documentation consistency, test coverage review, repository hygiene, and Bloco 4-6 audit readiness. Spec/planning only — no implementation.
+- Bloco 6 implemented: explicit package/module exports, safe serialization and sanitization helpers, safer Anchor adapter exception output, hardening tests, and MVP safety docs. No Android/UI/playback/queue/cache/provider implementation.
 
 ## Evidence
 
@@ -21,6 +22,7 @@
 - Bloco 5 spec validation: all existing commands pass; no source/test files created or modified; contamination check clean.
 - Bloco 5 planning artifact validation: all requested commands pass; search-check matches are documentation/planning references only; contamination check clean.
 - Bloco 6 spec validation: all requested commands pass; no source/test files created or modified; contamination check clean.
+- Bloco 6 implementation validation: requested command suite passes; `python3 -m pytest` 368/368 pass; contamination check clean. Search checks show apply-helper names only in negative tests/generated cache notices; provider/CLI, Android SDK/UI, and queue/now-playing/offline/media-source searches clean.
 
 ## Decisions
 
@@ -37,8 +39,8 @@
 
 - Bloco 4 implementation is complete. 9 bridge boundaries, all fakes, 129 tests.
 - Bloco 5 Minimal UI Shell Planning artifacts are complete. Documentation only, no implementation.
-- Bloco 6 Aria MVP Hardening spec is complete. Planning only, no implementation.
-- Next step: Bloco 6 implementation after approval, then Bloco 4-6 formal audit readiness.
+- Bloco 6 Aria MVP Hardening is implemented.
+- Next step: Blocos 4-6 formal audit. Do not start Bloco 7 until audit is approved.
 
 ## Open decisions
 

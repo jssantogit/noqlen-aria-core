@@ -21,9 +21,9 @@
 
 ## TDD classification
 
-Not applicable for this task. This is a spec/planning task with zero implementation.
+Bloco 6 implementation requires tests for high-risk hardening behavior before or alongside source changes.
 
-Future Bloco 6 implementation must use tests for high-risk hardening behavior before or alongside source changes:
+Implemented hardening tests cover:
 - public export tests;
 - safe serialization tests;
 - sanitized error/warning negative tests;
@@ -37,31 +37,31 @@ Per `aria/context/test-risk-matrix.md`:
 
 | Area | Risk | Current spec task | Future implementation |
 |------|------|-------------------|----------------------|
-| Safe serialization | High | Proposed only | Negative tests for raw detail leakage |
-| Sanitized errors/warnings | High | Proposed only | Negative tests for stack traces, paths, credentials, provider details |
-| Dry-run/apply boundary | High | Proposed only | Tests proving lifecycle apply is blocked/unavailable |
-| Optional dependency absence | High | Proposed only | Tests proving degraded-safe behavior without Anchor |
-| Public exports | Medium | Proposed only | Deterministic intentional export tests |
-| View/default degraded states | Medium | Proposed only | Unit tests for safe defaults |
-| Documentation consistency | Low | Spec/review only | Docs review and grep checks |
-| Repository hygiene | Low | Validation only | Contamination command and commit review |
+| Safe serialization | High | Implemented | Negative tests for raw detail leakage |
+| Sanitized errors/warnings | High | Implemented | Negative tests for stack traces, paths, credentials, provider details |
+| Dry-run/apply boundary | High | Implemented | Tests proving lifecycle apply is blocked/unavailable |
+| Optional dependency absence | High | Implemented | Tests proving safe behavior without Anchor |
+| Public exports | Medium | Implemented | Deterministic intentional export tests |
+| View/default degraded states | Medium | Covered by existing tests | Unit tests for safe defaults |
+| Documentation consistency | Low | Implemented | Docs review and grep checks |
+| Repository hygiene | Low | Pending final validation | Contamination command and commit review |
 
-No tests are required or created in this task. Validation only.
+Tests are required for this implementation task and were added in `tests/test_mvp_hardening.py`.
 
 ## Behavior Budget check
 
-Spec/planning phase:
+Implementation phase:
 
-- New behaviors: proposed only, no implementation in this task. [x]
-- Public API changes: proposed only, no source code. [x]
-- Files allowed: spec directory only, plus `current.md`/`delta.md` if needed. [x]
-- Tests required: none in this task, validation only. [x]
+- New behaviors: limited to MVP hardening. [x]
+- Public API changes: explicit intentional exports and safe output helpers. [x]
+- Files allowed: source, tests, docs, spec tracking, and concise context updates. [x]
+- Tests required: high-risk hardening tests. [x]
 - Dependencies: none. [x]
-- Stop if implementation code becomes necessary. Not triggered. [x]
+- Stop if Android/UI/playback/queue/cache/provider implementation becomes necessary. Not triggered. [x]
 
 ## Implementation tasks
 
-This task implements the spec only. It does not implement hardening.
+This task implements the approved Bloco 6 hardening spec only.
 
 ### Task 1: Create spec directory
 
@@ -124,61 +124,63 @@ This task implements the spec only. It does not implement hardening.
 
 ## Future implementation tasks
 
-These are for the next Bloco 6 implementation task only. Do not perform them in this spec task.
+Completed for this Bloco 6 implementation task.
 
 ### Future Task A: Public API and export hardening
 
-- [ ] Inventory public names across MVP modules.
-- [ ] Decide intentional stable exports.
-- [ ] Add or adjust `__all__` only if needed.
-- [ ] Add tests for stable public exports.
+- [x] Inventory public names across MVP modules.
+- [x] Decide intentional stable exports.
+- [x] Add or adjust `__all__` only if needed.
+- [x] Add tests for stable public exports.
 
 ### Future Task B: Serialization and sanitization hardening
 
-- [ ] Inventory serialization paths.
-- [ ] Add tests for safe serialization of results, states, errors, warnings, and boundary snapshots.
-- [ ] Add negative tests for stack traces, credentials, local paths, provider exception text, raw logs, and music-library details.
-- [ ] Make minimal code changes only if tests reveal unsafe output.
+- [x] Inventory serialization paths.
+- [x] Add tests for safe serialization of results, states, errors, warnings, and boundary snapshots.
+- [x] Add negative tests for stack traces, credentials, local paths, provider exception text, raw logs, and music-library details.
+- [x] Make minimal code changes only if tests reveal unsafe output.
 
 ### Future Task C: Optional dependency hardening
 
-- [ ] Simulate Anchor unavailable.
-- [ ] Verify core imports, CLI help, and CLI doctor work.
-- [ ] Verify readiness/status/diagnostics expose safe degraded behavior.
-- [ ] Add focused tests.
+- [x] Simulate Anchor unavailable.
+- [x] Verify core imports, CLI help, and CLI doctor work.
+- [x] Verify readiness/status/diagnostics expose safe degraded behavior.
+- [x] Add focused tests.
 
 ### Future Task D: Anchor dry-run/apply safety hardening
 
-- [ ] Verify dry-run lifecycle behavior remains contract-level.
-- [ ] Verify lifecycle apply remains blocked or unavailable.
-- [ ] Verify no provider internals, no Anchor CLI integration, no direct Navidrome execution, and no real library access.
-- [ ] Add focused negative tests.
+- [x] Verify dry-run lifecycle behavior remains contract-level.
+- [x] Verify lifecycle apply remains blocked or unavailable.
+- [x] Verify no provider internals, no Anchor CLI integration, no direct Navidrome execution, and no real library access.
+- [x] Add focused negative tests.
 
 ### Future Task E: Documentation and audit readiness
 
-- [ ] Review docs for MVP/future scope consistency.
-- [ ] Make tiny documentation clarifications if needed.
-- [ ] Update delta with validation evidence.
-- [ ] Prepare Bloco 4-6 formal audit evidence.
+- [x] Review docs for MVP/future scope consistency.
+- [x] Make tiny documentation clarifications if needed.
+- [x] Update delta with validation evidence.
+- [x] Prepare Bloco 4-6 formal audit evidence.
 
 ## Validation checklist
 
 - [x] `pwd`
 - [x] `git status --short --branch`
-- [x] `find aria/specs/features/aria-mvp-hardening aria/context -maxdepth 5 -type f | sort`
+- [x] `find src/noqlen_aria tests docs aria/specs/features/aria-mvp-hardening aria/context -maxdepth 5 -type f | sort`
 - [x] `git diff --check`
 - [x] `python3 -m py_compile src/noqlen_aria/*.py`
 - [x] `PYTHONPATH=src python3 -m noqlen_aria.cli --help`
 - [x] `PYTHONPATH=src python3 -m noqlen_aria.cli doctor`
 - [x] `python3 -m pytest`
 - [x] `git ls-files | grep -E '(^\.opencode/|^\.skills/|opencode\.json|docs/development|audit-report|model-routing|\.env|credentials\.json|\.secrets)' || true`
+- [x] Apply-helper search check. Matches are negative-test assertions and generated cache notices only.
+- [x] Provider/CLI search check.
+- [x] Android SDK/UI search check.
+- [x] Queue/now-playing/offline/media-source search check.
 
 ## Review checklist
 
-- [x] Confirm this is spec-only.
-- [x] Confirm no source code changed.
-- [x] Confirm no tests changed.
-- [x] Confirm no hardening implementation was created.
+- [x] Confirm implementation matches the Bloco 6 spec.
+- [x] Confirm no Bloco 7 release prep was started.
 - [x] Confirm no Android/UI/playback/queue/cache code was added.
 - [x] Confirm no provider internals, CLI-as-integration, real Navidrome execution, or real music-library access was added.
 - [x] Confirm Behavior Budget is present in the spec.
@@ -192,7 +194,7 @@ These are for the next Bloco 6 implementation task only. Do not perform them in 
 
 ## Delta update
 
-- [x] Update `aria/context/current.md` to mark Bloco 6 spec complete and next step as Bloco 6 implementation only after approval.
-- [x] Update `aria/context/delta.md` to record Bloco 6 spec creation and validation evidence.
+- [x] Update `aria/context/current.md` to mark Bloco 6 implementation complete and next step as Blocos 4-6 formal audit.
+- [x] Update `aria/context/delta.md` to record Bloco 6 hardening and validation evidence.
 - [x] Keep both files concise.
-- [x] Update `docs/handoff.md` only if a tiny status note is needed. Not needed.
+- [x] Update `docs/handoff.md` with Bloco 6 status note.

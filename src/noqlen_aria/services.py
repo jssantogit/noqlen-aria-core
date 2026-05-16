@@ -97,7 +97,7 @@ class ResultMappingService:
 
 
 class StatusService:
-    """Composes server status into a high-level connectivity response."""
+    """Builds server status into a high-level connectivity response."""
 
     def __init__(self, client: ControlClient) -> None:
         self._client = client
@@ -295,3 +295,16 @@ class ReadinessService:
                 all_ready=all_ready,
             ),
         )
+
+
+__all__ = [
+    "DEFAULT_MAX_LATENCY_MS",
+    "DEFAULT_MAX_LIBRARY_STALENESS_SECONDS",
+    "DiagnosticsService",
+    "LifecycleIntentPreview",
+    "LifecycleIntentService",
+    "ReadinessService",
+    "ResultMappingError",
+    "ResultMappingService",
+    "StatusService",
+]

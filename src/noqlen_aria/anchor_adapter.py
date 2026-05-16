@@ -19,6 +19,7 @@ from noqlen_aria.contracts import (
     ReadinessViewState,
     ServerViewState,
     StorageAccessState,
+    sanitize_text,
 )
 from noqlen_aria.services import ResultMappingService
 
@@ -311,7 +312,7 @@ class AnchorControlClient:
         except Exception as exc:
             return ResultMappingService.err(
                 _ANCHOR_CALL_FAILED.code,
-                f"{_ANCHOR_CALL_FAILED.message}: {helper_name}: {exc}",
+                f"{_ANCHOR_CALL_FAILED.message}: {helper_name}: {sanitize_text(exc)}",
             )
 
     def ping(self) -> AriaResult[bool]:
@@ -327,7 +328,7 @@ class AnchorControlClient:
         except Exception as exc:
             return ResultMappingService.err(
                 _ANCHOR_UNEXPECTED_OUTPUT.code,
-                f"{_ANCHOR_UNEXPECTED_OUTPUT.message}: {exc}",
+                _ANCHOR_UNEXPECTED_OUTPUT.message,
             )
 
     def get_server_state(self) -> AriaResult[ServerViewState]:
@@ -343,7 +344,7 @@ class AnchorControlClient:
         except Exception as exc:
             return ResultMappingService.err(
                 _ANCHOR_UNEXPECTED_OUTPUT.code,
-                f"{_ANCHOR_UNEXPECTED_OUTPUT.message}: {exc}",
+                _ANCHOR_UNEXPECTED_OUTPUT.message,
             )
 
     def get_library_state(self) -> AriaResult[LibraryViewState]:
@@ -359,7 +360,7 @@ class AnchorControlClient:
         except Exception as exc:
             return ResultMappingService.err(
                 _ANCHOR_UNEXPECTED_OUTPUT.code,
-                f"{_ANCHOR_UNEXPECTED_OUTPUT.message}: {exc}",
+                _ANCHOR_UNEXPECTED_OUTPUT.message,
             )
 
     def get_readiness(self) -> AriaResult[ReadinessViewState]:
@@ -380,7 +381,7 @@ class AnchorControlClient:
                 except Exception as exc:
                     return ResultMappingService.err(
                         _ANCHOR_UNEXPECTED_OUTPUT.code,
-                        f"{_ANCHOR_UNEXPECTED_OUTPUT.message}: {exc}",
+                        _ANCHOR_UNEXPECTED_OUTPUT.message,
                     )
             return AriaResult(ok=False, error=readiness_result.error)
 
@@ -462,7 +463,7 @@ class AnchorControlClient:
         except Exception as exc:
             return ResultMappingService.err(
                 _ANCHOR_UNEXPECTED_OUTPUT.code,
-                f"{_ANCHOR_UNEXPECTED_OUTPUT.message}: {exc}",
+                _ANCHOR_UNEXPECTED_OUTPUT.message,
             )
 
     def get_storage_access_state(self) -> AriaResult[StorageAccessState]:
@@ -478,5 +479,8 @@ class AnchorControlClient:
         except Exception as exc:
             return ResultMappingService.err(
                 _ANCHOR_UNEXPECTED_OUTPUT.code,
-                f"{_ANCHOR_UNEXPECTED_OUTPUT.message}: {exc}",
+                _ANCHOR_UNEXPECTED_OUTPUT.message,
             )
+
+
+__all__ = ["AnchorControlClient"]

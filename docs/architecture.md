@@ -32,3 +32,5 @@ Anchor is not the center of Aria. Anchor is one `ControlClient` adapter/control-
 Future UI must be thin and must not contain core business behavior.
 
 UI-facing data must be app-facing and sanitized. Status/readiness views consume `ServerViewState` and `ReadinessViewState`; diagnostics views consume `DiagnosticsViewState`; permission/storage views consume `PermissionState` and `StorageAccessState`; playback/media controls emit intents that Aria Core routes through boundary contracts in future work.
+
+Bloco 6 hardens the MVP public surface. The top-level `noqlen_aria` package intentionally exports only stable app-facing contracts, services, the optional `AnchorControlClient`, and safe output helpers (`safe_serialize`, `sanitize_text`). Android/player boundary vocabulary remains available from `noqlen_aria.android_boundaries` as abstract contracts and fakes, not as Android SDK or playback implementation.

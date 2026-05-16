@@ -2,11 +2,62 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import fields, is_dataclass, dataclass, field
 from enum import Enum, auto
-from typing import Generic, Protocol, TypeVar, runtime_checkable
+from typing import Any, Generic, Protocol, TypeVar, runtime_checkable
 
 T = TypeVar("T")
+
+SAFE_DETAIL_UNAVAILABLE = "Details are unavailable in safe output"
+
+_UNSAFE_TEXT_MARKERS = (
+    "traceback",
+    "password",
+    "passwd",
+    "token",
+    "secret",
+    "credential",
+    "authorization",
+    "api_key",
+    "apikey",
+    "/home/",
+    "/users/",
+    "/var/",
+    "c:\\",
+    "provider exception",
+    "raw provider",
+    "music library",
+)
+
+
+def sanitize_text(value: object) -> str:
+    """Return display-safe text for app-facing errors and warnings."""
+
+    text = "" if value is None else str(value)
+    lowered = text.lower()
+    if any(marker in lowered for marker in _UNSAFE_TEXT_MARKERS):
+        return SAFE_DETAIL_UNAVAILABLE
+    if "\n" in text or "\r" in text:
+        return " ".join(text.split())
+    return text
+
+
+def safe_serialize(value: Any) -> Any:
+    """Convert Aria values into stdlib-only, app-facing safe data."""
+
+    if isinstance(value, Enum):
+        return value.name
+    if isinstance(value, (str, int, float, bool)) or value is None:
+        return sanitize_text(value) if isinstance(value, str) else value
+    if is_dataclass(value):
+        return {field.name: safe_serialize(getattr(value, field.name)) for field in fields(value)}
+    if isinstance(value, list):
+        return [safe_serialize(item) for item in value]
+    if isinstance(value, tuple):
+        return [safe_serialize(item) for item in value]
+    if isinstance(value, dict):
+        return {safe_serialize(key): safe_serialize(item) for key, item in value.items()}
+    return SAFE_DETAIL_UNAVAILABLE
 
 
 @dataclass(frozen=True)
@@ -16,6 +67,10 @@ class AriaError:
     code: str
     message: str
 
+    def __post_init__(self) -> None:
+        object.__setattr__(self, "code", sanitize_text(self.code))
+        object.__setattr__(self, "message", sanitize_text(self.message))
+
 
 @dataclass(frozen=True)
 class AriaWarning:
@@ -23,6 +78,10 @@ class AriaWarning:
 
     code: str
     message: str
+
+    def __post_init__(self) -> None:
+        object.__setattr__(self, "code", sanitize_text(self.code))
+        object.__setattr__(self, "message", sanitize_text(self.message))
 
 
 @dataclass(frozen=True)
@@ -260,3 +319,21 @@ class FakeControlClient:
         if self._storage_access_override is not None:
             return AriaResult(ok=True, data=self._storage_access_override)
         return AriaResult(ok=True, data=StorageAccessState.AVAILABLE)
+
+
+__all__ = [
+    "AriaError",
+    "AriaResult",
+    "AriaWarning",
+    "ControlClient",
+    "DiagnosticsViewState",
+    "FakeControlClient",
+    "LibraryViewState",
+    "LifecycleIntent",
+    "PermissionState",
+    "ReadinessViewState",
+    "ServerViewState",
+    "StorageAccessState",
+    "safe_serialize",
+    "sanitize_text",
+]

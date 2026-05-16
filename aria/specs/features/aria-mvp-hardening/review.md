@@ -2,33 +2,33 @@
 
 ## Summary
 
-Bloco 6 — Aria MVP Hardening spec is created as planning only. It defines the future hardening scope for public API review, intentional exports, safe serialization, sanitized errors/warnings, optional dependency behavior, Anchor dry-run/apply safety, forbidden integration checks, documentation consistency, test coverage review, repository hygiene, and Bloco 4-6 formal audit readiness.
+Bloco 6 — Aria MVP Hardening is implemented. The MVP surface now has explicit intentional exports, safe output helpers, sanitized error/warning construction, safer Anchor adapter exception handling, focused hardening tests, and documentation updates for public API/safety boundaries.
 
-No hardening implementation is created by this task.
+No Bloco 7 release prep was started. No Android/UI/playback/queue/cache/provider implementation was added.
 
 ## Requirements coverage
 
 | Requirement area | Status |
 |------------------|--------|
-| Public API surface review | Covered by FR-10 and design public API section |
-| Intentional exports | Covered by FR-20 and future Task A |
-| Safe serialization review | Covered by FR-30 and future Task B |
-| Sanitized errors/warnings | Covered by FR-40 and future Task B |
-| Optional dependency behavior | Covered by FR-50 and future Task C |
-| Anchor dry-run/apply safety verification | Covered by FR-60 and future Task D |
-| No provider internals | Covered by FR-70 and non-goals |
-| No CLI-as-integration | Covered by FR-60/FR-70 and non-goals |
-| No real Navidrome execution | Covered by FR-60/FR-70 and non-goals |
-| No real music library access | Covered by FR-70 and non-goals |
-| No Android SDK dependency | Covered by FR-70 and non-goals |
-| No UI implementation | Covered by FR-70 and non-goals |
-| No playback/queue/cache implementation | Covered by FR-70 and non-goals |
-| Documentation consistency | Covered by FR-80 and future Task E |
-| Test coverage review | Covered by FR-90 and Test Risk Matrix |
-| Repository hygiene | Covered by FR-100 and validation plan |
-| Bloco 4-6 formal audit readiness | Covered by FR-100 and future Task E |
+| Public API surface review | Implemented with package/module `__all__` and export tests |
+| Intentional exports | Implemented for top-level package and public modules |
+| Safe serialization review | Implemented with `safe_serialize` and JSON-compatible tests |
+| Sanitized errors/warnings | Implemented with `sanitize_text` and dataclass `__post_init__` sanitization |
+| Optional dependency behavior | Covered by missing Anchor tests and unchanged lazy optional import behavior |
+| Anchor dry-run/apply safety verification | Covered by tests proving apply helpers are not called |
+| No provider internals | Covered by adapter tests and search checks |
+| No CLI-as-integration | Covered by adapter tests and search checks |
+| No real Navidrome execution | Covered by dry-run/apply tests and search checks |
+| No real music library access | Covered by safe output tests and validation scope |
+| No Android SDK dependency | Covered by search checks |
+| No UI implementation | Covered by changed-file review and search checks |
+| No playback/queue/cache implementation | Covered by changed-file review and search checks |
+| Documentation consistency | Updated architecture, safety, Anchor integration, and handoff docs |
+| Test coverage review | Added `tests/test_mvp_hardening.py` for high-risk expectations |
+| Repository hygiene | Covered by contamination check |
+| Bloco 4-6 formal audit readiness | Evidence recorded; next step is formal audit |
 
-Canonical Examples CE-01 through CE-08 are included and use Given / When / Then.
+Canonical Examples CE-01 through CE-08 are represented by hardening tests for serialized sanitized errors, Anchor unavailable behavior, intentional exports, apply blocking, docs/scope consistency, optional dependency absence, diagnostics sanitization, and no backlog implementation.
 
 ## Context package used
 
@@ -36,115 +36,119 @@ Standard. Per `aria/context/context-packages.md`.
 
 ## Files changed
 
-Created:
+Source modified:
 
-- `aria/specs/features/aria-mvp-hardening/requirements.md`
-- `aria/specs/features/aria-mvp-hardening/design.md`
+- `src/noqlen_aria/__init__.py`
+- `src/noqlen_aria/contracts.py`
+- `src/noqlen_aria/services.py`
+- `src/noqlen_aria/anchor_adapter.py`
+- `src/noqlen_aria/android_boundaries.py`
+
+Tests created:
+
+- `tests/test_mvp_hardening.py`
+
+Docs modified:
+
+- `docs/architecture.md`
+- `docs/safety.md`
+- `docs/anchor-integration.md`
+- `docs/handoff.md`
+
+Tracking/context modified:
+
 - `aria/specs/features/aria-mvp-hardening/tasks.md`
 - `aria/specs/features/aria-mvp-hardening/review.md`
-
-Expected concise context updates:
-
 - `aria/context/current.md`
 - `aria/context/delta.md`
 
-No source or test files are expected to change.
-
 ## Validation performed
-
-To be completed after file creation in this task:
 
 - [x] `pwd`
 - [x] `git status --short --branch`
-- [x] `find aria/specs/features/aria-mvp-hardening aria/context -maxdepth 5 -type f | sort`
+- [x] `find src/noqlen_aria tests docs aria/specs/features/aria-mvp-hardening aria/context -maxdepth 5 -type f | sort`
 - [x] `git diff --check`
 - [x] `python3 -m py_compile src/noqlen_aria/*.py`
 - [x] `PYTHONPATH=src python3 -m noqlen_aria.cli --help`
 - [x] `PYTHONPATH=src python3 -m noqlen_aria.cli doctor`
 - [x] `python3 -m pytest`
 - [x] Repository contamination check
+- [x] Apply-helper search check
+- [x] Provider/CLI search check
+- [x] Android SDK/UI search check
+- [x] Queue/now-playing/offline/media-source search check
 
 ## Validation notes
 
-All requested validation commands passed. `python3 -m pytest` reported 358 passed. The contamination check returned no tracked forbidden files. Final command results are reported in the task response and recorded concisely in `aria/context/delta.md`.
+All requested validation commands passed. `python3 -m pytest` reported 368 passed. The contamination check returned no tracked forbidden files. The apply-helper search reports only negative-test assertions plus generated cache notices; there are no source implementation calls to apply helpers. Provider/CLI, Android SDK/UI, and queue/now-playing/offline/media-source searches are clean.
 
 ## Non-goals check
 
 | Non-goal | Status |
 |----------|--------|
-| No hardening implementation in this task | Pass by scope |
-| No source changes | Pass |
-| No tests changed | Pass |
-| No `pyproject.toml` changes | Pass |
+| No Bloco 7 release prep | Pass |
 | No Android SDK/Kotlin/Java/Gradle | Pass |
 | No UI/screen/navigation/player code | Pass |
 | No playback engine/Media3/ExoPlayer/MediaSession/Android Auto | Pass |
 | No queue/now playing/offline/cache/download implementation | Pass |
 | No provider internals, Anchor CLI integration, direct Navidrome, real music-library access | Pass |
 | No dependencies added | Pass |
+| No private/local tooling files | Pass |
 
 ## Behavior Budget result
 
-Budget for this spec task:
-
 | Constraint | Result |
 |------------|--------|
-| New behaviors proposed only | Pass |
-| Public API changes proposed only | Pass |
-| Files allowed: spec directory plus concise context updates | Pass |
-| Tests required: none, validation only | Pass |
+| New behaviors limited to MVP hardening | Pass |
+| Public API changes intentional and documented | Pass |
+| Files allowed by implementation scope | Pass |
+| Tests required for high-risk hardening | Pass |
 | Dependencies: none | Pass |
-| Stop if implementation code becomes necessary | Not triggered |
+| Stop if Android/UI/playback/provider implementation needed | Not triggered |
 
 ## Risk/test coverage result
 
 Per `aria/context/test-risk-matrix.md`:
 
-| Area | Risk | Current result |
-|------|------|----------------|
-| Safe serialization | High | Spec requires future negative tests |
-| Sanitized errors/warnings | High | Spec requires future negative tests |
-| Dry-run/apply boundary | High | Spec requires future apply-block tests |
-| Optional dependency behavior | High | Spec requires future unavailable-dependency tests |
-| Public exports | Medium | Spec requires future intentional export tests |
-| Documentation consistency | Low | Spec requires review/checklist validation |
-| Repository hygiene | Low | Spec requires contamination command |
-
-No tests are created in this spec task.
+| Area | Risk | Result |
+|------|------|--------|
+| Safe serialization | High | `safe_serialize` tests cover nested results/states and JSON compatibility |
+| Sanitized errors/warnings | High | Negative tests cover stack traces, paths, tokens, provider exception text |
+| Dry-run/apply boundary | High | Tests verify dry-run helpers are used and apply helpers are not called |
+| Optional dependency behavior | High | Missing Anchor readiness path returns safe Aria error |
+| Public exports | Medium | Tests cover top-level and module wildcard exports |
+| Documentation consistency | Low | Docs updated for MVP public surface and safety boundaries |
+| Repository hygiene | Low | Contamination check clean |
 
 ## Delta updated?
 
-Yes. `aria/context/current.md` and `aria/context/delta.md` were updated concisely.
+Yes. `aria/context/current.md` and `aria/context/delta.md` are updated concisely.
 
 ## Fake-hostility checks applied?
 
-Not applicable to this spec task. No fake implementation is created.
-
-Future hardening tests should preserve fake-first behavior and avoid happy-path-only coverage, especially for optional dependency absence and unsafe serialization inputs.
+Yes. Added hardening tests remain local, offline, deterministic, and fake/mock based. No real Anchor, Navidrome, provider, filesystem, Android, UI, playback, queue, now playing, or cache behavior is exercised.
 
 ## Risks remaining
 
-- Public export decisions may require source changes in the future implementation.
-- Sanitization gaps may require a larger follow-up task if behavior changes are not minimal.
-- Optional dependency behavior can be environment-sensitive and must be simulated deterministically.
-- Documentation consistency fixes must not imply implementation of future UI/player/provider features.
+- `sanitize_text` is intentionally conservative and redacts whole unsafe messages instead of attempting partial redaction.
+- Direct named imports from modules can still access implementation details; `__all__` defines the intentional wildcard/public surface.
+- Formal Bloco 4-6 audit is still required before moving to later blocks.
 
 ## Known limitations
 
-- This spec does not decide the exact future export set.
-- This spec does not choose a serialization helper implementation.
-- This spec does not implement or test any hardening behavior.
-- This spec does not perform the Bloco 4-6 formal audit; it prepares readiness criteria for it.
+- No version bump is included.
+- No release packaging/prep is included.
+- No new provider, media source, UI, Android, playback, queue, now playing, or cache behavior is included.
 
 ## Follow-up tasks
 
-- Implement Bloco 6 hardening from this spec after approval.
-- Add focused tests for high-risk hardening areas.
-- Update docs only where needed to clarify MVP/future scope.
-- Record validation evidence in `aria/context/delta.md` during implementation.
-- Run Bloco 4-6 formal audit after hardening is complete.
+- Run Blocos 4-6 formal audit.
+- Decide in a future audit/release task whether to document a longer generated API reference.
+- Do not start Bloco 7 until the formal audit task is approved.
 
 ## Aria context updates needed
 
-- `aria/context/current.md`: mark Bloco 6 spec complete and next step as Bloco 6 implementation after approval.
-- `aria/context/delta.md`: record spec creation and validation evidence concisely.
+Completed in this task:
+
+- `aria/context/current.md`: mark Bloco 6 implementation complete and next step as Blocos 4-6 formal audit.
+- `aria/context/delta.md`: record hardening changes and validation evidence concisely.
