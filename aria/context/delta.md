@@ -17,6 +17,7 @@
 - Release artifacts created: `docs/release-checklist.md`, `docs/release-notes.md`, `docs/api-surface.md`, `docs/safety-summary.md`, `docs/post-core-backlog.md`.
 - Workflow improvements from Noqlen Playbook comparison added: broader repository hygiene categories, PR template, read-only local repository study prompt, clearer audit finding/status fields, and Workflow vNext references. Workflow/template changes only.
 - Bloco 8 spec created: `aria/specs/features/media-source-foundation/` with `requirements.md`, `design.md`, `tasks.md`, `review.md`. Defines `MediaSourceClient`, `FakeMediaSourceClient`, source capability models, abstract media IDs, stream handle, provider capability discovery, and availability states. Spec only; no implementation, no provider integration, no streaming, no playback, no UI.
+- Bloco 8 implemented: `src/noqlen_aria/media_source.py` with `MediaSourceClient` protocol, `FakeMediaSourceClient` (deterministic, failure-injection hooks, value overrides), and 11 supporting types. `tests/test_media_source.py` adds 100 tests covering contracts, capability mapping, error injection, determinism, safe degraded behavior, and provider boundary enforcement.
 
 ## Evidence
 
@@ -28,6 +29,7 @@
 - Bloco 7 release preparation validation: `python3 -m pytest` 368/368 pass; contamination clean; all search checks clean; version consistency confirmed; release artifacts created.
 - Playbook comparison workflow update validation: `git diff --check` passed; tracked forbidden-file grep returned no matches; `git status --short --branch` reviewed. No source, tests, Android/UI, product behavior, release tag, or publish changes intended.
 - Bloco 8 spec validation: `python3 -m pytest` 368/368 pass; contamination clean; no source code, tests, provider integration, streaming, playback, or UI created.
+- Bloco 8 implementation validation: `python3 -m pytest` 468/468 pass (368 base + 100 new); `py_compile` clean; CLI help/doctor pass; all search checks clean (provider integration, network, Android, forbidden implementations); contamination clean.
 
 ## Decisions
 
@@ -46,7 +48,8 @@
 ## Next step
 
 - Provider roadmap wording patch is complete.
-- Bloco 8 spec (Media Source Foundation) is complete. Implementation deferred until explicitly approved.
+- Bloco 8 (Media Source Foundation) is implemented and validated (468/468 tests).
+- Next step: Bloco 9 spec after explicit approval.
 - Post-core features (Blocos 8-23 in the roadmap) require dedicated specs before implementation.
 
 ## Open decisions

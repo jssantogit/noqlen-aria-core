@@ -60,63 +60,63 @@ For future implementation, the budget will be re-evaluated against the design.
 
 ## Implementation tasks
 
-All tasks below are for future implementation. None are executed in this spec task.
+All tasks complete.
 
 ### Task 1: Create source file skeleton
 
-- [ ] Create `src/noqlen_aria/media_source.py` with module docstring and imports.
-- [ ] Import `AriaResult`, `AriaError` from `noqlen_aria.contracts`.
-- [ ] Create `tests/test_media_source.py` with test imports and pytest markers.
-- [ ] Validate: `python3 -m py_compile src/noqlen_aria/media_source.py` passes.
+- [x] Create `src/noqlen_aria/media_source.py` with module docstring and imports.
+- [x] Import `AriaResult`, `AriaError` from `noqlen_aria.contracts`.
+- [x] Create `tests/test_media_source.py` with test imports and pytest markers.
+- [x] Validate: `python3 -m py_compile src/noqlen_aria/media_source.py` passes.
 
 ### Task 2: Implement media source identity models
 
-- [ ] Define `MediaSourceId`, `MediaSourceType`, `SourceAvailabilityState`, `MediaSourceInfo`.
-- [ ] Test source identity construction, defaults, and availability state.
-- [ ] Validate: pytest passes for identity model tests.
+- [x] Define `MediaSourceId`, `MediaSourceType`, `SourceAvailabilityState`, `MediaSourceInfo`.
+- [x] Test source identity construction, defaults, and availability state.
+- [x] Validate: pytest passes for identity model tests.
 
 ### Task 3: Implement abstract media ID models
 
-- [ ] Define `MediaId`, `MediaIdKind`.
-- [ ] Test MediaId construction, kind enumeration, equality, and serialization.
-- [ ] Validate: pytest passes for media ID tests.
+- [x] Define `MediaId`, `MediaIdKind`.
+- [x] Test MediaId construction, kind enumeration, equality, and serialization.
+- [x] Validate: pytest passes for media ID tests.
 
 ### Task 4: Implement source capability models
 
-- [ ] Define `SourceCapability` enum with all values (ARTISTS through LYRICS).
-- [ ] Define `SourceCapabilitySummary` with `supported` and `unavailable` frozensets.
-- [ ] Define `ProviderCapability` and `ProviderAvailabilityState`.
-- [ ] Write TDD tests for capability mapping, normalization, and edge cases.
-- [ ] Validate: pytest passes for capability tests.
+- [x] Define `SourceCapability` enum with all values (ARTISTS through LYRICS).
+- [x] Define `SourceCapabilitySummary` with `supported` and `unavailable` frozensets.
+- [x] Define `ProviderCapability` and `ProviderAvailabilityState`.
+- [x] Write TDD tests for capability mapping, normalization, and edge cases.
+- [x] Validate: pytest passes for capability tests.
 
 ### Task 5: Implement stream handle model
 
-- [ ] Define `StreamAvailability` enum and `StreamHandle` dataclass.
-- [ ] Test stream handle defaults (availability=STREAM_NOT_RESOLVED), format hints, and serialization.
-- [ ] Validate: pytest passes for stream handle tests.
+- [x] Define `StreamAvailability` enum and `StreamHandle` dataclass.
+- [x] Test stream handle defaults (availability=STREAM_NOT_RESOLVED), format hints, and serialization.
+- [x] Validate: pytest passes for stream handle tests.
 
 ### Task 6: Implement MediaSourceClient protocol
 
-- [ ] Define `MediaSourceClient` as `@runtime_checkable Protocol` with `get_source_info`, `get_capability_summary`, `request_stream`.
-- [ ] Test structural typing compliance with `isinstance` checks.
-- [ ] Validate: pytest passes for protocol tests.
+- [x] Define `MediaSourceClient` as `@runtime_checkable Protocol` with `get_source_info`, `get_capability_summary`, `request_stream`.
+- [x] Test structural typing compliance with `isinstance` checks.
+- [x] Validate: pytest passes for protocol tests.
 
 ### Task 7: Implement FakeMediaSourceClient
 
-- [ ] Implement `FakeMediaSourceClient` as a non-frozen dataclass with `_*_error` hooks.
-- [ ] Implement `get_source_info` with deterministic behavior and failure injection.
-- [ ] Implement `get_capability_summary` with configurable `supported_capabilities` and failure injection.
-- [ ] Implement `request_stream` with configurable stream availability and failure injection.
-- [ ] Write TDD tests for all public methods, error injection, determinism, and safe defaults.
-- [ ] Validate: pytest passes for all fake tests.
+- [x] Implement `FakeMediaSourceClient` as a non-frozen dataclass with `_*_error` hooks.
+- [x] Implement `get_source_info` with deterministic behavior and failure injection.
+- [x] Implement `get_capability_summary` with configurable `supported_capabilities` and failure injection.
+- [x] Implement `request_stream` with configurable stream availability and failure injection.
+- [x] Write TDD tests for all public methods, error injection, determinism, and safe defaults.
+- [x] Validate: pytest passes for all fake tests.
 
 ### Task 8: Final validation
 
-- [ ] Run full validation suite: `py_compile`, import check, pytest, contamination check.
-- [ ] Confirm no regression in Bloco 0-7 tests (still 368+ base tests).
-- [ ] Confirm no provider brand names appear in source.
-- [ ] Confirm no Anchor internals, provider internals, or real streaming code.
-- [ ] Update spec review.md with implementation review.
+- [x] Run full validation suite: `py_compile`, import check, pytest, contamination check.
+- [x] Confirm no regression in Bloco 0-7 tests (368 base tests + 100 new = 468 total).
+- [x] Confirm no provider brand names appear in source.
+- [x] Confirm no Anchor internals, provider internals, or real streaming code.
+- [x] Update spec review.md with implementation review.
 - [ ] Commit implementation artifacts.
 
 ## Validation checklist
@@ -140,36 +140,35 @@ Spec phase (this task):
 
 Implementation phase (future):
 
-- [ ] `python3 -m py_compile src/noqlen_aria/media_source.py`
-- [ ] `PYTHONPATH=src python3 -c "import noqlen_aria.media_source"`
-- [ ] `python3 -m pytest tests/test_media_source.py -v`
-- [ ] Full validation suite (368+ base + new media source tests)
-- [ ] Provider brand name grep on `src/noqlen_aria/media_source.py`
-- [ ] Structural typing check: `FakeMediaSourceClient` satisfies `MediaSourceClient`
-- [ ] Fake hostility checklist applied to `FakeMediaSourceClient`
+- [x] `python3 -m py_compile src/noqlen_aria/media_source.py` — passes.
+- [x] `PYTHONPATH=src python3 -c "import noqlen_aria.media_source"` — imports clean.
+- [x] `python3 -m pytest tests/test_media_source.py -v` — 100/100 pass.
+- [x] Full validation suite — 468/468 pass (368 base + 100 new).
+- [x] Provider brand name grep on `src/noqlen_aria/media_source.py` — clean.
+- [x] Structural typing check: `FakeMediaSourceClient` satisfies `MediaSourceClient` — confirmed.
+- [x] Fake hostility checklist applied to `FakeMediaSourceClient` — no external calls, deterministic, error hooks on all public methods.
 
 ## Review checklist
 
-Spec phase (this task):
+Implementation phase:
 
 - [x] Confirm non-goals: no real provider integration, no real streaming, no real playback, no UI.
-- [x] Confirm no source code changed outside spec/context files.
 - [x] Confirm no pyproject.toml changed.
 - [x] Confirm no local/private/tooling artifacts staged.
-- [x] Confirm spec completeness: requirements, design, tasks, review all present.
-- [x] Confirm Canonical Examples use Given/When/Then (8 examples).
-- [x] Confirm Behavior Budget present and respected.
-- [x] Confirm Test Risk Matrix present.
+- [x] Confirm Canonical Examples translated to tests (CE-01 through CE-08).
+- [x] Confirm Behavior Budget respected.
+- [x] Confirm Test Risk Matrix applied.
 - [x] Confirm context package (Standard) documented.
 - [x] Confirm Anchor multi-provider assumption avoided.
-- [x] Confirm no Navidrome/Jellyfin/Emby in proposed type/field/enum names.
+- [x] Confirm no Navidrome/Jellyfin/Emby in type/field/enum names.
 - [x] Confirm `MediaSourceClient` boundary defined alongside `ControlClient`.
+- [x] Confirm 100 tests covering contracts, fakes, capability mapping, error injection, determinism, and safe degraded behavior.
 
 ## Delta update
 
-- [ ] Update `aria/context/current.md` to reflect Bloco 8 spec completion.
-- [ ] Update `aria/context/delta.md` to record Bloco 8 spec creation.
-- [ ] Update `docs/handoff.md` with Bloco 8 spec status note.
+- [ ] Update `aria/context/current.md` to reflect Bloco 8 implementation completion.
+- [ ] Update `aria/context/delta.md` to record Bloco 8 implementation.
+- [ ] Update `docs/handoff.md` with Bloco 8 implementation status note.
 
 ## Delta update checklist
 
