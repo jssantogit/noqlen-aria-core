@@ -2,6 +2,8 @@
 
 ## What changed
 
+- Bloco 17 implemented with fade follow-up: playback capability models (GaplessCapabilityState, LoudnessNormalizationCapabilityState, ReplayGainAwarenessState, CrossfadeCapabilityState, FadeCapabilityState, FadeMode, FadeTimingPreference, FadeAvailabilityState, FadeUnavailableReason, BitPerfectCapabilityState, PlaybackCapabilitySummary, PlaybackCapabilityWarning, PlaybackQualityPreference), audio output readiness models (AudioOutputRouteState, AudioOutputRouteType, AudioOutputDeviceState, UsbDacCapabilityState, ExclusiveOutputCapabilityState, SampleRateSupport, BitDepthSupport, AudioFormatSupport, AudioOutputReadinessState), deterministic services (PlaybackCapabilityService, AudioOutputCapabilityService), and FakePlaybackCapabilityScenarios. No real playback, fade/audio processing, volume automation, audio driver, USB driver, Android/JNI/NDK/AAudio/Oboe, Media3/ExoPlayer/MediaSession, real bit-perfect output, sample-rate switching, DAC control, DSP/EQ, provider integration, network behavior, filesystem/device traversal, Audit 14-17 work, or Bloco 18 behavior added.
+
 - Bloco 16 implemented: stream quality policy models (StreamQualityPreference, StreamQualityPolicy, StreamQualityProfile, StreamQualityDecision, StreamQualityReason, BitrateLimit, BandwidthBudget, QualityFallbackPolicy, OfflineQualityPolicy), transcoding capability/policy models (TranscodingCapability, TranscodingPolicy, TranscodingDecision, TranscodingUnavailableReason, TranscodingRequirement, TranscodingPreference), network quality models (NetworkQualityState, NetworkQualityLevel, NetworkConditionSnapshot, NetworkPolicyDecision, NetworkPolicyReason), deterministic services (QualityPolicyService, TranscodingPolicyService, NetworkQualityPolicyService), and FakeQualityPolicyScenarios. No real transcoding, transcoder library, stream execution, network probing/calls, provider integration, playback engine/session, Android/UI code, filesystem traversal, offline download/cache mutation, audio driver/USB work, or Bloco 17 behavior added.
 
 - Bloco 15 implemented: internet radio foundation models (RadioStationId, RadioStationRef, RadioStationSummary, RadioSourceCapability, RadioDirectoryRef, RadioImportSource, ManualRadioStationInput, RadioStreamHandle, RadioStreamKind, RadioPlaybackAvailability, RadioMetadataState, IcyMetadataState, RadioArtworkState, RadioFavoriteState, RadioUnavailableReason, RadioValidationIssue), deterministic InternetRadioService, and FakeRadioScenarios. No real radio streaming, HLS/DASH/Shoutcast client, ICY network parsing, network behavior, playback engine/session, provider integration/mutation, Anchor provider internals, Android/UI code, filesystem traversal, Bloco 16 behavior, or Bloco 17 behavior added.
@@ -37,6 +39,8 @@
 
 - Bloco 16 implementation validation: `python3 -m pytest` 815/815 pass; `py_compile` clean; CLI help/doctor pass; network/provider/filesystem/Android/audio-driver searches clean; transcoding search shows expected Bloco 16 spec/model/test vocabulary only, with no real transcoder implementation; tracked contamination clean.
 
+- Bloco 17 fade follow-up validation: `python3 -m pytest` 836/836 pass; `py_compile` clean; CLI help/doctor pass; `git diff --check` clean; contamination clean; Android/audio/provider/network/filesystem/DSP searches show no forbidden implementation, with expected Bloco 16 vocabulary, Bloco 17 boundary-test vocabulary, and ignored `__pycache__` binary matches.
+
 - Bloco 15 implementation validation: `python3 -m pytest` 788/788 pass; `py_compile` clean; CLI help/doctor pass; network/provider/filesystem/Android/transcoding searches show no forbidden implementation, with expected test/spec/model vocabulary matches for unsupported HLS/DASH/Shoutcast and local boundary assertions; tracked contamination clean.
 
 - Bloco 14 implementation validation: `python3 -m pytest` 746/746 pass (642 base + 104 new); `py_compile` clean; CLI help/doctor pass; provider/network/filesystem/Android/smart-playlist/transcoding checks clean; contamination clean.
@@ -60,11 +64,12 @@
 
 ## Next step
 
-- Bloco 17 Playback Capability Models is the next product block. Do not start without explicit approval and a dedicated spec.
+- Bloco 17 Playback Capability Models is implemented and validated.
 - Audit 14-17 must not run yet.
 - Roadmap documentation update: Bloco 17 wording clarified to include bit-perfect capability, USB DAC capability, exclusive output capability, audio output route state, sample-rate support, bit-depth support, output/device readiness, playback quality preferences, and driver bridge vocabulary for a future Android player. Bloco 17 remains capability/readiness/preference models only; no real audio driver, USB driver, Android USB Host API, JNI/NDK, AAudio/Oboe, Media3/ExoPlayer, real bit-perfect output, real sample-rate switching, real DAC control, or DSP/EQ.
 - Future Android Player audio output phase (phases A–E) added to `docs/aria-core-handoff.md` and `docs/post-core-backlog.md` as a future project outside Aria Core. Invariant added: Aria Core may model requirements for a future custom/exclusive audio output layer; Aria Core must not implement an audio driver; a future Android Player phase may research or implement an exclusive USB/audio output bridge if feasible.
-- Blocos 14-16 are implemented and validated.
+- Blocos 14-17 are implemented and validated.
+- Bloco 18 must not start without explicit approval and a dedicated spec.
 
 ## Open decisions
 
