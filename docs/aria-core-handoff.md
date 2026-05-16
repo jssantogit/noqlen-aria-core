@@ -10,9 +10,10 @@
 - Bloco 4 Android/player boundary contracts are complete.
 - Bloco 5 minimal UI shell planning artifacts are complete.
 - Bloco 6 Aria MVP hardening is complete.
+- Bloco 7 Aria Core Release Preparation is complete. Release artifacts are documented under `docs/release-checklist.md`, `docs/release-notes.md`, `docs/api-surface.md`, `docs/safety-summary.md`, and `docs/post-core-backlog.md`.
 - Aria Workflow vNext context compression is active for future tasks. Start with `aria/context/current.md`, `aria/context/delta.md`, and `aria/context/context-packages.md` before escalating to this full handoff.
 - This document is the canonical local repository handoff and source of truth for the current Aria direction.
-- The next product step is the formal Blocos 4-6 audit. Do not start Bloco 7 until that audit passes.
+- The next product step is final release audit and tag decision. Do not create a release tag or publish until the release checklist passes and the maintainer approves.
 
 ## Product Definition
 
@@ -248,4 +249,4 @@ Bloco 21 defines the full fake flow from provider to sync to library to queue to
 
 ## Current Next Step
 
-Formal audit for Blocos 4-6 is next. Do not start Bloco 7 until the audit passes.
+Bloco 7 Aria Core Release Preparation is complete. Final release audit and tag decision are next. Do not create a release tag or publish until the release checklist passes and the maintainer approves.

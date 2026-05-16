@@ -1,16 +1,34 @@
 # Noqlen Aria Core
 
-Noqlen Aria Core is the app/interface orchestration core for the Noqlen ecosystem. It is the product boundary that future user interfaces will call.
-
-Aria Workflow is the development method used in this repository. Aria Workflow is not the product.
+Noqlen Aria Core is the modular app/player-facing core of a music player. It owns contracts, states, services, fakes, adapters, snapshots, safe serialization, and tests.
 
 Aria Core is not UI and is not an Android app. Future UI must remain a thin adapter over Aria Core.
 
-Future ecosystem flow:
+Aria Workflow is the development method used in this repository. Aria Workflow is not the product.
 
-`Future UI/App -> Aria Core -> Anchor Client -> Anchor Core API -> Navidrome`
+## What Is Implemented (MVP)
 
-Bloco 0 is bootstrap, repository context, and workflow only. Future product context is documented here and under `aria/context/`, but product features are not implemented yet.
+- Control-plane contracts and fake-first services.
+- Dry-run/offline Anchor adapter.
+- Android/player boundary contracts (abstract vocabulary and fakes, not Android SDK).
+- Minimal UI shell planning artifacts (documentation only).
+- Safe serialization and sanitized output helpers.
+- Intentional public API exports.
+- 368 tests, all passing.
+
+For details, see `docs/release-notes.md` and `docs/api-surface.md`.
+
+## Architecture
+
+`Future UI/App/Player -> Aria Core -> contracts/adapters -> providers/backends`
+
+Anchor is one optional `ControlClient` adapter, not the center of Aria. Aria depends on contracts, not Anchor internals.
+
+Full architecture and roadmap: `docs/aria-core-handoff.md`.
+
+## Safety
+
+See `docs/safety.md` and `docs/safety-summary.md` for the current safety boundaries.
 
 ## Development
 
@@ -36,6 +54,17 @@ PYTHONPATH=src python3 -m noqlen_aria.cli --help
 PYTHONPATH=src python3 -m noqlen_aria.cli doctor
 ```
 
-## Bloco 0 Boundaries
+Run tests:
 
-Bloco 0 does not add Anchor as a dependency, does not add Android/Kotlin/Gradle dependencies, does not implement UI, and does not integrate with Navidrome or real music libraries.
+```bash
+python3 -m pytest
+```
+
+## Release Artifacts
+
+- `docs/release-checklist.md` — release readiness checklist.
+- `docs/release-notes.md` — release notes for the MVP.
+- `docs/api-surface.md` — public API surface summary.
+- `docs/safety-summary.md` — verified safety boundaries.
+- `docs/post-core-backlog.md` — post-core features roadmap.
+- `docs/handoff.md` — current project status and handoff.
