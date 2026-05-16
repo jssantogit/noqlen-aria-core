@@ -2,6 +2,8 @@
 
 ## What changed
 
+- Bloco 13 implemented: playback intent models (PlaybackIntent, PlaybackIntentType, PlaybackIntentResult, PlaybackCommandPreview, PlaybackBlockedReason, SeekTarget, SkipDirection, PlaybackIntentValidationIssue), renderer intent models (RendererId, RendererRef, RendererType, RendererAvailabilityState, RendererCapabilitySummary, RendererSelectionIntent, RendererSelectionResult), automation intent models (AutomationIntent, AutomationIntentType, AutomationIntentSource, AutomationIntentResult, AutomationSafetyLevel), and three deterministic local services (PlaybackIntentService, RendererIntentService, AutomationIntentService). No real playback, stream resolution, provider integration, Android/UI, offline/cache, smart playlist, network, or filesystem behavior was added.
+
 - Blocos 4-6 formal audit found stale context/handoff references and CLI/doc wording that still described earlier blocks; audit-scoped corrections were applied.
 - Bloco 1 completed source-agnostic core contracts, safe result/state primitives, `ControlClient`, and `FakeControlClient`.
 - Bloco 2 completed fake-first control services, result mapping, readiness, diagnostics, lifecycle preview, and deterministic failure/value overrides.
@@ -37,7 +39,7 @@
 - Bloco 9 implementation validation: `python3 -m pytest` 506/506 pass; `py_compile` clean; CLI help/doctor pass; provider/network/filesystem/queue checks clean; Android grep only reports an existing safety docstring in `android_boundaries.py`; contamination clean.
 - Bloco 10 implementation validation: `python3 -m pytest` 531/531 pass; `py_compile` clean; CLI help/doctor pass; provider/network/filesystem/queue checks clean; Android search reports expected existing Android boundary code plus Bloco 10 `LibraryActivity*` activity model names; contamination clean.
 - Bloco 11 implementation validation: `python3 -m pytest` 554/554 pass; `py_compile` clean; CLI help/doctor pass; provider/network/filesystem/now-playing/offline/smart-playlist checks clean; Android search reports existing Android boundary/LibraryActivity vocabulary only; contamination clean.
-- Bloco 12 implementation validation: `python3 -m pytest` 574/574 pass; `py_compile` clean; CLI help/doctor pass; provider/network/filesystem/playback-intent/offline/smart-playlist checks clean; Android search reports existing Android boundary/LibraryActivity vocabulary only; contamination clean.
+- Bloco 13 implementation validation: `python3 -m pytest` 642/642 pass; `py_compile` clean; CLI help/doctor pass; provider/network/filesystem/playback-intent/offline/smart-playlist checks clean; Android search reports existing Android boundary/LibraryActivity vocabulary only; contamination clean.
 
 ## Decisions
 
@@ -55,11 +57,8 @@
 
 ## Next step
 
-- Provider roadmap wording patch is complete.
-- Bloco 8 (Media Source Foundation) is implemented and validated.
-- Bloco 9 (Library Browse/Search) is implemented and validated (506/506 tests).
-- Next step: Audit 8-13 or Bloco 13 only after explicit approval; do not run Audit 8-13 or start Bloco 13 in the Bloco 12 task.
-- Post-core features (Blocos 8-23 in the roadmap) require dedicated specs before implementation.
+- Bloco 13 (Playback, Renderer and Automation Intents) is implemented and validated.
+- Next step: Audit 8-13 or Bloco 14 only after explicit approval; do not run Audit 8-13 or start Bloco 14 in the Bloco 13 task.
 
 ## Open decisions
 
