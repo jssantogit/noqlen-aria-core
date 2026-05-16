@@ -23,6 +23,7 @@
 - Bloco 15 (Internet Radio Foundation) is implemented.
 - Bloco 16 (Stream Quality, Transcoding and Network Policy) is implemented.
 - Bloco 17 (Playback Capability Models) is implemented.
+- Audit 14-17 (Offline/Radio/Quality/Capabilities Audit) is complete.
 
 ## Active spec
 
@@ -57,7 +58,7 @@
 - Roadmap clarification complete: Bloco 15 is now Internet Radio Foundation; Bloco 16 is Stream Quality, Transcoding and Network Policy; Bloco 17 is Playback Capability Models.
 - Bloco 17 Playback Capability Models is implemented and validated as capability/readiness/preference models only, including fade-in/fade-out capability and bit-perfect conflict state.
 - Future Android Player audio output phase (phases A–E) documented outside Aria Core in `docs/aria-core-handoff.md` and `docs/post-core-backlog.md`.
-- Do not run Audit 14-17 yet.
+- Audit 14-17 is complete; do not start Bloco 18 without explicit approval and a dedicated spec.
 - Do not start Bloco 18 without explicit approval and a dedicated spec.
 - No publish until approved.
 

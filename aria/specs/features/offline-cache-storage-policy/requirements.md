@@ -53,7 +53,7 @@ Aria must provide `PendingCacheOperation` so that queued cache intents can be tr
 Aria must provide `StoragePressureLevel` (NONE, LOW, MEDIUM, HIGH, CRITICAL), `StoragePressureState`, and `StorageBudget` so that storage conditions are modeled deterministically from explicit input values — not real device inspection.
 
 ### FR-06: Storage pressure evaluation from explicit inputs
-Aria must provide a `StoragePressureService` that calculates pressure levels from only explicit `StorageBudget` input values. It must classify pressure as CRITICAL when free_bytes < reserved_bytes, HIGH when free_bytes < 10% of max_bytes, MEDIUM when free_bytes < 25%, LOW when free_bytes < 50%, and NONE otherwise.
+Aria must provide a `StoragePressureService` that calculates pressure levels from only explicit `StorageBudget` input values. It must classify pressure as CRITICAL when free_bytes <= reserved_bytes, HIGH when free_bytes <= 10% of max_bytes, MEDIUM when free_bytes <= 25%, LOW when free_bytes <= 50%, and NONE otherwise.
 
 ### FR-07: Cache cleanup preview without deletion
 Aria must provide `CacheCleanupPolicy`, `CacheCleanupPreview`, and a `CacheCleanupPreviewService` that generates a preview of candidate cleanup effects — listing candidate items, estimated bytes, and confirmation requirements — without deleting any real files.
@@ -115,7 +115,7 @@ When `evaluate_cache_eligibility` is called,
 Then the service returns `CacheEligibilityState.INELIGIBLE_SOURCE` safely.
 
 ### CE-03: Storage pressure blocks cache
-Given storage pressure is HIGH (free_bytes < 10% of max_bytes),
+Given storage pressure is HIGH (free_bytes <= 10% of max_bytes),
 When `evaluate_cache_eligibility` is called for a cachable item under conservative policy,
 Then the service returns `CachePolicyState.BLOCKED` with `CacheBlockedReason.STORAGE_PRESSURE_HIGH`.
 
@@ -148,7 +148,7 @@ Then it uses Aria Core models exclusively and does not call Android/filesystem/p
 
 - EC-01: Item with no cache capability returns UNAVAILABLE.
 - EC-02: Zero max_bytes budget returns NONE pressure level.
-- EC-03: Exactly at boundary (free_bytes = 10% of max) is classified as MEDIUM, not HIGH.
+- EC-03: Exactly at pressure boundaries is classified inclusively into the higher-pressure bucket (10% = HIGH, 25% = MEDIUM, 50% = LOW).
 - EC-04: Add operation when cache is full returns BLOCKED.
 - EC-05: Remove operation on non-cached item returns safe result without error.
 - EC-06: Empty cleanup candidate list returns preview with zero items and zero bytes.

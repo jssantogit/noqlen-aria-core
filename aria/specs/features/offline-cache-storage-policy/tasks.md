@@ -6,17 +6,17 @@
 - [x] Read existing spec templates and review files.
 - [x] Read existing source and test files for conventions.
 - [x] Create spec directory: `aria/specs/features/offline-cache-storage-policy/`.
-- [ ] Create `requirements.md`.
-- [ ] Create `design.md`.
-- [ ] Create `tasks.md`.
-- [ ] Create `review.md`.
-- [ ] Implement `src/noqlen_aria/offline_cache.py`.
-- [ ] Implement `tests/test_offline_cache_storage_policy.py`.
-- [ ] Update `src/noqlen_aria/__init__.py`.
-- [ ] Update `aria/context/current.md`.
-- [ ] Update `aria/context/delta.md`.
-- [ ] Run validation.
-- [ ] Commit.
+- [x] Create `requirements.md`.
+- [x] Create `design.md`.
+- [x] Create `tasks.md`.
+- [x] Create `review.md`.
+- [x] Implement `src/noqlen_aria/offline_cache.py`.
+- [x] Implement `tests/test_offline_cache_storage_policy.py`.
+- [x] Update `src/noqlen_aria/__init__.py`.
+- [x] Update `aria/context/current.md`.
+- [x] Update `aria/context/delta.md`.
+- [x] Run validation.
+- [x] Commit.
 
 ## TDD classification
 
@@ -45,12 +45,12 @@ Per `aria/context/test-risk-matrix.md`:
 
 ## Behavior Budget check
 
-- [ ] New behaviors: offline/cache/storage policy models, cache operation intent/preview models, storage pressure models, cleanup preview models, deterministic local policy services. Within budget.
-- [ ] Public API changes: `src/noqlen_aria/offline_cache.py` exports and `__init__.py` updates. Within budget.
-- [ ] Files: only source, tests, spec, context, handoff files touched. Within budget.
-- [ ] Tests: 80+ tests planned covering all high-risk areas. Within budget.
-- [ ] Dependencies: none beyond `noqlen_aria.contracts`. Within budget.
-- [ ] Stop conditions not triggered.
+- [x] New behaviors: offline/cache/storage policy models, cache operation intent/preview models, storage pressure models, cleanup preview models, deterministic local policy services. Within budget.
+- [x] Public API changes: `src/noqlen_aria/offline_cache.py` exports and `__init__.py` updates. Within budget.
+- [x] Files: only source, tests, spec, context, handoff files touched. Within budget.
+- [x] Tests: 80+ tests planned covering all high-risk areas. Within budget.
+- [x] Dependencies: none beyond `noqlen_aria.contracts`. Within budget.
+- [x] Stop conditions not triggered.
 
 ## Implementation tasks
 
@@ -90,39 +90,39 @@ Update `aria/context/current.md`, `aria/context/delta.md`, and `docs/handoff.md`
 
 ## Validation checklist
 
-- [ ] `pwd`
-- [ ] `git status --short --branch`
-- [ ] `find` — expected files present
-- [ ] `git diff --check`
-- [ ] `python3 -m py_compile src/noqlen_aria/*.py`
-- [ ] `PYTHONPATH=src python3 -m noqlen_aria.cli --help`
-- [ ] `PYTHONPATH=src python3 -m noqlen_aria.cli doctor`
-- [ ] `python3 -m pytest` — all tests pass
-- [ ] Repository contamination check
-- [ ] Provider boundary search
-- [ ] Network boundary search
-- [ ] Filesystem boundary search
-- [ ] Android boundary search
-- [ ] Forbidden future implementation search (Transcode, StreamQuality, SmartPlaylist)
+- [x] `pwd`
+- [x] `git status --short --branch`
+- [x] `find` — expected files present
+- [x] `git diff --check`
+- [x] `python3 -m py_compile src/noqlen_aria/*.py`
+- [x] `PYTHONPATH=src python3 -m noqlen_aria.cli --help`
+- [x] `PYTHONPATH=src python3 -m noqlen_aria.cli doctor`
+- [x] `python3 -m pytest` — all tests pass
+- [x] Repository contamination check
+- [x] Provider boundary search
+- [x] Network boundary search
+- [x] Filesystem boundary search
+- [x] Android boundary search
+- [x] Forbidden future implementation search (Transcode, StreamQuality, SmartPlaylist)
 
 ## Review checklist
 
-- [ ] All FR-01 through FR-12 implemented
-- [ ] All NFR-01 through NFR-08 enforced
-- [ ] 8 canonical examples tested
-- [ ] 12 edge cases tested
-- [ ] Behavior Budget respected
-- [ ] Test Risk Matrix applied
-- [ ] No real download/cache write/delete
-- [ ] No filesystem traversal
-- [ ] No Android storage APIs
-- [ ] No provider integration
-- [ ] No stream resolution/playback
-- [ ] No Bloco 15 behavior
-- [ ] Spec review initialized
+- [x] All FR-01 through FR-12 implemented
+- [x] All NFR-01 through NFR-08 enforced
+- [x] 8 canonical examples tested
+- [x] 12 edge cases tested
+- [x] Behavior Budget respected
+- [x] Test Risk Matrix applied
+- [x] No real download/cache write/delete
+- [x] No filesystem traversal
+- [x] No Android storage APIs
+- [x] No provider integration
+- [x] No stream resolution/playback
+- [x] No Bloco 15 behavior
+- [x] Spec review initialized
 
 ## Delta update checklist
 
-- [ ] Update `aria/context/current.md` — active milestone, active spec, current goal.
-- [ ] Update `aria/context/delta.md` — what changed, evidence, decisions, next step.
-- [ ] Optionally update `docs/handoff.md` with tiny status note.
+- [x] Update `aria/context/current.md` — active milestone, active spec, current goal.
+- [x] Update `aria/context/delta.md` — what changed, evidence, decisions, next step.
+- [x] Optionally update `docs/handoff.md` with tiny status note.

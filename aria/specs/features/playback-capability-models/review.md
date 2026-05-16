@@ -140,7 +140,7 @@ Pass.
 
 ## Follow-up tasks
 
-- Audit 14-17 remains deferred until explicitly requested.
+- Audit 14-17 is complete.
 - Bloco 18 must not start in this task.
 
 ## Aria context updates needed

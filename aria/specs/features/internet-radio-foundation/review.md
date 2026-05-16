@@ -140,7 +140,7 @@ Pass.
 ## Follow-up Tasks
 
 - Bloco 16: Stream Quality, Transcoding and Network Policy. Do not start without explicit approval and a dedicated spec.
-- Audit 14-17: Do not run yet.
+- Audit 14-17: Complete.
 
 ## Aria Context Updates Needed
 

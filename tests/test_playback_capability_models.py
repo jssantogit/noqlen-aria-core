@@ -199,7 +199,7 @@ def test_bit_perfect_blocked_by_system_audio_non_exclusive_route() -> None:
     assert result.data is not None
     assert not result.data.available
     assert result.data.degraded
-    assert result.data.reason == PlaybackCapabilityUnavailableReason.BIT_PERFECT_UNSUPPORTED
+    assert result.data.reason == PlaybackCapabilityUnavailableReason.NON_EXCLUSIVE_OUTPUT
     assert result.data.warnings
 
 

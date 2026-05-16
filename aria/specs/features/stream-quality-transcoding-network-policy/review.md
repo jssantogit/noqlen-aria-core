@@ -142,7 +142,7 @@ Pass.
 ## Follow-up tasks
 
 - Bloco 17: Playback Capability Models. Do not start in this task.
-- Audit 14-17: Do not run yet.
+- Audit 14-17: Complete.
 
 ## Aria context updates needed
 

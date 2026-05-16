@@ -323,12 +323,12 @@ class AudioOutputCapabilityService:
             return AriaResult(ok=False, error=output.error)
         if output.data is not None and not output.data.ready:
             return self._bit_perfect(False, True, self._playback_reason(output.data.blocked_reason), sample_rate_hz, bit_depth, audio_format, output.data.warnings)
+        if route.route_type == AudioOutputRouteType.SYSTEM_AUDIO:
+            return self._bit_perfect(False, True, PlaybackCapabilityUnavailableReason.NON_EXCLUSIVE_OUTPUT, sample_rate_hz, bit_depth, audio_format)
         if not route.supports_bit_perfect:
             return self._bit_perfect(False, True, PlaybackCapabilityUnavailableReason.BIT_PERFECT_UNSUPPORTED, sample_rate_hz, bit_depth, audio_format)
         if not route.exclusive_output.available:
             return self._bit_perfect(False, True, PlaybackCapabilityUnavailableReason.EXCLUSIVE_OUTPUT_UNAVAILABLE, sample_rate_hz, bit_depth, audio_format)
-        if route.route_type == AudioOutputRouteType.SYSTEM_AUDIO:
-            return self._bit_perfect(False, True, PlaybackCapabilityUnavailableReason.NON_EXCLUSIVE_OUTPUT, sample_rate_hz, bit_depth, audio_format)
         route_reason = self._first_support_block(route, sample_rate_hz, bit_depth, audio_format)
         device_reason = self._first_support_block(device, sample_rate_hz, bit_depth, audio_format)
         reason = route_reason or device_reason

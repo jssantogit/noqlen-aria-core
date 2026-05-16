@@ -8,19 +8,19 @@ The roadmap in `docs/aria-core-handoff.md` defines Aria Core MVP as Blocos 0-7. 
 
 | Bloco | Feature | Status |
 |-------|---------|--------|
-| 8 | Media Source Foundation: `MediaSourceClient`, `FakeMediaSourceClient`, source capabilities, abstract stream handle, and base for provider-backed sources via Anchor | Not started |
-| 9 | Library Browse/Search: artists, albums, songs, safe folders, playlists, genres, and browse/search | Not started |
-| 10 | Library Filters, Activity and Favorites: filters, sorting, recently added, recently played, favorites, and library readiness/health badges | Not started |
-| Audit 8-10 | Media Source/Library Audit | Not started |
-| 11 | Queue Foundation: `QueueState`, `QueueService`, repeat/shuffle, predictable queue behavior, and multiple queues explicitly as a supported contract direction | Not started |
-| 12 | Now Playing Foundation: `NowPlayingState`, current track summary, playback availability, resumable state, and unavailable media state | Not started |
-| 13 | Playback, Renderer and Automation Intents: play/pause/skip/seek intents, renderer selection intents, public automation intents, and blocked/unavailable playback handling | Not started |
-| Audit 11-13 | Queue/Now Playing/Intents Audit | Not started |
-| 14 | Offline, Cache and Storage Policy: offline availability, cache policy, cache cleanup, storage pressure, pending sync/cache states, and safe confirmation states | Not started |
-| 15 | Internet Radio Foundation: radio station identity/reference models, RadioStationSummary, radio directory/import/manual station concepts, radio stream handle abstraction, radio source capability, radio playback availability, ICY/live metadata state, station artwork/thumbnail metadata if provided, radio favorites/read state, safe unavailable/degraded radio behavior, no real streaming, no real player, no HLS/DASH/Shoutcast client implementation, no provider direct integration | Not started |
-| 16 | Stream Quality, Transcoding and Network Policy: stream quality policy, transcoding capability/policy, network quality policy, and offline quality policy | Not started |
-| 17 | Playback Capability Models: gapless capability, loudness/ReplayGain awareness, crossfade capability, bit-perfect capability, USB DAC capability, exclusive output capability, audio output route state, sample-rate support, bit-depth support, output/device readiness, playback quality preferences, and driver bridge vocabulary for a future Android player | Not started |
-| Audit 14-17 | Offline/Radio/Quality/Capabilities Audit | Not started |
+| 8 | Media Source Foundation: `MediaSourceClient`, `FakeMediaSourceClient`, source capabilities, abstract stream handle, and base for provider-backed sources via Anchor | Implemented and audited |
+| 9 | Library Browse/Search: artists, albums, songs, safe folders, playlists, genres, and browse/search | Implemented and audited |
+| 10 | Library Filters, Activity and Favorites: filters, sorting, recently added, recently played, favorites, and library readiness/health badges | Implemented and audited |
+| Audit 8-10 | Media Source/Library Audit | Complete |
+| 11 | Queue Foundation: `QueueState`, `QueueService`, repeat/shuffle, predictable queue behavior, and multiple queues explicitly as a supported contract direction | Implemented and audited |
+| 12 | Now Playing Foundation: `NowPlayingState`, current track summary, playback availability, resumable state, and unavailable media state | Implemented and audited |
+| 13 | Playback, Renderer and Automation Intents: play/pause/skip/seek intents, renderer selection intents, public automation intents, and blocked/unavailable playback handling | Implemented and audited |
+| Audit 11-13 | Queue/Now Playing/Intents Audit | Complete |
+| 14 | Offline, Cache and Storage Policy: offline availability, cache policy, cache cleanup, storage pressure, pending sync/cache states, and safe confirmation states | Implemented and audited |
+| 15 | Internet Radio Foundation: radio station identity/reference models, RadioStationSummary, radio directory/import/manual station concepts, radio stream handle abstraction, radio source capability, radio playback availability, ICY/live metadata state, station artwork/thumbnail metadata if provided, radio favorites/read state, safe unavailable/degraded radio behavior, no real streaming, no real player, no HLS/DASH/Shoutcast client implementation, no provider direct integration | Implemented and audited |
+| 16 | Stream Quality, Transcoding and Network Policy: stream quality policy, transcoding capability/policy, network quality policy, and offline quality policy | Implemented and audited |
+| 17 | Playback Capability Models: gapless capability, loudness/ReplayGain awareness, crossfade capability, bit-perfect capability, USB DAC capability, exclusive output capability, audio output route state, sample-rate support, bit-depth support, output/device readiness, playback quality preferences, and driver bridge vocabulary for a future Android player | Implemented and audited |
+| Audit 14-17 | Offline/Radio/Quality/Capabilities Audit | Complete |
 | 18 | Profiles, Preferences, Backup and Restore: user profiles, preferences, backup/restore for Aria config/state, and no destructive real music library mutation | Not started |
 | 19 | Smart Playlists: smart playlists, smart mixes, saved filters, and rule-based playlists inspired by Symfonium | Not started |
 | 20 | State Snapshots and End-to-End Fake Flows: state snapshots, API snapshot behavior, and fake source -> library -> queue -> now playing intent -> diagnostics flows | Not started |

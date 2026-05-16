@@ -17,7 +17,7 @@
 - Aria Workflow vNext context compression is active for future tasks. Start with `aria/context/current.md`, `aria/context/delta.md`, and `aria/context/context-packages.md` before escalating to this full handoff.
 - This document is the canonical local repository handoff and source of truth for the current Aria direction.
 - Blocos 8-13 are implemented and audited. Audit 8-13 is complete.
-- The next product step is a Bloco 15 Internet Radio Foundation spec. Do not implement post-core features or publish without dedicated scope.
+- Blocos 14-17 are implemented and audited. Audit 14-17 is complete. Do not start Bloco 18 or publish without dedicated scope.
 
 ## Product Definition
 
@@ -278,4 +278,4 @@ Bloco 24 defines post-core release preparation with checklist, release notes, ba
 
 ## Current Next Step
 
-Blocos 0-14 are complete. Aria Core MVP (Blocos 0-7) is tagged `v0.1.0`. Post-core media/library/queue/now-playing/playback-intent foundation (Blocos 8-13) is implemented and audited, and Bloco 14 Offline, Cache and Storage Policy is implemented. The next product step is a Bloco 15 Internet Radio Foundation spec. Do not implement post-core features or publish without explicit approval.
+Blocos 0-17 are complete. Aria Core MVP (Blocos 0-7) is tagged `v0.1.0`. Post-core media/library/queue/now-playing/playback-intent foundation (Blocos 8-13) is implemented and audited. Offline/radio/quality/playback-capability foundation (Blocos 14-17) is implemented and audited. Do not start Bloco 18 without explicit approval and a dedicated spec.
