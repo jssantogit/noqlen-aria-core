@@ -10,8 +10,9 @@
 - Bloco 4 implemented: `src/noqlen_aria/android_boundaries.py` with 9 bridge protocols, supporting types, and 9 deterministic fake implementations.
 - Bloco 5 Minimal UI Shell Planning artifacts created: `docs/ui-shell-boundary.md` and architecture/android boundary updates. Documentation only.
 - Bloco 6 implemented: explicit package/module exports, safe serialization and sanitization helpers, safer Anchor adapter exception output, hardening tests. No Android/UI/playback/queue/cache/provider implementation.
-- Bloco 7 implemented: release readiness checklist, release notes, public API surface summary, safety summary, post-core backlog summary, handoff update, and README refresh. Documentation only — no tag, publish, source, version, or implementation changes.
-- Roadmap alignment update: Aria Core MVP is Blocos 0-7; post-core feature expansion is Blocos 8-20. Advanced library/player features and Android real integration remain backlog.
+- Bloco 7 implemented: release readiness checklist, release notes, public API surface summary, safety summary, post-core backlog summary, handoff update, and README refresh. Documentation only; no publish, source, version, or implementation changes.
+- Roadmap alignment update: Aria Core MVP is Blocos 0-7; post-core feature expansion is being restored explicitly as Blocos 8-23. Advanced library/player features and Android real integration remain backlog.
+- Local tag `v0.1.0` exists. No publish action is recorded in this delta.
 - Release artifacts created: `docs/release-checklist.md`, `docs/release-notes.md`, `docs/api-surface.md`, `docs/safety-summary.md`, `docs/post-core-backlog.md`.
 - Workflow improvements from Noqlen Playbook comparison added: broader repository hygiene categories, PR template, read-only local repository study prompt, clearer audit finding/status fields, and Workflow vNext references. Workflow/template changes only.
 
@@ -31,8 +32,7 @@
 - `ControlClient` is source-agnostic.
 - Anchor is one `ControlClient` adapter, not the center of Aria.
 - Context files carry standing rules; prompts should carry only task deltas.
-- Version remains `0.0.0` until a version decision is made during final audit or tag approval.
-- No release tag or publish action was taken in this task.
+- Local tag `v0.1.0` exists; publish still requires explicit approval.
 - Cross-repository workflow study should be read-only and sanitized unless a separate task explicitly scopes retrofit work.
 
 ## Regressions found
@@ -42,12 +42,11 @@
 
 ## Next step
 
-- Final release audit and tag decision.
-- Do not create a release tag or publish until the release checklist passes and the maintainer approves.
-- Post-core features (Blocos 8-20 in the roadmap) require dedicated specs before implementation.
+- Complete roadmap alignment patch.
+- Next after this patch: Bloco 8 spec.
+- Post-core features (Blocos 8-23 in the roadmap) require dedicated specs before implementation.
 
 ## Open decisions
 
-- When to bump the version from `0.0.0`.
-- When to create the first release tag.
+- Whether/when to publish package artifacts.
 - Whether to create a short ADR for the source-agnostic `ControlClient` boundary during a future architecture review.

@@ -11,8 +11,8 @@
 - Bloco 5 minimal UI shell planning artifacts are complete.
 - Bloco 6 Aria MVP hardening is complete.
 - Bloco 7 Aria Core Release Preparation is complete.
-- Final roadmap alignment: Aria Core MVP is Blocos 0-7; post-core feature expansion is Blocos 8-20.
-- Next: Final release audit and tag decision. Do not create a release tag or publish until the release checklist passes and the maintainer approves.
+- Local tag `v0.1.0` exists; Aria Core MVP is complete.
+- Active next step: restore explicit post-core roadmap wording. Next after this patch: Bloco 8 spec.
 
 ## Active spec
 
@@ -24,16 +24,15 @@
 
 ## Current goal
 
-- Aria Core MVP release preparation is complete. Release artifacts are documented.
-- Advanced library/player features and Android real integration remain post-core backlog, not MVP blockers.
-- Final release audit and tag decision are next.
-- No tag, no publish until approved.
+- Aria Core MVP is Blocos 0-7 and local tag `v0.1.0` exists.
+- Post-core roadmap alignment is active; Bloco 8 spec is next after this docs patch.
+- No publish until approved.
 
 ## Allowed scope
 
-- Final release audit reviewing the release artifacts.
 - Context and handoff documentation updates.
-- Tag and publish only when explicitly approved.
+- Bloco 8 spec planning after roadmap alignment.
+- Publish only when explicitly approved.
 
 ## Forbidden scope
 
@@ -48,7 +47,7 @@
 - Expanding behavior during documentation, audit, or planning work.
 - Reading the whole repository by default instead of using task-sized context.
 - Letting fake clients become happy-path-only simulators.
-- Creating a release tag or publishing before all checklist items pass.
+- Publishing without explicit approval.
 
 ## Expected files
 

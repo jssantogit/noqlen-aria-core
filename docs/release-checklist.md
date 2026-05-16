@@ -1,7 +1,7 @@
 # Release Checklist
 
-Aria Core MVP release readiness checklist. This checklist is the final gate before any tag or publish action.
-All items must pass. Document any failures with the reason.
+Aria Core MVP release readiness checklist. Local tag `v0.1.0` exists; this checklist remains historical release-gate evidence and publishing reference.
+All items must pass before any future publish action. Document any failures with the reason.
 
 ## Version Consistency
 
@@ -100,25 +100,25 @@ All items must pass. Document any failures with the reason.
 - [x] Release notes distinguish implemented features from future/backlog
 - [x] Release notes include safety boundaries, known limitations, and version information
 
-## Final Stop Conditions (block any tag/publish)
+## Final Stop Conditions (historical tag gate / future publish gate)
 
 - [ ] ALL items above pass.
 - [ ] No source, test, or package metadata changes uncommitted.
 - [ ] No forbidden files tracked.
 - [ ] No uncommitted changes in working tree.
-- [ ] Tag/publish approved by the maintainer (not yet approved in this task).
+- [x] Local tag `v0.1.0` exists.
+- [ ] Package publish approved by the maintainer.
 
-## Tag/Release Reference (do not execute yet)
+## Publish Reference (do not execute yet)
 
-The following steps are defined for reference when tagging is later approved:
+The following steps are defined for reference when publishing is later approved:
 
 1. Decide version (currently `0.0.0`; options: `0.1.0` for first MVP, `1.0.0` for first stable).
 2. If bumping, update `__version__` in `src/noqlen_aria/__init__.py` and `version` in `pyproject.toml`.
 3. Commit version bump with message `chore: bump version to <version>`.
-4. Create lightweight tag: `git tag -a v<version> -m "Aria Core MVP <version>"`.
-5. Push tag: `git push origin v<version>`.
-6. Build package: `python3 -m build`.
-7. Publish to PyPI: `python3 -m twine upload dist/*` (when publishing is approved).
-8. Create GitHub release from the tag, using `docs/release-notes.md` as the body.
+4. Confirm the intended tag exists and matches the release commit.
+5. Build package: `python3 -m build`.
+6. Publish to PyPI: `python3 -m twine upload dist/*` (when publishing is approved).
+7. Create or update the GitHub release from the tag, using `docs/release-notes.md` as the body.
 
 Do NOT execute these steps in this task.

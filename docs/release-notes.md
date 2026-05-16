@@ -1,13 +1,13 @@
 # Release Notes — Aria Core MVP
 
-version: 0.0.0 (pre-release)
+tag: v0.1.0 (local tag complete)
 date: 2026-05-16
 
 ## Summary
 
-Noqlen Aria Core MVP is release-prepared as the first public release candidate for the modular app/player-facing core of a music player. These draft release notes cover control-plane contracts, source-agnostic services, a dry-run/offline Anchor adapter, Android/player boundary vocabulary, minimal UI shell planning artifacts, and MVP hardening with safe serialization and intentional public exports.
+Noqlen Aria Core MVP is tagged locally as `v0.1.0` for the modular app/player-facing core of a music player. These release notes cover control-plane contracts, source-agnostic services, a dry-run/offline Anchor adapter, Android/player boundary vocabulary, minimal UI shell planning artifacts, and MVP hardening with safe serialization and intentional public exports.
 
-MVP scope is Blocos 0-7. Post-core feature expansion is Blocos 8-20 and remains backlog.
+MVP scope is Blocos 0-7. Post-core feature expansion starts after `v0.1.0`, is tracked as Blocos 8-23, and remains backlog.
 
 ## What Is Included
 
@@ -57,7 +57,7 @@ MVP scope is Blocos 0-7. Post-core feature expansion is Blocos 8-20 and remains 
 
 ### Bloco 7 — Release Preparation
 - Release readiness checklist, release notes, public API surface summary, safety summary, post-core backlog, and handoff updates.
-- Version preparation remains pending; no tag or publish action has happened.
+- Local tag `v0.1.0` exists; no package publishing action is documented here.
 
 ## Safety Boundaries
 
@@ -84,7 +84,7 @@ Anchor is one optional `ControlClient` adapter, not the center of Aria. Aria dep
 
 ## Known Limitations
 
-- Version is `0.0.0` — pre-release. A version decision is pending.
+- Local tag `v0.1.0` exists. Package publishing is not documented as complete.
 - The `AnchorControlClient` is dry-run/offline only. Real lifecycle apply operations are blocked.
 - Android/player boundary contracts are abstract vocabulary and fake implementations only. No real Android SDK, MediaSession, playback, or auto implementation exists.
 - No real Navidrome, Jellyfin, Emby, or provider integration exists.
@@ -100,16 +100,19 @@ Key future areas:
 - Media source foundation and `MediaSourceClient` (Bloco 8)
 - Library browse/search for artists, albums, songs, folders, playlists, and genres (Bloco 9)
 - Library filters, recently added, recently played, and favorites (Bloco 10)
-- Queue, repeat/shuffle, predictable queue behavior, and safe errors (Bloco 11)
+- Queue, repeat/shuffle, predictable queue behavior, multiple queues, and safe errors (Bloco 11)
 - Now playing, playback availability, resumable state, and unavailable media state (Bloco 12)
-- Playback intents for play, pause, skip, seek, and unavailable playback handling (Bloco 13)
-- Offline/cache policy, pending sync/cache states, and storage pressure (Bloco 14)
-- Gapless, loudness/ReplayGain awareness, crossfade, bit-perfect, and output/device capability state (Bloco 15)
-- Smart playlists, smart mixes, saved filters, and rule-based playlist planning (Bloco 16)
-- Additional providers via Anchor/provider boundaries, without direct provider internals (Bloco 17)
-- Android platform real integration planning for media controls, Bluetooth/headset, Android Auto, foreground service, and widgets (Bloco 18)
-- Android shell handoff for the separate future app/UI (Bloco 19)
-- Post-core release prep and next steps for the real app (Bloco 20)
+- Playback, renderer selection, and public automation intents (Bloco 13)
+- Offline/cache/storage policy, cache cleanup, pending sync/cache states, and storage pressure (Bloco 14)
+- Stream quality, transcoding, network quality, and offline quality policy (Bloco 15)
+- Gapless, loudness/ReplayGain awareness, crossfade, bit-perfect, and output/device capability state (Bloco 16)
+- Profiles, preferences, backup, and restore for Aria config/state (Bloco 17)
+- Smart playlists, smart mixes, saved filters, and rule-based playlist planning (Bloco 18)
+- State snapshots, API snapshot behavior, and fake end-to-end flows (Bloco 19)
+- Additional providers via Anchor/provider boundaries, without direct provider internals (Bloco 20)
+- Android real integration planning for media controls, Bluetooth/headset, Android Auto, foreground service, and widgets (Bloco 21)
+- Android shell handoff for the separate future app/UI (Bloco 22)
+- Post-core release prep and next steps for the real app (Bloco 23)
 
 All future blocks require dedicated specs before implementation.
 

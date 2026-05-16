@@ -4,7 +4,7 @@ Aria Core exposes a music-player-core API facade while keeping UI/app adapters t
 
 Repository-local handoff and broader architecture context live in `docs/aria-core-handoff.md`.
 
-MVP architecture scope is Blocos 0-7. Media source, library, queue, now playing, offline/cache, capability, smart playlist, multi-provider, and real Android integration work is post-core Blocos 8-20.
+MVP architecture scope is Blocos 0-7 and local tag `v0.1.0` exists. Media source, library, queue, now playing, renderer/automation intents, offline/cache, stream quality/transcoding policy, capability, profiles/preferences, backup/restore, smart playlist, snapshots/fake flows, multi-provider, and real Android integration work is post-core Blocos 8-23.
 
 ## Layer Model
 

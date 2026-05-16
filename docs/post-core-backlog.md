@@ -1,28 +1,34 @@
 # Post-Core Backlog
 
-Aria Core MVP is the foundation. The following features are planned post-core work and are not implemented in the release-prepared MVP. Every future feature requires a dedicated spec before implementation.
+Aria Core MVP is Blocos 0-7 and local tag `v0.1.0` exists. The following features are planned post-core work after `v0.1.0` and are not implemented in the MVP. Every future feature requires a dedicated spec before implementation.
 
 ## Final Post-Core Roadmap
 
-The roadmap in `docs/aria-core-handoff.md` defines Aria Core MVP as Blocos 0-7. The following Blocos 8-20 are post-core feature expansion and are not implemented in the MVP.
+The roadmap in `docs/aria-core-handoff.md` defines Aria Core MVP as Blocos 0-7. The following Blocos 8-23 are post-core feature expansion and are not implemented in the MVP.
 
 | Bloco | Feature | Status |
 |-------|---------|--------|
-| 8 | Media Source Foundation: `MediaSourceClient`, `FakeMediaSourceClient`, source capabilities, abstract stream handle, and conceptual provider support via Anchor/provider boundaries | Not started |
-| 9 | Library Browse/Search: artists, albums, songs, safe folders, playlists, genres, and search | Not started |
-| 10 | Library Filters and Activity: filters, sorting, recently added, recently played, favorites, and library readiness/health badges | Not started |
-| 11 | Queue Foundation: `QueueState`, `QueueService`, repeat/shuffle state, predictable queue behavior, and safe errors | Not started |
+| 8 | Media Source Foundation: `MediaSourceClient`, `FakeMediaSourceClient`, source capabilities, abstract stream handle, and base for provider-backed sources via Anchor | Not started |
+| 9 | Library Browse/Search: artists, albums, songs, safe folders, playlists, genres, and browse/search | Not started |
+| 10 | Library Filters, Activity and Favorites: filters, sorting, recently added, recently played, favorites, and library readiness/health badges | Not started |
+| Audit 8-10 | Media Source/Library Audit | Not started |
+| 11 | Queue Foundation: `QueueState`, `QueueService`, repeat/shuffle, predictable queue behavior, and multiple queues explicitly as a supported contract direction | Not started |
 | 12 | Now Playing Foundation: `NowPlayingState`, current track summary, playback availability, resumable state, and unavailable media state | Not started |
-| 13 | Playback Intents: play/pause/skip/seek intent models, intent validation, and blocked/unavailable playback handling | Not started |
-| Audit 8-13 | Media/Player State Audit: media sources, library, queue, now playing, and playback intents | Not started |
-| 14 | Offline/Cache Policy: `OfflineAvailabilityState`, `CachePolicyState`, storage pressure, pending sync/cache states, and safe confirmations | Not started |
-| 15 | Playback Capability Models: gapless, loudness/ReplayGain awareness, crossfade capability, bit-perfect capability, and output/device capability state | Not started |
-| 16 | Smart Playlists: smart playlists, smart mixes, saved filters, and rule-based playlist planning | Not started |
-| 17 | Multi-provider via Anchor: support additional providers beyond Navidrome through Anchor/provider boundaries, without Aria calling provider internals directly | Not started |
-| Audit 14-17 | Offline/Capabilities/Providers Audit: offline/cache policy, capabilities, smart playlists, and multi-provider boundaries | Not started |
-| 18 | Android Platform Real Integration Planning: real media controls, lock-screen, notification controls, Bluetooth/headset, Android Auto, foreground service, and widgets | Not started |
-| 19 | Android Shell Handoff: handoff for the future Android app/UI to consume Aria Core without moving heavy logic into the interface | Not started |
-| 20 | Post-core Release Prep: release/handoff for the post-core phase, with docs, checklist, updated backlog, and next steps for the real app | Not started |
+| 13 | Playback, Renderer and Automation Intents: play/pause/skip/seek intents, renderer selection intents, public automation intents, and blocked/unavailable playback handling | Not started |
+| Audit 11-13 | Queue/Now Playing/Intents Audit | Not started |
+| 14 | Offline, Cache and Storage Policy: offline availability, cache policy, cache cleanup, storage pressure, pending sync/cache states, and safe confirmation states | Not started |
+| 15 | Stream Quality, Transcoding and Network Policy: stream quality policy, transcoding capability/policy, network quality policy, and offline quality policy | Not started |
+| 16 | Playback Capability Models: gapless capability, loudness/ReplayGain awareness, crossfade capability, bit-perfect capability, and output/device capability state | Not started |
+| Audit 14-16 | Offline/Quality/Capabilities Audit | Not started |
+| 17 | Profiles, Preferences, Backup and Restore: user profiles, preferences, backup/restore for Aria config/state, and no destructive real music library mutation | Not started |
+| 18 | Smart Playlists: smart playlists, smart mixes, saved filters, and rule-based playlists inspired by Symfonium | Not started |
+| 19 | State Snapshots and End-to-End Fake Flows: state snapshots, API snapshot behavior, and fake source -> library -> queue -> now playing intent -> diagnostics flows | Not started |
+| Audit 17-19 | Profiles/Smart/Snapshots Audit | Not started |
+| 20 | Multi-provider via Anchor: additional providers beyond Navidrome through Anchor, no direct provider internals in Aria, and provider capability abstraction | Not started |
+| 21 | Android Real Integration Planning: real media controls, lock-screen controls, notification controls, Bluetooth/headset, Android Auto, foreground service, and widgets planning | Not started |
+| 22 | Android Shell Handoff: handoff for future Android app/UI; UI consumes Aria Core and does not own heavy logic | Not started |
+| Audit 20-22 | Providers/Android Handoff Audit | Not started |
+| 23 | Post-core Release Prep: checklist, release notes, backlog update, docs, handoff, and release preparation for the post-core phase | Not started |
 
 ## Backlog Resources Covered
 
@@ -31,13 +37,27 @@ The post-core roadmap includes these required feature families:
 - Library browse/search for artists, albums, songs, safe folders, playlists, and genres.
 - Recently added, recently played, favorites, filters, sorting, and readiness/health badges.
 - Queue, repeat/shuffle, predictable queue behavior, and safe queue errors.
+- Multiple queues as a supported contract direction.
 - Now playing, playback availability, resumable state, and unavailable media state.
 - Playback intents for play, pause, skip, and seek.
-- Offline/cache policy, pending sync/cache state, safe confirmations, and storage pressure.
+- Renderer selection intents and public/core automation intents.
+- Offline/cache policy, cache cleanup, pending sync/cache state, safe confirmations, and storage pressure.
+- Stream quality, transcoding capability/policy, network quality policy, and offline quality policy.
 - Real Android media controls, lock-screen controls, notification controls, Bluetooth/headset events, Android Auto, foreground service, and widgets as future Android/platform work.
 - Gapless, loudness/ReplayGain awareness, crossfade capability, bit-perfect capability, and output/device capability state.
+- Profiles, preferences, backup/restore for Aria config/state.
 - Smart playlists, smart mixes, saved filters, and rule-based playlist planning.
+- State snapshots, API snapshot behavior, and fake end-to-end flows.
 - Additional providers via Anchor/provider boundaries, without direct provider internals.
+
+## Boundary Clarifications
+
+- Stream quality/transcoding means policy and capability first, not a real transcoder.
+- Bit-perfect means capability/readiness/intention first, not low-level audio implementation.
+- Renderer selection means intent/boundary first, not a real renderer.
+- Backup/restore means Aria config/state first, not destructive music library mutation.
+- Multi-provider means through Anchor/provider boundaries, not direct provider internals.
+- Automation intents are public/core intents, not UI automation scripts.
 
 ## Still Out of Scope Without Future Specs
 
