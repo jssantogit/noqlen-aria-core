@@ -12,12 +12,12 @@
 - Bloco 6 Aria MVP hardening is complete.
 - Bloco 7 Aria Core Release Preparation is complete. Release artifacts are documented under `docs/release-checklist.md`, `docs/release-notes.md`, `docs/api-surface.md`, `docs/safety-summary.md`, and `docs/post-core-backlog.md`.
 - Aria Core MVP scope is Blocos 0-7. Local tag `v0.1.0` exists and marks the MVP tag as complete.
-- Post-core feature expansion starts after `v0.1.0` and is tracked as Blocos 8-23.
+- Post-core feature expansion starts after `v0.1.0` and is tracked as Blocos 8-24.
 - Advanced library/player features are post-core backlog, not MVP blockers.
 - Aria Workflow vNext context compression is active for future tasks. Start with `aria/context/current.md`, `aria/context/delta.md`, and `aria/context/context-packages.md` before escalating to this full handoff.
 - This document is the canonical local repository handoff and source of truth for the current Aria direction.
 - Blocos 8-13 are implemented and audited. Audit 8-13 is complete.
-- The next product step is a Bloco 14 spec. Do not implement post-core features or publish without dedicated scope.
+- The next product step is a Bloco 15 Internet Radio Foundation spec. Do not implement post-core features or publish without dedicated scope.
 
 ## Product Definition
 
@@ -40,6 +40,7 @@ Post-core Aria work will expand the core to model and orchestrate:
 - playback intents;
 - playback availability;
 - offline/cache/download policy;
+- internet radio station/stream metadata;
 - stream quality/transcoding policy;
 - output/renderers/audio capabilities;
 - playback transition/loudness policies;
@@ -97,6 +98,7 @@ Aria Core is organized around these layers:
 - Playlist / Smart Playlist Layer: playlists, playlist items, smart rules, saved filters, and mixes.
 - Queue / Now Playing Layer: multiple queues, active queue state, now playing state, position, and playback intents.
 - Offline / Cache / Download Policy Layer: offline inventory, download queue state, cache policy, and storage-pressure behavior.
+- Internet Radio / Live Stream Layer: radio station identity, stream handles, live metadata, availability, and safe degraded states.
 - Stream Quality / Transcoding Layer: original/max bitrate policy, provider transcoding capability, network policy, and offline quality policy.
 - Output / Renderer / Audio Capability Layer: renderers, output routes, route state, format capability metadata, and diagnostics.
 - Playback Policy Layer: transitions, gapless/crossfade/fade, ReplayGain/loudness, and bit-perfect conflicts without EQ/DSP.
@@ -182,18 +184,19 @@ Third-party product and provider names in Aria docs are factual research referen
 - Bloco 13 — Playback, Renderer and Automation Intents: play/pause/skip/seek intents, renderer selection intents, public automation intents and blocked/unavailable playback handling.
 - Audit 11-13 — Queue/Now Playing/Intents Audit: audit queue, now playing, renderer intent and automation intent boundaries.
 - Bloco 14 — Offline, Cache and Storage Policy: offline availability, cache policy, cache cleanup, storage pressure, pending sync/cache states and safe confirmation states.
-- Bloco 15 — Stream Quality, Transcoding and Network Policy: stream quality policy, transcoding capability/policy, network quality policy and offline quality policy.
-- Bloco 16 — Playback Capability Models: gapless capability, loudness/ReplayGain awareness, crossfade capability, bit-perfect capability, USB DAC capability, exclusive output capability, audio output route state, sample-rate support, bit-depth support, output/device readiness, playback quality preferences, and driver bridge vocabulary for a future Android player.
-- Audit 14-16 — Offline/Quality/Capabilities Audit: audit offline/cache policy, quality/transcoding policy and playback capability models.
-- Bloco 17 — Profiles, Preferences, Backup and Restore: user profiles, preferences, backup/restore for Aria config/state and no destructive real music library mutation.
-- Bloco 18 — Smart Playlists: smart playlists, smart mixes, saved filters and Symfonium-inspired rule-based playlist planning.
-- Bloco 19 — State Snapshots and End-to-End Fake Flows: state snapshots, API snapshot behavior and fake source -> library -> queue -> now playing intent -> diagnostics flows.
-- Audit 17-19 — Profiles/Smart/Snapshots Audit: audit profiles, preferences, backup/restore, smart playlists, snapshots and fake end-to-end flows.
-- Bloco 20 — Provider Extension Readiness: generic provider/source abstractions, no direct Jellyfin/Emby/Navidrome integrations, no assumption that Anchor already supports multiple providers, and future additional providers through public boundaries/adapters exposed by Anchor or another approved integration layer.
-- Bloco 21 — Android Real Integration Planning: real media controls, lock-screen controls, notification controls, Bluetooth/headset, Android Auto, foreground service and widgets planning.
-- Bloco 22 — Android Shell Handoff: handoff for the future Android app/UI to consume Aria Core without moving heavy logic into the interface.
-- Audit 20-22 — Providers/Android Handoff Audit: audit provider boundaries and Android handoff boundaries.
-- Bloco 23 — Post-core Release Prep: checklist, release notes, backlog update, docs, handoff and release preparation for the post-core phase.
+- Bloco 15 — Internet Radio Foundation: radio station identity/reference models, `RadioStationSummary`, radio directory/import/manual station concepts, radio stream handle abstraction, radio source capability, radio playback availability, ICY/live metadata state, station artwork/thumbnail metadata if provided, radio favorites/read state, safe unavailable/degraded radio behavior, no real streaming, no real player, no HLS/DASH/Shoutcast client implementation, and no provider direct integration.
+- Bloco 16 — Stream Quality, Transcoding and Network Policy: stream quality policy, transcoding capability/policy, network quality policy and offline quality policy.
+- Bloco 17 — Playback Capability Models: gapless capability, loudness/ReplayGain awareness, crossfade capability, bit-perfect capability, USB DAC capability, exclusive output capability, audio output route state, sample-rate support, bit-depth support, output/device readiness, playback quality preferences, and driver bridge vocabulary for a future Android player.
+- Audit 14-17 — Offline/Radio/Quality/Capabilities Audit: audit offline/cache policy, internet radio capability models, quality/transcoding policy and playback capability models.
+- Bloco 18 — Profiles, Preferences, Backup and Restore: user profiles, preferences, backup/restore for Aria config/state and no destructive real music library mutation.
+- Bloco 19 — Smart Playlists: smart playlists, smart mixes, saved filters and Symfonium-inspired rule-based playlist planning.
+- Bloco 20 — State Snapshots and End-to-End Fake Flows: state snapshots, API snapshot behavior and fake source -> library -> queue -> now playing intent -> diagnostics flows.
+- Audit 18-20 — Profiles/Smart/Snapshots Audit: audit profiles, preferences, backup/restore, smart playlists, snapshots and fake end-to-end flows.
+- Bloco 21 — Provider Extension Readiness: generic provider/source abstractions, no direct Jellyfin/Emby/Navidrome integrations, no assumption that Anchor already supports multiple providers, and future additional providers through public boundaries/adapters exposed by Anchor or another approved integration layer.
+- Bloco 22 — Android Real Integration Planning: real media controls, lock-screen controls, notification controls, Bluetooth/headset, Android Auto, foreground service and widgets planning.
+- Bloco 23 — Android Shell Handoff: handoff for the future Android app/UI to consume Aria Core without moving heavy logic into the interface.
+- Audit 21-23 — Providers/Android Handoff Audit: audit provider boundaries and Android handoff boundaries.
+- Bloco 24 — Post-core Release Prep: checklist, release notes, backlog update, docs, handoff and release preparation for the post-core phase.
 
 ### Future Android Player Audio Output Phase (Outside Aria Core)
 
@@ -237,23 +240,25 @@ Bloco 13 defines playback, renderer, and automation intents for play, pause, ski
 
 Bloco 14 defines offline/cache/storage policy, including offline availability, cache policy, cache cleanup, storage pressure, pending sync/cache states, and safe confirmation states without destructive cache/download implementation.
 
-Bloco 15 defines stream quality, transcoding, and network policy, including stream quality policy, transcoding capability/policy, network quality policy, and offline quality policy. Transcoding is policy/capability first, not a real transcoder.
+Bloco 15 defines internet radio foundation work, including radio station identity/reference models, `RadioStationSummary`, radio directory/import/manual station concepts, radio stream handle abstraction, radio source capability, radio playback availability, ICY/live metadata state, station artwork/thumbnail metadata if provided, radio favorites/read state, and safe unavailable/degraded radio behavior. Internet radio is a post-core Aria capability model/service area. Aria may model radio stations, stream handles, metadata, and availability, but must not implement real radio playback, Shoutcast/HLS/DASH parsing, provider direct integration, or a real player. Future Android/player phases may implement actual playback.
 
-Bloco 16 defines playback capability models, including gapless capability, loudness/ReplayGain awareness, crossfade capability, bit-perfect capability, USB DAC capability, exclusive output capability, audio output route state, sample-rate support, bit-depth support, output/device readiness, playback quality preferences, and driver bridge vocabulary for a future Android player. Bloco 16 is capability/readiness/preference models only. It must not implement a real audio driver, USB driver, Android USB Host API, JNI/NDK, AAudio/Oboe, Media3/ExoPlayer, real bit-perfect output, real sample-rate switching, real DAC control, or DSP/EQ.
+Bloco 16 defines stream quality, transcoding, and network policy, including stream quality policy, transcoding capability/policy, network quality policy, and offline quality policy. Transcoding is policy/capability first, not a real transcoder.
 
-Bloco 17 defines profiles, preferences, backup, and restore for Aria config/state without destructive real music library mutation.
+Bloco 17 defines playback capability models, including gapless capability, loudness/ReplayGain awareness, crossfade capability, bit-perfect capability, USB DAC capability, exclusive output capability, audio output route state, sample-rate support, bit-depth support, output/device readiness, playback quality preferences, and driver bridge vocabulary for a future Android player. Bloco 17 is capability/readiness/preference models only. It must not implement a real audio driver, USB driver, Android USB Host API, JNI/NDK, AAudio/Oboe, Media3/ExoPlayer, real bit-perfect output, real sample-rate switching, real DAC control, or DSP/EQ.
 
-Bloco 18 defines smart playlists, smart mixes, saved filters, and rule-based playlist planning inspired by Symfonium.
+Bloco 18 defines profiles, preferences, backup, and restore for Aria config/state without destructive real music library mutation.
 
-Bloco 19 defines state snapshots, API snapshot behavior, and fake end-to-end flows from source to library to queue to now playing intent to diagnostics.
+Bloco 19 defines smart playlists, smart mixes, saved filters, and rule-based playlist planning inspired by Symfonium.
 
-Bloco 20 defines provider extension readiness. Aria prepares generic provider/source abstractions and provider capability models, but does not implement Jellyfin, Emby, Navidrome, or other direct provider integrations. Current Anchor-backed integration remains Navidrome-focused; future additional providers depend on public boundaries/adapters exposed by Anchor or another approved integration layer.
+Bloco 20 defines state snapshots, API snapshot behavior, and fake end-to-end flows from source to library to queue to now playing intent to diagnostics.
 
-Bloco 21 defines Android real integration planning for media controls, lock-screen controls, notification controls, Bluetooth/headset, Android Auto, foreground service, and widgets without implementing them in Aria Core.
+Bloco 21 defines provider extension readiness. Aria prepares generic provider/source abstractions and provider capability models, but does not implement Jellyfin, Emby, Navidrome, or other direct provider integrations. Current Anchor-backed integration remains Navidrome-focused; future additional providers depend on public boundaries/adapters exposed by Anchor or another approved integration layer.
 
-Bloco 22 defines Android shell handoff for the future Android app/UI to consume Aria Core without moving heavy logic into the interface.
+Bloco 22 defines Android real integration planning for media controls, lock-screen controls, notification controls, Bluetooth/headset, Android Auto, foreground service, and widgets without implementing them in Aria Core.
 
-Bloco 23 defines post-core release preparation with checklist, release notes, backlog update, docs, handoff, and release preparation for the post-core phase.
+Bloco 23 defines Android shell handoff for the future Android app/UI to consume Aria Core without moving heavy logic into the interface.
+
+Bloco 24 defines post-core release preparation with checklist, release notes, backlog update, docs, handoff, and release preparation for the post-core phase.
 
 ## Safety Rules
 
@@ -261,6 +266,7 @@ Bloco 23 defines post-core release preparation with checklist, release notes, ba
 - Dedicated spec before each non-trivial product implementation.
 - No Android UI, Android app shell, Compose, Activity/Fragment, Android SDK, Kotlin, Java, or Gradle code in the current Python core.
 - No Media3/ExoPlayer, real playback engine, real MediaSession, real Android Auto, real audio driver, bit-perfect driver, DSP/EQ, queue engine, or destructive cache/download implementation without explicit future scope.
+- No real radio playback, Shoutcast/HLS/DASH parsing, or radio provider direct integration without explicit future scope.
 - Aria Core may model requirements for a future custom/exclusive audio output layer.
 - Aria Core must not implement an audio driver.
 - A future Android Player phase may research or implement an exclusive USB/audio output bridge if feasible.
@@ -272,4 +278,4 @@ Bloco 23 defines post-core release preparation with checklist, release notes, ba
 
 ## Current Next Step
 
-Blocos 0-13 are complete. Aria Core MVP (Blocos 0-7) is tagged `v0.1.0`. Post-core media/library/queue/now-playing/playback-intent foundation (Blocos 8-13) is implemented and audited. The next product step is a Bloco 14 spec. Do not implement post-core features or publish without explicit approval.
+Blocos 0-14 are complete. Aria Core MVP (Blocos 0-7) is tagged `v0.1.0`. Post-core media/library/queue/now-playing/playback-intent foundation (Blocos 8-13) is implemented and audited, and Bloco 14 Offline, Cache and Storage Policy is implemented. The next product step is a Bloco 15 Internet Radio Foundation spec. Do not implement post-core features or publish without explicit approval.

@@ -8,7 +8,7 @@ Aria Workflow is the development method used in this repository. Aria Workflow i
 
 ## What Is Implemented (MVP)
 
-MVP scope is Blocos 0-7. Local tag `v0.1.0` exists. Post-core feature expansion starts after `v0.1.0`, is tracked as Blocos 8-23, and remains backlog.
+MVP scope is Blocos 0-7. Local tag `v0.1.0` exists. Post-core feature expansion starts after `v0.1.0`, is tracked as Blocos 8-24, and remains backlog.
 
 - Control-plane contracts and fake-first services.
 - Dry-run/offline Anchor adapter.

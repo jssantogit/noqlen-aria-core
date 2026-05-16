@@ -2,7 +2,7 @@
 
 This file records future music-player-core product planning context only. The canonical roadmap and block summaries live in `docs/aria-core-handoff.md`.
 
-Aria Core MVP is Blocos 0-7 and local tag `v0.1.0` exists. The future product areas below are post-core feature expansion in Blocos 8-23, not MVP blockers.
+Aria Core MVP is Blocos 0-7 and local tag `v0.1.0` exists. The future product areas below are post-core feature expansion in Blocos 8-24, not MVP blockers.
 
 Third-party products and providers may appear in research notes only as factual references. Noqlen is not affiliated with, endorsed by, sponsored by, or associated with those products or companies. Product planning must use generic Aria domain names instead of brand-based class or feature names.
 
@@ -19,6 +19,7 @@ Planned product areas:
 - Now playing and playback intents.
 - Playback availability.
 - Offline/cache/download policy.
+- Internet radio station and live stream capability models.
 - Stream quality/transcoding policy.
 - Output/renderers/audio capabilities.
 - Playback transition/loudness policies.
@@ -28,6 +29,6 @@ Planned product areas:
 - Automation intents.
 - State snapshots and safe serialization.
 
-These notes are not permission to implement UI, Android SDK code, playback, queues, now playing, cache/offline/download, MediaSession, Android Auto, DSP/EQ, provider integration, or storage/permission UX. Each feature family requires its own spec before implementation.
+These notes are not permission to implement UI, Android SDK code, playback, queues, now playing, cache/offline/download, radio streaming, Shoutcast/HLS/DASH parsing, MediaSession, Android Auto, DSP/EQ, provider integration, or storage/permission UX. Each feature family requires its own spec before implementation.
 
-Current next step: Bloco 8 spec after roadmap alignment. Do not start post-core implementation without a dedicated spec.
+Current next step: Bloco 15 Internet Radio Foundation spec after explicit approval. Do not start post-core implementation without a dedicated spec.

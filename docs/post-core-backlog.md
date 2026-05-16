@@ -4,7 +4,7 @@ Aria Core MVP is Blocos 0-7 and local tag `v0.1.0` exists. The following feature
 
 ## Final Post-Core Roadmap
 
-The roadmap in `docs/aria-core-handoff.md` defines Aria Core MVP as Blocos 0-7. The following Blocos 8-23 are post-core feature expansion and are not implemented in the MVP.
+The roadmap in `docs/aria-core-handoff.md` defines Aria Core MVP as Blocos 0-7. The following Blocos 8-24 are post-core feature expansion and are not implemented in the MVP.
 
 | Bloco | Feature | Status |
 |-------|---------|--------|
@@ -17,18 +17,19 @@ The roadmap in `docs/aria-core-handoff.md` defines Aria Core MVP as Blocos 0-7. 
 | 13 | Playback, Renderer and Automation Intents: play/pause/skip/seek intents, renderer selection intents, public automation intents, and blocked/unavailable playback handling | Not started |
 | Audit 11-13 | Queue/Now Playing/Intents Audit | Not started |
 | 14 | Offline, Cache and Storage Policy: offline availability, cache policy, cache cleanup, storage pressure, pending sync/cache states, and safe confirmation states | Not started |
-| 15 | Stream Quality, Transcoding and Network Policy: stream quality policy, transcoding capability/policy, network quality policy, and offline quality policy | Not started |
-| 16 | Playback Capability Models: gapless capability, loudness/ReplayGain awareness, crossfade capability, bit-perfect capability, USB DAC capability, exclusive output capability, audio output route state, sample-rate support, bit-depth support, output/device readiness, playback quality preferences, and driver bridge vocabulary for a future Android player | Not started |
-| Audit 14-16 | Offline/Quality/Capabilities Audit | Not started |
-| 17 | Profiles, Preferences, Backup and Restore: user profiles, preferences, backup/restore for Aria config/state, and no destructive real music library mutation | Not started |
-| 18 | Smart Playlists: smart playlists, smart mixes, saved filters, and rule-based playlists inspired by Symfonium | Not started |
-| 19 | State Snapshots and End-to-End Fake Flows: state snapshots, API snapshot behavior, and fake source -> library -> queue -> now playing intent -> diagnostics flows | Not started |
-| Audit 17-19 | Profiles/Smart/Snapshots Audit | Not started |
-| 20 | Provider Extension Readiness: generic provider/source abstractions, no direct Jellyfin/Emby/Navidrome integrations, no assumption that Anchor already supports multiple providers, and future providers through public boundaries/adapters exposed by Anchor or another approved integration layer | Not started |
-| 21 | Android Real Integration Planning: real media controls, lock-screen controls, notification controls, Bluetooth/headset, Android Auto, foreground service, and widgets planning | Not started |
-| 22 | Android Shell Handoff: handoff for future Android app/UI; UI consumes Aria Core and does not own heavy logic | Not started |
-| Audit 20-22 | Providers/Android Handoff Audit | Not started |
-| 23 | Post-core Release Prep: checklist, release notes, backlog update, docs, handoff, and release preparation for the post-core phase | Not started |
+| 15 | Internet Radio Foundation: radio station identity/reference models, RadioStationSummary, radio directory/import/manual station concepts, radio stream handle abstraction, radio source capability, radio playback availability, ICY/live metadata state, station artwork/thumbnail metadata if provided, radio favorites/read state, safe unavailable/degraded radio behavior, no real streaming, no real player, no HLS/DASH/Shoutcast client implementation, no provider direct integration | Not started |
+| 16 | Stream Quality, Transcoding and Network Policy: stream quality policy, transcoding capability/policy, network quality policy, and offline quality policy | Not started |
+| 17 | Playback Capability Models: gapless capability, loudness/ReplayGain awareness, crossfade capability, bit-perfect capability, USB DAC capability, exclusive output capability, audio output route state, sample-rate support, bit-depth support, output/device readiness, playback quality preferences, and driver bridge vocabulary for a future Android player | Not started |
+| Audit 14-17 | Offline/Radio/Quality/Capabilities Audit | Not started |
+| 18 | Profiles, Preferences, Backup and Restore: user profiles, preferences, backup/restore for Aria config/state, and no destructive real music library mutation | Not started |
+| 19 | Smart Playlists: smart playlists, smart mixes, saved filters, and rule-based playlists inspired by Symfonium | Not started |
+| 20 | State Snapshots and End-to-End Fake Flows: state snapshots, API snapshot behavior, and fake source -> library -> queue -> now playing intent -> diagnostics flows | Not started |
+| Audit 18-20 | Profiles/Smart/Snapshots Audit | Not started |
+| 21 | Provider Extension Readiness: generic provider/source abstractions, no direct Jellyfin/Emby/Navidrome integrations, no assumption that Anchor already supports multiple providers, and future providers through public boundaries/adapters exposed by Anchor or another approved integration layer | Not started |
+| 22 | Android Real Integration Planning: real media controls, lock-screen controls, notification controls, Bluetooth/headset, Android Auto, foreground service, and widgets planning | Not started |
+| 23 | Android Shell Handoff: handoff for future Android app/UI; UI consumes Aria Core and does not own heavy logic | Not started |
+| Audit 21-23 | Providers/Android Handoff Audit | Not started |
+| 24 | Post-core Release Prep: checklist, release notes, backlog update, docs, handoff, and release preparation for the post-core phase | Not started |
 
 ## Backlog Resources Covered
 
@@ -43,6 +44,7 @@ The post-core roadmap includes these required feature families:
 - Renderer selection intents and public/core automation intents.
 - Offline/cache policy, cache cleanup, pending sync/cache state, safe confirmations, and storage pressure.
 - Stream quality, transcoding capability/policy, network quality policy, and offline quality policy.
+- Internet radio station identity, stream handles, ICY/live metadata, radio favorites, and safe unavailable/degraded radio behavior.
 - Real Android media controls, lock-screen controls, notification controls, Bluetooth/headset events, Android Auto, foreground service, and widgets as future Android/platform work.
 - Gapless, loudness/ReplayGain awareness, crossfade capability, bit-perfect capability, USB DAC capability, exclusive output capability, audio output route state, sample-rate support, bit-depth support, output/device readiness, playback quality preferences, and driver bridge vocabulary for a future Android player.
 - Profiles, preferences, backup/restore for Aria config/state.
@@ -60,6 +62,7 @@ The post-core roadmap includes these required feature families:
 - Backup/restore means Aria config/state first, not destructive music library mutation.
 - Provider extension readiness does not mean real multi-provider support through current Anchor. Current Anchor-backed integration remains Navidrome-focused; future additional providers depend on public boundaries/adapters exposed by Anchor or another approved integration layer.
 - Automation intents are public/core intents, not UI automation scripts.
+- Internet radio means modeling station identity, stream handles, metadata, availability, and favorites/read state. It does not mean real streaming, a real player, Shoutcast/HLS/DASH parsing, or provider direct integration.
 - Aria Core may model requirements for a future custom/exclusive audio output layer.
 - Aria Core must not implement an audio driver.
 - A future Android Player phase may research or implement an exclusive USB/audio output bridge if feasible.
@@ -68,6 +71,7 @@ The post-core roadmap includes these required feature families:
 
 - Real Anchor apply-mode integration.
 - Direct provider integrations or provider internals.
+- Real radio playback, streaming clients, Shoutcast/HLS/DASH parsing, or radio provider direct integration.
 - `PlaybackEngine` real audio engine implementation.
 - Real output/renderer/audio driver implementation.
 - DSP/EQ audio processing.

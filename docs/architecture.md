@@ -21,6 +21,7 @@ Layer model:
 - Playlist / Smart Playlist Layer
 - Queue / Now Playing Layer
 - Offline / Cache / Download Policy Layer
+- Internet Radio / Live Stream Layer
 - Stream Quality / Transcoding Layer
 - Output / Renderer / Audio Capability Layer
 - Playback Policy Layer

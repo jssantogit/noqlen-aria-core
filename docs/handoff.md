@@ -32,7 +32,7 @@ Bloco 6 status: complete. Aria MVP hardening added explicit public exports, safe
 
 Bloco 7 status: complete. Aria Core Release Preparation implemented. Release artifacts created: release checklist (`docs/release-checklist.md`), release notes (`docs/release-notes.md`), public API surface summary (`docs/api-surface.md`), safety summary (`docs/safety-summary.md`), and post-core backlog summary (`docs/post-core-backlog.md`). All validation commands pass (368 tests). Local tag `v0.1.0` exists; no package publish action is recorded in this handoff.
 
-Roadmap status: Aria Core MVP scope is Blocos 0-7. Post-core feature expansion starts after `v0.1.0`, is now explicit as Blocos 8-23, and is documented in `docs/post-core-backlog.md`. Advanced library/player features, stream quality/transcoding policy, backup/restore, profiles/preferences, state snapshots, automation intents, Android real integration, and the Android app/UI shell are not MVP blockers and are not implemented.
+Roadmap status: Aria Core MVP scope is Blocos 0-7. Post-core feature expansion starts after `v0.1.0`, is now explicit as Blocos 8-24, and is documented in `docs/post-core-backlog.md`. Advanced library/player features, internet radio, stream quality/transcoding policy, backup/restore, profiles/preferences, state snapshots, automation intents, Android real integration, and the Android app/UI shell are not MVP blockers and are not implemented.
 
 Repository direction: Aria Core is the modular app/player-facing core of a music player. The canonical local handoff is `docs/aria-core-handoff.md`.
 
@@ -61,8 +61,8 @@ Bloco 13 status: implemented. `src/noqlen_aria/playback_intents.py` provides pla
 
 Audit 8-13 status: the formal audit for Blocos 8-13 has been completed. All blocks pass architecture, safety, test, spec, docs, boundary, and repository hygiene checks.
 
-Bloco 14 status: implemented. `src/noqlen_aria/offline_cache.py` provides offline/cache/storage policy models (OfflineAvailabilityState, CachePolicyState, CacheEligibilityState, CacheOperationIntent, CacheOperationPreview, PendingCacheOperation, StoragePressureState, StoragePressureLevel, StorageBudget, CacheCleanupPolicy, CacheCleanupPreview, CacheConfirmationState, CacheBlockedReason) and three deterministic local services (OfflineCachePolicyService, StoragePressureService, CacheCleanupPreviewService). `tests/test_offline_cache_storage_policy.py` adds 104 tests (746 total). No real download, cache write/delete, destructive cleanup, filesystem traversal, Android storage APIs, provider mutation, stream resolution, playback engine, or Bloco 15 behavior exists.
+Bloco 14 status: implemented. `src/noqlen_aria/offline_cache.py` provides offline/cache/storage policy models (OfflineAvailabilityState, CachePolicyState, CacheEligibilityState, CacheOperationIntent, CacheOperationPreview, PendingCacheOperation, StoragePressureState, StoragePressureLevel, StorageBudget, CacheCleanupPolicy, CacheCleanupPreview, CacheConfirmationState, CacheBlockedReason) and three deterministic local services (OfflineCachePolicyService, StoragePressureService, CacheCleanupPreviewService). `tests/test_offline_cache_storage_policy.py` adds 104 tests (746 total). No real download, cache write/delete, destructive cleanup, filesystem traversal, Android storage APIs, provider mutation, stream resolution, playback engine, radio support, or Bloco 15 behavior exists.
 
-Next step: Bloco 15 spec after explicit approval. Do not implement post-core features or publish without dedicated scope.
+Next step: Bloco 15 Internet Radio Foundation spec after explicit approval. Do not implement post-core features or publish without dedicated scope.
 
 Future Android Player audio output phases (A–E) are documented in `docs/aria-core-handoff.md` and `docs/post-core-backlog.md` as a future project outside Aria Core. Aria Core remains driver-free.

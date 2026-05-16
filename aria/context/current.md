@@ -46,7 +46,8 @@
 - Bloco 12 Now Playing Foundation is implemented and validated.
 - Bloco 13 Playback, Renderer and Automation Intents is implemented and validated.
 - Bloco 14 Offline, Cache and Storage Policy is implemented and validated.
-- Roadmap clarification complete: Bloco 16 Playback Capability Models wording updated to include bit-perfect, USB DAC, exclusive output, sample-rate/bit-depth support, output/device readiness, playback quality preferences, and future driver bridge vocabulary. Bloco 16 remains capability/readiness/preference models only.
+- Roadmap clarification complete: Bloco 15 is now Internet Radio Foundation; Bloco 16 is Stream Quality, Transcoding and Network Policy; Bloco 17 is Playback Capability Models.
+- Bloco 17 Playback Capability Models wording includes bit-perfect, USB DAC, exclusive output, sample-rate/bit-depth support, output/device readiness, playback quality preferences, and future driver bridge vocabulary. Bloco 17 remains capability/readiness/preference models only.
 - Future Android Player audio output phase (phases A–E) documented outside Aria Core in `docs/aria-core-handoff.md` and `docs/post-core-backlog.md`.
 - Do not start Bloco 15 without explicit approval and a dedicated spec.
 - No publish until approved.
@@ -63,7 +64,7 @@
 - Product behavior without an approved spec.
 - Android, UI, navigation, player, further queue expansion, playback intents, playback engine, cache/offline mutation, or storage UX implementation.
 - Real Anchor, Navidrome, Jellyfin, Emby, provider, or media-source integration.
-- Real download, cache write/delete, destructive cleanup, filesystem traversal, device storage inspection, Android storage APIs, stream resolution, or Bloco 15 behavior.
+- Real download, cache write/delete, destructive cleanup, filesystem traversal, device storage inspection, Android storage APIs, stream resolution, radio streaming, Shoutcast/HLS/DASH parsing, provider direct integration, or Bloco 15 behavior.
 
 ## Key risks
 
