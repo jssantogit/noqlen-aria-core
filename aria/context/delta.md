@@ -2,6 +2,8 @@
 
 ## What changed
 
+- Bloco 14 implemented: offline/cache/storage policy models (OfflineAvailabilityState, OfflineAvailabilityReason, CachePolicyState, CachePolicyMode, CacheEligibilityState, CacheOperationIntent, CacheOperationType, CacheOperationPreview, CacheOperationResult, PendingCacheOperation, StoragePressureState, StoragePressureLevel, StorageBudget, CacheCleanupPolicy, CacheCleanupPreview, CacheConfirmationState, CacheBlockedReason) and three deterministic local services (OfflineCachePolicyService, StoragePressureService, CacheCleanupPreviewService). No real download, cache write/delete, destructive cleanup, filesystem traversal, Android storage APIs, provider mutation, stream resolution, playback engine, or Bloco 15 behavior added.
+
 - Audit 8-13 completed: formal audit of Blocos 8-13 post-core media/library/queue/now-playing/playback-intent foundation. Architecture, safety, tests, specs, docs, boundaries, and repository hygiene verified. No real playback, stream resolution, provider integration, Android/UI, offline/cache, smart playlist, network, or filesystem behavior found. Minor fixes: stale handoff/context references corrected, confusing test assertion simplified, unchecked spec task items marked complete.
 
 - Bloco 13 implemented: playback intent models (PlaybackIntent, PlaybackIntentType, PlaybackIntentResult, PlaybackCommandPreview, PlaybackBlockedReason, SeekTarget, SkipDirection, PlaybackIntentValidationIssue), renderer intent models (RendererId, RendererRef, RendererType, RendererAvailabilityState, RendererCapabilitySummary, RendererSelectionIntent, RendererSelectionResult), automation intent models (AutomationIntent, AutomationIntentType, AutomationIntentSource, AutomationIntentResult, AutomationSafetyLevel), and three deterministic local services (PlaybackIntentService, RendererIntentService, AutomationIntentService). No real playback, stream resolution, provider integration, Android/UI, offline/cache, smart playlist, network, or filesystem behavior was added.
@@ -20,28 +22,19 @@
 - Local tag `v0.1.0` exists. No publish action is recorded in this delta.
 - Release artifacts created: `docs/release-checklist.md`, `docs/release-notes.md`, `docs/api-surface.md`, `docs/safety-summary.md`, `docs/post-core-backlog.md`.
 - Workflow improvements from Noqlen Playbook comparison added: broader repository hygiene categories, PR template, read-only local repository study prompt, clearer audit finding/status fields, and Workflow vNext references. Workflow/template changes only.
-- Bloco 8 spec created: `aria/specs/features/media-source-foundation/` with `requirements.md`, `design.md`, `tasks.md`, `review.md`. Defines `MediaSourceClient`, `FakeMediaSourceClient`, source capability models, abstract media IDs, stream handle, provider capability discovery, and availability states. Spec only; no implementation, no provider integration, no streaming, no playback, no UI.
-- Bloco 8 implemented: `src/noqlen_aria/media_source.py` with `MediaSourceClient` protocol, `FakeMediaSourceClient` (deterministic, failure-injection hooks, value overrides), and 11 supporting types. `tests/test_media_source.py` adds 100 tests covering contracts, capability mapping, error injection, determinism, safe degraded behavior, and provider boundary enforcement.
-- Bloco 9 implemented: `src/noqlen_aria/library.py` with browse/search models and services, plus minimal `MediaSourceClient`/`FakeMediaSourceClient` browse/search extensions. `tests/test_library_browse_search.py` covers artists, albums, tracks, playlists, genres, safe folder metadata, search validation/results, unsupported capabilities, degraded/unavailable sources, empty/no-match scenarios, and boundary enforcement. No Bloco 10 behavior added.
-- Bloco 10 implemented: library filter/sort contracts and service behavior, recently added/recently played/favorites read-state models and services, readiness/health badges, read-only fake source scenarios, and deterministic tests. Favorites mutation is blocked as unsupported/future intent only. No provider integration, filesystem traversal, smart playlists, queue, now playing, playback, Android/UI, or offline/cache behavior added.
-- Bloco 11 implemented: queue state/contracts, repeat/shuffle state, queue operation/intent/result models, deterministic `QueueService`, fake queue scenarios, unavailable item preservation, and multiple queue collection state. No real playback, stream resolution, provider integration, now playing, Android/UI, offline/cache, smart playlist, network, or filesystem behavior added.
-- Bloco 12 implemented: now-playing state/contracts, playback availability vocabulary, unavailable/resumable state, playback position snapshots, deterministic `NowPlayingService`, and fake now-playing scenarios. No real playback, playback intent execution, stream resolution, provider integration, Android/UI, offline/cache, smart playlist, network, or filesystem behavior added.
+- Bloco 8 spec created: `aria/specs/features/media-source-foundation/` with `requirements.md`, `design.md`, `tasks.md`, `review.md`.
+- Bloco 8 implemented: `src/noqlen_aria/media_source.py` with `MediaSourceClient` protocol, `FakeMediaSourceClient`, and 11 supporting types. `tests/test_media_source.py` adds 100 tests.
+- Bloco 9 implemented: `src/noqlen_aria/library.py` with browse/search models and services. `tests/test_library_browse_search.py`.
+- Bloco 10 implemented: library filter/sort contracts and service behavior, recently added/recently played/favorites models and services, readiness/health badges.
+- Bloco 11 implemented: queue state/contracts, repeat/shuffle state, queue operation/intent/result models, deterministic `QueueService`, fake queue scenarios.
+- Bloco 12 implemented: now-playing state/contracts, playback availability vocabulary, deterministic `NowPlayingService`, fake now-playing scenarios.
 
 ## Evidence
 
-- Blocos 1-3 are recorded as complete in `docs/aria-core-handoff.md` and `docs/handoff.md`.
-- Workflow vNext validation passed locally.
-- Bloco 4 implementation validation: `python3 -m pytest` 358/358 pass; zero Android SDK references; contamination clean.
-- Bloco 5 planning artifact validation: all requested commands pass; no source/test files created; contamination clean.
-- Bloco 6 implementation validation: `python3 -m pytest` 368/368 pass; contamination clean. All search checks clean.
-- Bloco 7 release preparation validation: `python3 -m pytest` 368/368 pass; contamination clean; all search checks clean; version consistency confirmed; release artifacts created.
-- Playbook comparison workflow update validation: `git diff --check` passed; tracked forbidden-file grep returned no matches; `git status --short --branch` reviewed. No source, tests, Android/UI, product behavior, release tag, or publish changes intended.
-- Bloco 8 spec validation: `python3 -m pytest` 368/368 pass; contamination clean; no source code, tests, provider integration, streaming, playback, or UI created.
-- Bloco 8 implementation validation: `python3 -m pytest` 468/468 pass (368 base + 100 new); `py_compile` clean; CLI help/doctor pass; all search checks clean (provider integration, network, Android, forbidden implementations); contamination clean.
-- Bloco 9 implementation validation: `python3 -m pytest` 506/506 pass; `py_compile` clean; CLI help/doctor pass; provider/network/filesystem/queue checks clean; Android grep only reports an existing safety docstring in `android_boundaries.py`; contamination clean.
-- Bloco 10 implementation validation: `python3 -m pytest` 531/531 pass; `py_compile` clean; CLI help/doctor pass; provider/network/filesystem/queue checks clean; Android search reports expected existing Android boundary code plus Bloco 10 `LibraryActivity*` activity model names; contamination clean.
-- Bloco 11 implementation validation: `python3 -m pytest` 554/554 pass; `py_compile` clean; CLI help/doctor pass; provider/network/filesystem/now-playing/offline/smart-playlist checks clean; Android search reports existing Android boundary/LibraryActivity vocabulary only; contamination clean.
+- Bloco 14 implementation validation: `python3 -m pytest` 746/746 pass (642 base + 104 new); `py_compile` clean; CLI help/doctor pass; provider/network/filesystem/Android/smart-playlist/transcoding checks clean; contamination clean.
 - Bloco 13 implementation validation: `python3 -m pytest` 642/642 pass; `py_compile` clean; CLI help/doctor pass; provider/network/filesystem/playback-intent/offline/smart-playlist checks clean; Android search reports existing Android boundary/LibraryActivity vocabulary only; contamination clean.
+- Audit 8-13 completed and validated.
+- All prior Bloco validation records remain valid.
 
 ## Decisions
 
@@ -51,16 +44,16 @@
 - Context files carry standing rules; prompts should carry only task deltas.
 - Local tag `v0.1.0` exists; publish still requires explicit approval.
 - Cross-repository workflow study should be read-only and sanitized unless a separate task explicitly scopes retrofit work.
+- Storage pressure thresholds use `<=` (inclusive) for defensive classification.
 
 ## Regressions found
 
-- None recorded in this delta.
-- None recorded for the workflow update.
+- None.
 
 ## Next step
 
-- Bloco 13 (Playback, Renderer and Automation Intents) is implemented and validated.
-- Next step: Audit 8-13 or Bloco 14 only after explicit approval; do not run Audit 8-13 or start Bloco 14 in the Bloco 13 task.
+- Bloco 14 (Offline, Cache and Storage Policy) is implemented and validated.
+- Do not start Bloco 15 without explicit approval and a dedicated spec.
 
 ## Open decisions
 

@@ -19,9 +19,11 @@
 - Bloco 12 (Now Playing Foundation) is implemented and audited.
 - Bloco 13 (Playback, Renderer and Automation Intents) is implemented and audited.
 - Audit 8-13 (Media/Library/Queue/Playback Audit) is complete.
+- Bloco 14 (Offline, Cache and Storage Policy) is implemented.
 
 ## Active spec
 
+- `aria/specs/features/offline-cache-storage-policy/` — spec and implementation complete.
 - `aria/specs/features/library-filters-activity-favorites/` — spec and implementation complete.
 - `aria/specs/features/queue-foundation/` — spec and implementation complete.
 - `aria/specs/features/playback-renderer-automation-intents/` — spec and implementation complete.
@@ -43,7 +45,8 @@
 - Bloco 11 Queue Foundation is implemented and validated.
 - Bloco 12 Now Playing Foundation is implemented and validated.
 - Bloco 13 Playback, Renderer and Automation Intents is implemented and validated.
-- Do not start Bloco 14 without explicit approval and a dedicated spec.
+- Bloco 14 Offline, Cache and Storage Policy is implemented and validated.
+- Do not start Bloco 15 without explicit approval and a dedicated spec.
 - No publish until approved.
 
 ## Allowed scope
@@ -56,8 +59,9 @@
 
 - Post-core feature implementation without a dedicated spec.
 - Product behavior without an approved spec.
-- Android, UI, navigation, player, further queue expansion, playback intents, playback engine, cache/offline, or storage UX implementation.
+- Android, UI, navigation, player, further queue expansion, playback intents, playback engine, cache/offline mutation, or storage UX implementation.
 - Real Anchor, Navidrome, Jellyfin, Emby, provider, or media-source integration.
+- Real download, cache write/delete, destructive cleanup, filesystem traversal, device storage inspection, Android storage APIs, stream resolution, or Bloco 15 behavior.
 
 ## Key risks
 
