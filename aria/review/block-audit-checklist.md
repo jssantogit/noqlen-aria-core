@@ -17,4 +17,8 @@
 - Confirm no unrelated refactors.
 - Confirm no invented business rules.
 - Confirm no private/local artifacts.
+- Classify findings as required fixes or optional improvements.
+- Confirm remaining risks are explicit.
+- Confirm context, spec, checklist, or handoff updates needed are named.
+- Confirm final status is pass, pass with follow-ups, or fail.
 - Confirm final report format.

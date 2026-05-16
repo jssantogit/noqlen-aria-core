@@ -42,6 +42,18 @@ Fake clients must model hostile and degraded conditions, not just happy paths.
 
 Canonical checklist: `aria/review/fake-hostility-checklist.md`.
 
+## Repository Study
+
+Cross-repository workflow study must be read-only and sanitized. It may recommend workflow updates, but must not modify inspected repositories or copy secrets, private data, personal paths, lyrics, fingerprints, real music-library paths, or full local configuration.
+
+Canonical prompt: `aria/prompts/study-local-repos.md`.
+
+## PR Reviews
+
+GitHub pull requests should record related specs or ADRs, risk level, Behavior Budget, validation evidence, audit status, and repository hygiene confirmations.
+
+Canonical template: `.github/pull_request_template.md`.
+
 ## ADRs
 
 Use `aria/decisions/` only for significant architectural decisions. Keep ADRs short and supersede rather than rewrite accepted records.

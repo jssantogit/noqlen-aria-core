@@ -50,7 +50,7 @@
 
 ## Expected files
 
-- For workflow tasks: `AGENTS.md`, `docs/aria-core-handoff.md`, `docs/workflow-vnext.md`, `aria/context/**`, `aria/review/**`, `aria/prompts/**`, `aria/specs/_template/**`, `aria/agents/**`, `aria/decisions/**`.
+- For workflow tasks: `AGENTS.md`, `.github/**`, `docs/aria-core-handoff.md`, `docs/workflow-vnext.md`, `aria/context/**`, `aria/review/**`, `aria/prompts/**`, `aria/specs/_template/**`, `aria/agents/**`, `aria/decisions/**`.
 - For product tasks: files named by the active spec and task only.
 
 ## Validation

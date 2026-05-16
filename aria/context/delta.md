@@ -12,6 +12,7 @@
 - Bloco 6 implemented: explicit package/module exports, safe serialization and sanitization helpers, safer Anchor adapter exception output, hardening tests. No Android/UI/playback/queue/cache/provider implementation.
 - Bloco 7 implemented: release readiness checklist, release notes, public API surface summary, safety summary, post-core backlog summary, handoff update, and README refresh. Documentation only — no tag, publish, source, version, or implementation changes.
 - Release artifacts created: `docs/release-checklist.md`, `docs/release-notes.md`, `docs/api-surface.md`, `docs/safety-summary.md`, `docs/post-core-backlog.md`.
+- Workflow improvements from Noqlen Playbook comparison added: broader repository hygiene categories, PR template, read-only local repository study prompt, clearer audit finding/status fields, and Workflow vNext references. Workflow/template changes only.
 
 ## Evidence
 
@@ -21,6 +22,7 @@
 - Bloco 5 planning artifact validation: all requested commands pass; no source/test files created; contamination clean.
 - Bloco 6 implementation validation: `python3 -m pytest` 368/368 pass; contamination clean. All search checks clean.
 - Bloco 7 release preparation validation: `python3 -m pytest` 368/368 pass; contamination clean; all search checks clean; version consistency confirmed; release artifacts created.
+- Playbook comparison workflow update validation: `git diff --check` passed; tracked forbidden-file grep returned no matches; `git status --short --branch` reviewed. No source, tests, Android/UI, product behavior, release tag, or publish changes intended.
 
 ## Decisions
 
@@ -30,10 +32,12 @@
 - Context files carry standing rules; prompts should carry only task deltas.
 - Version remains `0.0.0` until a version decision is made during final audit or tag approval.
 - No release tag or publish action was taken in this task.
+- Cross-repository workflow study should be read-only and sanitized unless a separate task explicitly scopes retrofit work.
 
 ## Regressions found
 
 - None recorded in this delta.
+- None recorded for the workflow update.
 
 ## Next step
 

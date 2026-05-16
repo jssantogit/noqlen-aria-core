@@ -26,6 +26,14 @@ Use `aria/review/fake-hostility-checklist.md` where relevant.
 
 ## Risks remaining
 
+## Required fixes
+
+## Optional improvements
+
+## Final status
+
+Pass | Pass with follow-ups | Fail.
+
 ## Known limitations
 
 ## Follow-up tasks
