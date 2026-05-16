@@ -2,6 +2,8 @@
 
 ## What changed
 
+- Bloco 15 implemented: internet radio foundation models (RadioStationId, RadioStationRef, RadioStationSummary, RadioSourceCapability, RadioDirectoryRef, RadioImportSource, ManualRadioStationInput, RadioStreamHandle, RadioStreamKind, RadioPlaybackAvailability, RadioMetadataState, IcyMetadataState, RadioArtworkState, RadioFavoriteState, RadioUnavailableReason, RadioValidationIssue), deterministic InternetRadioService, and FakeRadioScenarios. No real radio streaming, HLS/DASH/Shoutcast client, ICY network parsing, network behavior, playback engine/session, provider integration/mutation, Anchor provider internals, Android/UI code, filesystem traversal, Bloco 16 behavior, or Bloco 17 behavior added.
+
 - Bloco 14 implemented: offline/cache/storage policy models (OfflineAvailabilityState, OfflineAvailabilityReason, CachePolicyState, CachePolicyMode, CacheEligibilityState, CacheOperationIntent, CacheOperationType, CacheOperationPreview, CacheOperationResult, PendingCacheOperation, StoragePressureState, StoragePressureLevel, StorageBudget, CacheCleanupPolicy, CacheCleanupPreview, CacheConfirmationState, CacheBlockedReason) and three deterministic local services (OfflineCachePolicyService, StoragePressureService, CacheCleanupPreviewService). No real download, cache write/delete, destructive cleanup, filesystem traversal, Android storage APIs, provider mutation, stream resolution, playback engine, radio support, or Bloco 15 behavior added.
 
 - Audit 8-13 completed: formal audit of Blocos 8-13 post-core media/library/queue/now-playing/playback-intent foundation. Architecture, safety, tests, specs, docs, boundaries, and repository hygiene verified. No real playback, stream resolution, provider integration, Android/UI, offline/cache, smart playlist, network, or filesystem behavior found. Minor fixes: stale handoff/context references corrected, confusing test assertion simplified, unchecked spec task items marked complete.
@@ -31,6 +33,8 @@
 
 ## Evidence
 
+- Bloco 15 implementation validation: `python3 -m pytest` 788/788 pass; `py_compile` clean; CLI help/doctor pass; network/provider/filesystem/Android/transcoding searches show no forbidden implementation, with expected test/spec/model vocabulary matches for unsupported HLS/DASH/Shoutcast and local boundary assertions; tracked contamination clean.
+
 - Bloco 14 implementation validation: `python3 -m pytest` 746/746 pass (642 base + 104 new); `py_compile` clean; CLI help/doctor pass; provider/network/filesystem/Android/smart-playlist/transcoding checks clean; contamination clean.
 - Bloco 13 implementation validation: `python3 -m pytest` 642/642 pass; `py_compile` clean; CLI help/doctor pass; provider/network/filesystem/playback-intent/offline/smart-playlist checks clean; Android search reports existing Android boundary/LibraryActivity vocabulary only; contamination clean.
 - Audit 8-13 completed and validated.
@@ -52,7 +56,8 @@
 
 ## Next step
 
-- Roadmap documentation update: Bloco 15 Internet Radio Foundation added as a post-core Aria capability model/service area. Aria may model radio stations, stream handles, metadata, and availability; no real radio playback, Shoutcast/HLS/DASH parsing, provider direct integration, or player implementation was added. Later blocks shifted consistently: Bloco 16 Stream Quality, Bloco 17 Playback Capability Models, and Audit 14-17 Offline/Radio/Quality/Capabilities Audit.
+- Bloco 16 Stream Quality, Transcoding and Network Policy is the next product block. Do not start without explicit approval and a dedicated spec.
+- Audit 14-17 must not run yet.
 - Roadmap documentation update: Bloco 17 wording clarified to include bit-perfect capability, USB DAC capability, exclusive output capability, audio output route state, sample-rate support, bit-depth support, output/device readiness, playback quality preferences, and driver bridge vocabulary for a future Android player. Bloco 17 remains capability/readiness/preference models only; no real audio driver, USB driver, Android USB Host API, JNI/NDK, AAudio/Oboe, Media3/ExoPlayer, real bit-perfect output, real sample-rate switching, real DAC control, or DSP/EQ.
 - Future Android Player audio output phase (phases A–E) added to `docs/aria-core-handoff.md` and `docs/post-core-backlog.md` as a future project outside Aria Core. Invariant added: Aria Core may model requirements for a future custom/exclusive audio output layer; Aria Core must not implement an audio driver; a future Android Player phase may research or implement an exclusive USB/audio output bridge if feasible.
 - Bloco 14 (Offline, Cache and Storage Policy) is implemented and validated.
