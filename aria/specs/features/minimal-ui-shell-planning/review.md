@@ -2,9 +2,9 @@
 
 ## Summary
 
-Bloco 5 (Minimal UI Shell Planning) is a spec/planning task that defines how a future minimal UI/app shell should consume Aria Core as a thin adapter. The spec proposes `AppShellAdapter` as a single entry-point facade, `AppShellState` as a composite app-facing state snapshot, `AppShellInput` as a user-action enum, and per-screen view model dataclasses. It documents explicit anti-coupling rules, how Bloco 4 boundary contracts are consumed through the adapter, and how diagnostics/readiness/status data reaches the UI.
+Bloco 5 (Minimal UI Shell Planning) planning artifacts are complete. The implementation for this block is documentation only: `docs/ui-shell-boundary.md` defines how a future minimal UI/app shell consumes Aria Core as a thin adapter, and `docs/architecture.md`, `docs/android-boundary.md`, and `docs/handoff.md` now reference that boundary.
 
-No source code, test code, or implementation artifacts were created. This is planning only.
+No source code, test code, UI code, Android code, playback code, queue code, now playing code, cache code, or provider integration was created. This remains planning only.
 
 ## Requirements coverage
 
@@ -53,6 +53,16 @@ Spec created:
 - `aria/specs/features/minimal-ui-shell-planning/tasks.md` — task breakdown, validation checklist, review checklist.
 - `aria/specs/features/minimal-ui-shell-planning/review.md` — this file.
 
+Planning docs created:
+
+- `docs/ui-shell-boundary.md` — future UI/app shell boundary, thin UI rules, data/intent flows, examples, and safe output expectations.
+
+Planning docs updated:
+
+- `docs/architecture.md` — references the UI shell boundary and app-facing state/intent rules.
+- `docs/android-boundary.md` — clarifies Bloco 4 boundary consumption by future UI/platform adapters.
+- `docs/handoff.md` — records Bloco 5 planning artifacts complete.
+
 Context updated:
 
 - `aria/context/current.md` — updated active milestone/slice to reflect Bloco 5 spec completion.
@@ -79,10 +89,11 @@ Files not touched:
 - [x] `PYTHONPATH=src python3 -m noqlen_aria.cli doctor` — works.
 - [x] `python3 -m pytest` — all existing tests pass (358 expected).
 - [x] Repository contamination check — clean.
+- [x] Search check for Android/UI/framework implementation terms — reviewed; matches are documentation/planning references only.
 
 ## Validation notes
 
-All validation commands passed without regression. No source files were created or modified. No test files were created or modified. No `pyproject.toml` changes. This is a pure documentation/spec task.
+All validation commands passed without regression. No source files were created or modified. No test files were created or modified. No `pyproject.toml` changes. This is a pure documentation/planning task.
 
 ## Non-goals check
 
@@ -101,6 +112,8 @@ All validation commands passed without regression. No source files were created 
 | No real Anchor, Navidrome, provider integration | Pass |
 | No Android Auto implementation | Pass |
 | No real storage/permission UX | Pass |
+| No UI/app shell implementation | Pass |
+| No Android/player/queue/cache code | Pass |
 
 ## Behavior Budget result
 
@@ -108,9 +121,9 @@ All budget constraints respected:
 
 | Constraint | Status |
 |---|---|
-| New behaviors: documentation/spec only | Pass |
+| New behaviors: documentation/planning only | Pass |
 | Public API changes: proposed only, no source code | Pass |
-| Files allowed: spec directory, context files, handoff | Pass |
+| Files allowed: docs, spec tracking, context files | Pass |
 | Tests required: none, validation only | Pass |
 | Dependencies: none added | Pass |
 | Stop if implementation code needed: not triggered | Pass |
@@ -129,7 +142,7 @@ Per `aria/context/test-risk-matrix.md`:
 | Canonical Examples | Low risk | 8 CE scenarios documented |
 | Edge Cases | Low risk | 10 EC scenarios documented |
 
-No tests created in this task (spec/planning only). Future implementation block must address all high-risk and medium-risk areas with TDD and negative tests.
+No tests created in this task (documentation/planning only). Future implementation block must address all high-risk and medium-risk areas with TDD and negative tests.
 
 ## Delta updated?
 
@@ -172,13 +185,14 @@ Not applicable for spec/planning task. No fake implementations were created. Fut
 - Future: Define reactive state subscription mechanism for push-based UI updates.
 - Future: Define serialization helpers for `AppShellState` and view model transport.
 - Future: Implement platform-specific UI adapters (Android/Kotlin, iOS/Swift, desktop/React) consuming `AppShellAdapter`.
+- Bloco 6: create the next approved spec before any further implementation.
 
 ## Aria context updates needed
 
 Completed in this task:
 
 - `aria/context/current.md` — updated active milestone and slice to reflect Bloco 5 spec completion.
-- `aria/context/delta.md` — recorded Bloco 5 spec creation with evidence.
-- `docs/handoff.md` — added Bloco 5 spec status note.
-- `aria/specs/features/minimal-ui-shell-planning/tasks.md` — all spec-creation tasks marked complete.
-- `aria/specs/features/minimal-ui-shell-planning/review.md` — populated with review results.
+- `aria/context/delta.md` — recorded Bloco 5 planning artifacts with evidence.
+- `docs/handoff.md` — added Bloco 5 planning artifact status note.
+- `aria/specs/features/minimal-ui-shell-planning/tasks.md` — planning artifact tasks marked complete.
+- `aria/specs/features/minimal-ui-shell-planning/review.md` — updated with planning artifact review results.

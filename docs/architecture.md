@@ -8,6 +8,8 @@ High-level flow:
 
 `Future UI/App/Player -> Aria Core -> contracts/adapters -> providers/backends`
 
+Bloco 5 defines the future UI/app shell boundary in `docs/ui-shell-boundary.md`. The future UI is a thin adapter: it renders Aria Core state, emits Aria Core intents, and never calls providers, Anchor, Navidrome, Android/player bridges, playback engines, queues, now playing, cache, or lifecycle/apply behavior directly.
+
 Layer model:
 
 - Public API / Snapshot Layer
@@ -28,3 +30,5 @@ Layer model:
 Anchor is not the center of Aria. Anchor is one `ControlClient` adapter/control-plane backend. Aria must depend on contracts, not Anchor internals, and must not use Anchor CLI or provider internals as integration APIs.
 
 Future UI must be thin and must not contain core business behavior.
+
+UI-facing data must be app-facing and sanitized. Status/readiness views consume `ServerViewState` and `ReadinessViewState`; diagnostics views consume `DiagnosticsViewState`; permission/storage views consume `PermissionState` and `StorageAccessState`; playback/media controls emit intents that Aria Core routes through boundary contracts in future work.

@@ -49,7 +49,7 @@ Implementation (spec/planning phase):
 
 ## Implementation tasks
 
-This is a planning task. All subtasks are documentation/spec creation.
+Bloco 5 implementation is documentation/planning artifact creation only. No source code, tests, UI, Android, playback, queue, now playing, cache, or provider implementation is allowed.
 
 ### Task 1: Create spec directory
 
@@ -125,6 +125,41 @@ This is a planning task. All subtasks are documentation/spec creation.
 - [ ] Update `docs/handoff.md` with Bloco 5 spec status note.
 - [ ] Commit with `docs(spec): add minimal UI shell planning spec`.
 
+### Task 8: Add UI shell boundary documentation
+
+- [x] Create `docs/ui-shell-boundary.md`.
+- [x] Document future UI/app shell role.
+- [x] Document Aria Core role.
+- [x] Document future platform adapter role.
+- [x] Document Aria Core to UI data flow.
+- [x] Document UI to Aria Core intent flow.
+- [x] Document what must never bypass Aria Core.
+
+### Task 9: Add thin UI examples
+
+- [x] Add conceptual server status rendering example.
+- [x] Add conceptual diagnostics rendering example.
+- [x] Add conceptual lifecycle preview confirmation example.
+- [x] Add conceptual permission/storage prompt state example.
+- [x] Add conceptual playback control intent display example.
+- [x] Confirm examples are docs-only and not runnable UI code.
+
+### Task 10: Update existing docs
+
+- [x] Update `docs/architecture.md` to reference the Bloco 5 UI shell boundary.
+- [x] Update `docs/android-boundary.md` to clarify Bloco 4 boundary consumption by future UI/platform adapters.
+- [x] Update `docs/handoff.md` with Bloco 5 planning artifact status.
+
+### Task 11: Update spec tracking
+
+- [x] Update `aria/specs/features/minimal-ui-shell-planning/tasks.md` with completed planning artifact tasks.
+- [x] Update `aria/specs/features/minimal-ui-shell-planning/review.md` with artifact implementation review.
+
+### Task 12: Update workflow state
+
+- [x] Update `aria/context/current.md` concisely.
+- [x] Update `aria/context/delta.md` concisely.
+
 ## Validation checklist
 
 - [ ] `pwd` — confirm working directory.
@@ -136,6 +171,7 @@ This is a planning task. All subtasks are documentation/spec creation.
 - [ ] `PYTHONPATH=src python3 -m noqlen_aria.cli doctor` — works.
 - [ ] `python3 -m pytest` — all existing tests pass.
 - [ ] `git ls-files | grep -E '(^\.opencode/|^\.skills/|opencode\.json|docs/development|audit-report|model-routing|\.env|credentials\.json|\.secrets)' || true` — clean.
+- [ ] `grep -R "android\.\|androidx\.\|Media3\|ExoPlayer\|Compose\|React\|Activity\|Fragment" -n docs aria/specs/features/minimal-ui-shell-planning || true` — reviewed for documentation-only references.
 
 ## Review checklist
 
@@ -156,9 +192,13 @@ This is a planning task. All subtasks are documentation/spec creation.
 - [ ] Confirm `docs/handoff.md` updated with tiny status note.
 - [ ] Confirm validation passed clean.
 - [ ] Confirm repository contamination check clean.
+- [ ] Confirm search checks contain only documentation/planning references and no implementation.
 
 ## Delta update
 
 - [ ] Update `aria/context/current.md` — mark Bloco 5 spec complete; next step is Blocos 1-3 audit or Bloco 5 implementation.
 - [ ] Update `aria/context/delta.md` — record Bloco 5 spec creation with evidence.
 - [ ] Update `docs/handoff.md` — add Bloco 5 spec status note.
+- [x] Update `aria/context/current.md` — mark Bloco 5 planning artifacts complete.
+- [x] Update `aria/context/delta.md` — record Bloco 5 planning artifacts and validation scope.
+- [x] Update `docs/handoff.md` — record Bloco 5 planning artifact status.
