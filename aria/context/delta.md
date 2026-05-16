@@ -2,6 +2,8 @@
 
 ## What changed
 
+- Bloco 19 implemented: smart playlist models (SmartPlaylistId, SmartPlaylistSummary, SmartPlaylistDefinition, SmartPlaylistRule, SmartPlaylistRuleGroup, SmartPlaylistRuleOperator, SmartPlaylistSortRule, SmartPlaylistLimit, SmartPlaylistEvaluationContext, SmartPlaylistEvaluationResult, SmartPlaylistItemCandidate, SmartPlaylistPreview, SmartPlaylistValidationIssue, SmartPlaylistUnavailableReason), smart mix models (SmartMixDefinition, SmartMixStrategy, SmartMixPreview, SmartMixSeed), saved filter models (SavedFilterId, SavedFilterDefinition, SavedFilterPreview, SavedFilterValidationIssue), deterministic services (SmartPlaylistService, SavedFilterService), and FakeSmartPlaylistScenarios. Evaluation is local-only over provided app-facing candidates. No real provider playlist creation, provider mutation/internals, direct provider integration, queue mutation, playback, background jobs, filesystem scans, network behavior, Android/UI, or Bloco 20 state snapshot/e2e fake flows added.
+
 - Bloco 18 implemented: profile state models (UserProfileId, UserProfileSummary, UserProfileState, ActiveProfileState, ProfileOperationIntent/Preview), preference state/validation models (UserPreferenceKey, UserPreferenceValue, UserPreferenceScope, UserPreferencesState, PreferenceUpdateIntent/Preview), backup/restore models (BackupScope, BackupManifest, BackupBundle, BackupPlan/Preview/Result, RestorePlan/Preview/Result, RestoreConflict, RestoreSafetyCheck, BackupRestoreWarning, BackupBlockedReason), and deterministic local services (ProfilesService, PreferencesService, BackupRestoreService). Backup is in-memory structured state only; restore is preview-first and `applied=False`. No real filesystem persistence, destructive restore/apply, music library backup/mutation, provider mutation/internals, Android storage/API/UI, Bloco 19 smart playlist behavior, Bloco 20 state snapshots/e2e fake flows, network behavior, or secrets/raw path exposure added.
 
 - Audit 14-17 completed: formal audit for Bloco 14 Offline/Cache/Storage Policy, Bloco 15 Internet Radio Foundation, Bloco 16 Stream Quality/Transcoding/Network Policy, Bloco 17 Playback Capability Models, and the fade capability follow-up. Audit-scoped fixes applied: stale roadmap/context/spec status corrected, Bloco 14 task checklist completed, storage pressure inclusive-threshold wording aligned with implementation/tests, and bit-perfect system-audio readiness now reports non-exclusive output before generic unsupported state. No Bloco 18 behavior, profiles/preferences/backup/restore, smart playlists, snapshots/e2e fake flows, real cache mutation, filesystem/device behavior, network/radio streaming/transcoding, playback/audio driver/USB output, Android/JNI/NDK/AAudio/Oboe/Media3/ExoPlayer/MediaSession, DSP/EQ, or provider integration added.
@@ -41,6 +43,8 @@
 
 ## Evidence
 
+- Bloco 19 implementation validation: `python3 -m pytest` 877/877 pass; targeted smart playlist/export tests passed with 26 tests; `py_compile` clean; CLI help/doctor pass; `git diff --check` clean; tracked contamination clean. Required boundary searches show no forbidden implementation; expected matches are limited to historical boundary-test string literals, existing queue service tests, existing playback capability wording, and Bloco 19 explicit `queue_mutated=False` / `playback_started=False` safety fields/tests.
+
 - Bloco 18 implementation validation: `python3 -m pytest` 861/861 pass; targeted compile/tests passed; `py_compile` clean; CLI help/doctor pass; `git diff --check` clean; tracked contamination clean. Required boundary searches show no forbidden implementation; expected matches are limited to sanitization vocabulary, explicit boundary tests/spec text, historical LibraryActivity/SAFE substrings, queue `_current_after_remove` false positives, and ignored `__pycache__` binary matches.
 
 - Bloco 16 implementation validation: `python3 -m pytest` 815/815 pass; `py_compile` clean; CLI help/doctor pass; network/provider/filesystem/Android/audio-driver searches clean; transcoding search shows expected Bloco 16 spec/model/test vocabulary only, with no real transcoder implementation; tracked contamination clean.
@@ -72,11 +76,11 @@
 
 ## Next step
 
-- Bloco 18 Profiles, Preferences, Backup and Restore is implemented and validated.
-- Do not start Bloco 19, Bloco 20, or Audit 18-20 without explicit approval and a dedicated spec/task.
+- Bloco 19 Smart Playlists is implemented and validated.
+- Do not start Bloco 20 or Audit 18-20 without explicit approval and a dedicated spec/task.
 - Roadmap documentation update: Bloco 17 wording clarified to include bit-perfect capability, USB DAC capability, exclusive output capability, audio output route state, sample-rate support, bit-depth support, output/device readiness, playback quality preferences, and driver bridge vocabulary for a future Android player. Bloco 17 remains capability/readiness/preference models only; no real audio driver, USB driver, Android USB Host API, JNI/NDK, AAudio/Oboe, Media3/ExoPlayer, real bit-perfect output, real sample-rate switching, real DAC control, or DSP/EQ.
 - Future Android Player audio output phase (phases A–E) added to `docs/aria-core-handoff.md` and `docs/post-core-backlog.md` as a future project outside Aria Core. Invariant added: Aria Core may model requirements for a future custom/exclusive audio output layer; Aria Core must not implement an audio driver; a future Android Player phase may research or implement an exclusive USB/audio output bridge if feasible.
-- Blocos 14-18 are implemented and validated.
+- Blocos 14-19 are implemented and validated.
 
 ## Open decisions
 

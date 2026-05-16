@@ -10,6 +10,7 @@ import noqlen_aria.android_boundaries as android_boundaries
 import noqlen_aria.anchor_adapter as anchor_adapter
 import noqlen_aria.contracts as contracts
 import noqlen_aria.services as services
+import noqlen_aria.smart_playlists as smart_playlists
 from noqlen_aria import safe_serialize
 from noqlen_aria.anchor_adapter import AnchorControlClient
 from noqlen_aria.contracts import (
@@ -111,6 +112,7 @@ def test_top_level_public_exports_are_intentional() -> None:
         "FakeQualityPolicyScenarios",
         "FakeQueueScenarios",
         "FakeRadioScenarios",
+        "FakeSmartPlaylistScenarios",
         "FolderSummary",
         "GaplessCapabilityState",
         "GenreSummary",
@@ -234,10 +236,34 @@ def test_top_level_public_exports_are_intentional() -> None:
         "RestorePreview",
         "RestoreResult",
         "RestoreSafetyCheck",
+        "SavedFilterDefinition",
+        "SavedFilterId",
+        "SavedFilterPreview",
+        "SavedFilterService",
+        "SavedFilterValidationIssue",
         "SeekTarget",
         "ServerViewState",
         "SkipDirection",
         "SampleRateSupport",
+        "SmartMixDefinition",
+        "SmartMixPreview",
+        "SmartMixSeed",
+        "SmartMixStrategy",
+        "SmartPlaylistDefinition",
+        "SmartPlaylistEvaluationContext",
+        "SmartPlaylistEvaluationResult",
+        "SmartPlaylistId",
+        "SmartPlaylistItemCandidate",
+        "SmartPlaylistLimit",
+        "SmartPlaylistPreview",
+        "SmartPlaylistRule",
+        "SmartPlaylistRuleGroup",
+        "SmartPlaylistRuleOperator",
+        "SmartPlaylistService",
+        "SmartPlaylistSortRule",
+        "SmartPlaylistSummary",
+        "SmartPlaylistUnavailableReason",
+        "SmartPlaylistValidationIssue",
         "StatusService",
         "StreamQualityDecision",
         "StreamQualityPolicy",
@@ -289,6 +315,11 @@ def test_public_modules_define_intentional_wildcard_exports() -> None:
     assert "TYPE_CHECKING" not in services.__all__
     assert "ResultMappingService" in services.__all__
     assert "StatusService" in services.__all__
+
+    assert "SmartPlaylistService" in smart_playlists.__all__
+    assert "SavedFilterService" in smart_playlists.__all__
+    assert "SmartMixDefinition" in smart_playlists.__all__
+    assert "hashlib" not in smart_playlists.__all__
 
     assert anchor_adapter.__all__ == ["AnchorControlClient"]
     assert "AnchorResultMapper" not in anchor_adapter.__all__
