@@ -10,6 +10,7 @@ import noqlen_aria.android_boundaries as android_boundaries
 import noqlen_aria.anchor_adapter as anchor_adapter
 import noqlen_aria.contracts as contracts
 import noqlen_aria.services as services
+import noqlen_aria.state_snapshots as state_snapshots
 import noqlen_aria.smart_playlists as smart_playlists
 from noqlen_aria import safe_serialize
 from noqlen_aria.anchor_adapter import AnchorControlClient
@@ -50,6 +51,19 @@ def test_top_level_public_exports_are_intentional() -> None:
         "AlbumSummary",
         "AriaError",
         "AriaResult",
+        "AriaSnapshotDiff",
+        "AriaSnapshotDiffEntry",
+        "AriaSnapshotDiffService",
+        "AriaSnapshotId",
+        "AriaSnapshotMetadata",
+        "AriaSnapshotRedactionPolicy",
+        "AriaSnapshotResult",
+        "AriaSnapshotScope",
+        "AriaSnapshotSection",
+        "AriaSnapshotService",
+        "AriaSnapshotUnavailableReason",
+        "AriaSnapshotValidationIssue",
+        "AriaStateSnapshot",
         "AriaWarning",
         "ArtistSummary",
         "AudioFormatSupport",
@@ -107,6 +121,16 @@ def test_top_level_public_exports_are_intentional() -> None:
         "FavoriteItemSummary",
         "FavoritesViewState",
         "FakeControlClient",
+        "FakeFlowId",
+        "FakeFlowResult",
+        "FakeFlowRunner",
+        "FakeFlowScenario",
+        "FakeFlowStep",
+        "FakeFlowStepKind",
+        "FakeFlowStepResult",
+        "FakeFlowTrace",
+        "FakeFlowUnavailableReason",
+        "FakeFlowValidationIssue",
         "FakeNowPlayingScenarios",
         "FakePlaybackCapabilityScenarios",
         "FakeQualityPolicyScenarios",
@@ -320,6 +344,10 @@ def test_public_modules_define_intentional_wildcard_exports() -> None:
     assert "SavedFilterService" in smart_playlists.__all__
     assert "SmartMixDefinition" in smart_playlists.__all__
     assert "hashlib" not in smart_playlists.__all__
+
+    assert "AriaSnapshotService" in state_snapshots.__all__
+    assert "FakeFlowRunner" in state_snapshots.__all__
+    assert "_RedactionTracker" not in state_snapshots.__all__
 
     assert anchor_adapter.__all__ == ["AnchorControlClient"]
     assert "AnchorResultMapper" not in anchor_adapter.__all__

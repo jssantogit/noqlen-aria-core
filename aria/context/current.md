@@ -26,6 +26,7 @@
 - Audit 14-17 (Offline/Radio/Quality/Capabilities Audit) is complete.
 - Bloco 18 (Profiles, Preferences, Backup and Restore) is implemented.
 - Bloco 19 (Smart Playlists) is implemented.
+- Bloco 20 (State Snapshots and End-to-End Fake Flows) is implemented.
 
 ## Active spec
 
@@ -35,6 +36,7 @@
 - `aria/specs/features/playback-capability-models/` — spec and implementation complete.
 - `aria/specs/features/profiles-preferences-backup-restore/` — spec and implementation complete.
 - `aria/specs/features/smart-playlists/` — spec and implementation complete.
+- `aria/specs/features/state-snapshots-e2e-fake-flows/` — spec and implementation complete.
 - `aria/specs/features/library-filters-activity-favorites/` — spec and implementation complete.
 - `aria/specs/features/queue-foundation/` — spec and implementation complete.
 - `aria/specs/features/playback-renderer-automation-intents/` — spec and implementation complete.
@@ -45,7 +47,7 @@
 - `aria/specs/features/minimal-ui-shell-planning/` — spec/planning artifacts complete.
 - `aria/specs/features/aria-mvp-hardening/` — spec and implementation complete.
 - `aria/specs/features/aria-release-preparation/` — spec and implementation complete.
-- Bloco 19 Smart Playlists is complete; no active product implementation after commit.
+- Bloco 20 State Snapshots and End-to-End Fake Flows is complete; no active product implementation after commit.
 
 ## Current goal
 
@@ -63,8 +65,9 @@
 - Bloco 17 Playback Capability Models is implemented and validated as capability/readiness/preference models only, including fade-in/fade-out capability and bit-perfect conflict state.
 - Bloco 18 Profiles, Preferences, Backup and Restore is implemented and validated as local-only profile/preference state, in-memory backup bundle, and preview-first restore models/services.
 - Bloco 19 Smart Playlists is implemented as local-only smart playlist, saved filter, and deterministic smart mix models/services over provided app-facing candidates.
+- Bloco 20 State Snapshots and End-to-End Fake Flows is implemented as sanitized in-memory state snapshots, structural snapshot diffs, and deterministic local-only fake flow traces.
 - Future Android Player audio output phase (phases A–E) documented outside Aria Core in `docs/aria-core-handoff.md` and `docs/post-core-backlog.md`.
-- Audit 14-17 is complete. Do not start Bloco 20 or Audit 18-20 without explicit approval and a dedicated spec/task.
+- Audit 14-17 is complete. Do not start Audit 18-20 or Bloco 21 without explicit approval and a dedicated spec/task.
 - No publish until approved.
 
 ## Allowed scope
@@ -79,7 +82,7 @@
 - Product behavior without an approved spec.
 - Android, UI, navigation, player, further queue expansion, playback intents, playback engine, cache/offline mutation, or storage UX implementation.
 - Real Anchor, Navidrome, Jellyfin, Emby, provider, or media-source integration.
-- Real download, cache write/delete, destructive cleanup, filesystem traversal, device storage inspection, Android storage APIs, stream resolution, radio streaming, Shoutcast/HLS/DASH parsing, provider direct integration, real playback/audio output, audio/USB driver behavior, DSP/EQ, Bloco 20 behavior, Audit 18-20, or later post-core behavior without a dedicated spec.
+- Real download, cache write/delete, destructive cleanup, filesystem traversal, device storage inspection, Android storage APIs, stream resolution, radio streaming, Shoutcast/HLS/DASH parsing, provider direct integration, real playback/audio output, audio/USB driver behavior, DSP/EQ, Audit 18-20, Bloco 21 behavior, or later post-core behavior without a dedicated spec.
 
 ## Key risks
 
