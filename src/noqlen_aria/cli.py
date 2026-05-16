@@ -27,7 +27,7 @@ def run_doctor() -> int:
     print(f"version: {__version__}")
     print(f"python: {platform.python_version()}")
     print(f"platform: {platform.system().lower() or 'unknown'}")
-    print("anchor: not configured in Bloco 0")
+    print("anchor: optional dry-run adapter only")
     print("navidrome: not accessed")
     print("music-library: not accessed")
     return 0

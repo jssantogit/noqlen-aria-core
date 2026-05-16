@@ -7,9 +7,12 @@
 - Bloco 1 ControlClient refinement is complete.
 - Bloco 2 is complete.
 - Bloco 3 is complete.
+- Bloco 4 Android/player boundary contracts are complete.
+- Bloco 5 minimal UI shell planning artifacts are complete.
+- Bloco 6 Aria MVP hardening is complete.
 - Aria Workflow vNext context compression is active for future tasks. Start with `aria/context/current.md`, `aria/context/delta.md`, and `aria/context/context-packages.md` before escalating to this full handoff.
 - This document is the canonical local repository handoff and source of truth for the current Aria direction.
-- The next product step is the formal Blocos 1-3 audit. Do not start Bloco 4 until that audit passes.
+- The next product step is the formal Blocos 4-6 audit. Do not start Bloco 7 until that audit passes.
 
 ## Product Definition
 
@@ -146,11 +149,11 @@ Third-party product and provider names in Aria docs are factual research referen
 - Bloco 3 — Anchor Adapter Dry-Run
 - Bloco 1–3 Audit
 
-### Fase 2 — Providers / Sources / Sync
+### Fase 2 — Android Boundaries / UI Planning / MVP Hardening
 
-- Bloco 4 — Media Provider Registry
-- Bloco 5 — Media Source Contracts
-- Bloco 6 — Sync Manager
+- Bloco 4 — Android/player boundary contracts
+- Bloco 5 — Minimal UI shell planning artifacts
+- Bloco 6 — Aria MVP hardening
 - Bloco 4–6 Audit
 
 ### Fase 3 — Library / Search / Playlists
@@ -198,11 +201,11 @@ Bloco 2 builds fake-first control services over `ControlClient`, including statu
 
 Bloco 3 adds the dry-run Anchor adapter for the control plane, mapping Anchor-style results into Aria contracts while blocking apply-mode behavior and avoiding Anchor internals, Anchor CLI integration, Navidrome direct calls, Android, playback, queue, and cache code.
 
-Bloco 4 defines `MediaProvider`, provider accounts, connection/auth state, provider capabilities, provider identity, and the provider registry used to normalize future provider differences.
+Bloco 4 defines Android/player boundary contracts as abstract vocabulary only, including playback, MediaSession, storage, Android Auto, foreground service, lifecycle, notification, lock-screen, and headset bridge protocols plus deterministic fakes.
 
-Bloco 5 defines `MediaSourceClient`, `FakeMediaSourceClient`, normalized IDs, metadata models, stream handles, and source capabilities for library and media access without real provider integrations.
+Bloco 5 defines minimal UI shell planning artifacts for a future thin adapter over Aria Core. It is documentation only and does not implement UI, navigation, playback, queue, now playing, cache, Android SDK, or provider integration.
 
-Bloco 6 defines sync all, sync provider, full/incremental sync, last sync summary, scanned/imported counts, safe sync errors, and fake-first sync orchestration.
+Bloco 6 hardens the MVP surface with intentional exports, safe serialization/sanitization helpers, optional Anchor absence behavior, dry-run/apply safety tests, documentation consistency, and audit readiness.
 
 Bloco 7 defines library browse/search for artists, albums, tracks, folders, playlists, genres, search queries, filters, sort options, and pagination.
 
@@ -245,4 +248,4 @@ Bloco 21 defines the full fake flow from provider to sync to library to queue to
 
 ## Current Next Step
 
-Formal audit for Blocos 1-3 is next. Do not start Bloco 4 until the audit passes.
+Formal audit for Blocos 4-6 is next. Do not start Bloco 7 until the audit passes.

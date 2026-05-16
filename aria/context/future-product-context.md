@@ -28,4 +28,4 @@ Planned product areas:
 
 These notes are not permission to implement UI, Android SDK code, playback, queues, now playing, cache/offline/download, MediaSession, Android Auto, DSP/EQ, provider integration, or storage/permission UX. Each feature family requires its own spec before implementation.
 
-Current next step: formal audit for Blocos 1-3. Do not start Bloco 4 until that audit passes.
+Current next step: formal audit for Blocos 4-6. Do not start Bloco 7 until that audit passes.

@@ -27,7 +27,7 @@ Layer model:
 - Android Boundary Layer
 - Backup / Profiles / Preferences Layer
 
-Anchor is not the center of Aria. Anchor is one `ControlClient` adapter/control-plane backend. Aria must depend on contracts, not Anchor internals, and must not use Anchor CLI or provider internals as integration APIs.
+Anchor is not the center of Aria. Anchor is one optional dry-run `ControlClient` adapter/control-plane backend. Aria must depend on contracts, not Anchor internals, and must not use Anchor CLI or provider internals as integration APIs.
 
 Future UI must be thin and must not contain core business behavior.
 

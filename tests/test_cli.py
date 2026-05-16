@@ -17,6 +17,6 @@ def test_doctor(capsys):
     assert main(["doctor"]) == 0
     output = capsys.readouterr().out
     assert "Noqlen Aria Core doctor" in output
-    assert "anchor: not configured in Bloco 0" in output
+    assert "anchor: optional dry-run adapter only" in output
     assert "navidrome: not accessed" in output
     assert "music-library: not accessed" in output

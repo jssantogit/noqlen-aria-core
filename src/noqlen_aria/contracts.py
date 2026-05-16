@@ -181,7 +181,7 @@ class ControlClient(Protocol):
     """
 
     def ping(self) -> AriaResult[bool]:
-        """Check Anchor connectivity."""
+        """Check control-plane connectivity."""
         ...
 
     def get_server_state(self) -> AriaResult[ServerViewState]:

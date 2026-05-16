@@ -2,6 +2,7 @@
 
 ## What changed
 
+- Blocos 4-6 formal audit found stale context/handoff references and CLI/doc wording that still described earlier blocks; audit-scoped corrections were applied.
 - Bloco 1 completed source-agnostic core contracts, safe result/state primitives, `ControlClient`, and `FakeControlClient`.
 - Bloco 2 completed fake-first control services, result mapping, readiness, diagnostics, lifecycle preview, and deterministic failure/value overrides.
 - Bloco 3 completed the dry-run/offline `AnchorControlClient` adapter and mapping layer while blocking apply-mode behavior.
@@ -45,5 +46,4 @@
 ## Open decisions
 
 - Whether to create a short ADR for the source-agnostic `ControlClient` boundary during a future architecture review.
-- Whether Bloco 4 implementation starts immediately after the Blocos 1-3 audit passes or after audit follow-ups are resolved.
-- Whether Android boundary contracts should be Bloco 4 in the implementation sequence or remain as a later Fase 6 block as in the handoff roadmap.
+- Which future Bloco 7 spec should follow after the Blocos 4-6 formal audit is approved.

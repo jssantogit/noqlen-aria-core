@@ -16,4 +16,4 @@ This file is the canonical permanent scope boundary for Aria Core.
 - Do not touch a real music library.
 - Do not run real Navidrome without an explicit block/spec.
 - Product behavior requires a spec and explicit block scope.
-- Current next step is formal Blocos 1-3 audit. Do not start Bloco 4 until that audit passes.
+- Current next step is formal Blocos 4-6 audit. Do not start Bloco 7 until that audit passes.

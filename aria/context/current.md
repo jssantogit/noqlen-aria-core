@@ -32,12 +32,12 @@
 
 ## Allowed scope
 
-- Workflow, context, review, prompt, spec-template, agent, and decision documentation.
-- Audit preparation for existing Blocos 1-3 work.
-- Bloco 4 planning only after the Blocos 1-3 audit passes.
+- Audit-scoped fixes for Blocos 4-6 only.
+- Small architecture naming, safety test, public export, docs/spec/review, context concision, and repository hygiene corrections.
 
 ## Forbidden scope
 
+- Bloco 7 work or release preparation.
 - Product behavior without an approved spec.
 - Android, UI, navigation, player, queue, now playing, playback engine, cache/offline, or storage UX implementation.
 - Real Anchor, Navidrome, Jellyfin, Emby, provider, or media-source integration.
