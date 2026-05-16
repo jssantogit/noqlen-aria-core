@@ -20,6 +20,7 @@
 - Bloco 8 implemented: `src/noqlen_aria/media_source.py` with `MediaSourceClient` protocol, `FakeMediaSourceClient` (deterministic, failure-injection hooks, value overrides), and 11 supporting types. `tests/test_media_source.py` adds 100 tests covering contracts, capability mapping, error injection, determinism, safe degraded behavior, and provider boundary enforcement.
 - Bloco 9 implemented: `src/noqlen_aria/library.py` with browse/search models and services, plus minimal `MediaSourceClient`/`FakeMediaSourceClient` browse/search extensions. `tests/test_library_browse_search.py` covers artists, albums, tracks, playlists, genres, safe folder metadata, search validation/results, unsupported capabilities, degraded/unavailable sources, empty/no-match scenarios, and boundary enforcement. No Bloco 10 behavior added.
 - Bloco 10 implemented: library filter/sort contracts and service behavior, recently added/recently played/favorites read-state models and services, readiness/health badges, read-only fake source scenarios, and deterministic tests. Favorites mutation is blocked as unsupported/future intent only. No provider integration, filesystem traversal, smart playlists, queue, now playing, playback, Android/UI, or offline/cache behavior added.
+- Bloco 11 implemented: queue state/contracts, repeat/shuffle state, queue operation/intent/result models, deterministic `QueueService`, fake queue scenarios, unavailable item preservation, and multiple queue collection state. No real playback, stream resolution, provider integration, now playing, Android/UI, offline/cache, smart playlist, network, or filesystem behavior added.
 
 ## Evidence
 
@@ -34,6 +35,7 @@
 - Bloco 8 implementation validation: `python3 -m pytest` 468/468 pass (368 base + 100 new); `py_compile` clean; CLI help/doctor pass; all search checks clean (provider integration, network, Android, forbidden implementations); contamination clean.
 - Bloco 9 implementation validation: `python3 -m pytest` 506/506 pass; `py_compile` clean; CLI help/doctor pass; provider/network/filesystem/queue checks clean; Android grep only reports an existing safety docstring in `android_boundaries.py`; contamination clean.
 - Bloco 10 implementation validation: `python3 -m pytest` 531/531 pass; `py_compile` clean; CLI help/doctor pass; provider/network/filesystem/queue checks clean; Android search reports expected existing Android boundary code plus Bloco 10 `LibraryActivity*` activity model names; contamination clean.
+- Bloco 11 implementation validation: `python3 -m pytest` 554/554 pass; `py_compile` clean; CLI help/doctor pass; provider/network/filesystem/now-playing/offline/smart-playlist checks clean; Android search reports existing Android boundary/LibraryActivity vocabulary only; contamination clean.
 
 ## Decisions
 
@@ -54,7 +56,7 @@
 - Provider roadmap wording patch is complete.
 - Bloco 8 (Media Source Foundation) is implemented and validated.
 - Bloco 9 (Library Browse/Search) is implemented and validated (506/506 tests).
-- Next step: Audit 8-10 only after explicit approval; do not start Bloco 11 yet.
+- Next step: Audit 8-13 or Bloco 12 only after explicit approval; do not run Audit 8-13 or start Bloco 12 in the Bloco 11 task.
 - Post-core features (Blocos 8-23 in the roadmap) require dedicated specs before implementation.
 
 ## Open decisions

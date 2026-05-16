@@ -14,11 +14,13 @@
 - Local tag `v0.1.0` exists; Aria Core MVP is complete.
 - Bloco 8 (Media Source Foundation) is implemented.
 - Bloco 9 (Library Browse/Search) is implemented.
-- Bloco 10 (Library Filters, Activity and Favorites) is implemented. Next step: Audit 8-10 only after explicit approval.
+- Bloco 10 (Library Filters, Activity and Favorites) is implemented.
+- Bloco 11 (Queue Foundation) is implemented. Audit 8-10 remains deferred into Audit 8-13.
 
 ## Active spec
 
 - `aria/specs/features/library-filters-activity-favorites/` — spec and implementation complete.
+- `aria/specs/features/queue-foundation/` — spec and implementation complete.
 - `aria/specs/features/library-browse-search/` — spec and implementation complete.
 - `aria/specs/features/media-source-foundation/` — spec and implementation complete.
 - `aria/specs/features/android-player-boundary-contracts/` — spec and implementation complete.
@@ -33,20 +35,21 @@
 - Bloco 8 Media Source Foundation is implemented and validated.
 - Bloco 9 Library Browse/Search is implemented and validated.
 - Bloco 10 Library Filters, Activity and Favorites is implemented and validated.
-- Do not start Audit 8-10 or Bloco 11 without explicit approval and a dedicated spec.
+- Bloco 11 Queue Foundation is implemented and validated.
+- Do not start Audit 8-13 or Bloco 12 without explicit approval and a dedicated spec.
 - No publish until approved.
 
 ## Allowed scope
 
 - Context and handoff documentation updates.
-- Audit 8-10 planning only after explicit approval.
+- Audit 8-13 planning only after explicit approval.
 - Publish only when explicitly approved.
 
 ## Forbidden scope
 
 - Post-core feature implementation without a dedicated spec.
 - Product behavior without an approved spec.
-- Android, UI, navigation, player, queue, now playing, playback engine, cache/offline, or storage UX implementation.
+- Android, UI, navigation, player, further queue expansion, now playing, playback engine, cache/offline, or storage UX implementation.
 - Real Anchor, Navidrome, Jellyfin, Emby, provider, or media-source integration.
 
 ## Key risks
