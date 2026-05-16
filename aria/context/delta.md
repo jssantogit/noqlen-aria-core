@@ -16,6 +16,7 @@
 - Local tag `v0.1.0` exists. No publish action is recorded in this delta.
 - Release artifacts created: `docs/release-checklist.md`, `docs/release-notes.md`, `docs/api-surface.md`, `docs/safety-summary.md`, `docs/post-core-backlog.md`.
 - Workflow improvements from Noqlen Playbook comparison added: broader repository hygiene categories, PR template, read-only local repository study prompt, clearer audit finding/status fields, and Workflow vNext references. Workflow/template changes only.
+- Bloco 8 spec created: `aria/specs/features/media-source-foundation/` with `requirements.md`, `design.md`, `tasks.md`, `review.md`. Defines `MediaSourceClient`, `FakeMediaSourceClient`, source capability models, abstract media IDs, stream handle, provider capability discovery, and availability states. Spec only; no implementation, no provider integration, no streaming, no playback, no UI.
 
 ## Evidence
 
@@ -26,6 +27,7 @@
 - Bloco 6 implementation validation: `python3 -m pytest` 368/368 pass; contamination clean. All search checks clean.
 - Bloco 7 release preparation validation: `python3 -m pytest` 368/368 pass; contamination clean; all search checks clean; version consistency confirmed; release artifacts created.
 - Playbook comparison workflow update validation: `git diff --check` passed; tracked forbidden-file grep returned no matches; `git status --short --branch` reviewed. No source, tests, Android/UI, product behavior, release tag, or publish changes intended.
+- Bloco 8 spec validation: `python3 -m pytest` 368/368 pass; contamination clean; no source code, tests, provider integration, streaming, playback, or UI created.
 
 ## Decisions
 
@@ -43,8 +45,8 @@
 
 ## Next step
 
-- Complete provider roadmap wording patch.
-- Next after this patch: Bloco 8 spec.
+- Provider roadmap wording patch is complete.
+- Bloco 8 spec (Media Source Foundation) is complete. Implementation deferred until explicitly approved.
 - Post-core features (Blocos 8-23 in the roadmap) require dedicated specs before implementation.
 
 ## Open decisions

@@ -47,4 +47,6 @@ Release artifacts:
 
 Third-party names in research docs are factual references only. They do not imply Noqlen affiliation, endorsement, sponsorship, association, official support, or compatibility.
 
-Next step: Bloco 8 spec. Do not implement post-core features or publish until explicitly scoped and approved.
+Next step: Bloco 8 implementation (Media Source Foundation). Implementation deferred until explicitly approved after spec creation. Do not implement post-core features or publish until explicitly scoped and approved.
+
+Bloco 8 spec status: spec created in `aria/specs/features/media-source-foundation/`. Defines `MediaSourceClient`, `FakeMediaSourceClient`, source capabilities, abstract media IDs, stream handle, provider capability discovery, and availability states. Spec only — no implementation, no provider integration, no streaming, no playback, no UI.
