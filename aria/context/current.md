@@ -14,13 +14,15 @@
 - Bloco 4 is complete: 9 bridge protocols, supporting types, composite snapshot, and 9 fake implementations.
 - 129 boundary contract tests added; 358 total tests pass.
 - Bloco 5 Minimal UI Shell Planning artifacts are complete (docs only, no implementation).
+- Bloco 6 Aria MVP Hardening spec is complete (planning only, no implementation).
 - Do not redo Bloco 3.
-- Next: Bloco 6 spec.
+- Next: Bloco 6 implementation only after approval; do not implement hardening without the active spec task.
 
 ## Active spec
 
 - `aria/specs/features/android-player-boundary-contracts/` — spec and implementation complete.
 - `aria/specs/features/minimal-ui-shell-planning/` — spec/planning artifacts complete. No UI implementation.
+- `aria/specs/features/aria-mvp-hardening/` — spec complete. No hardening implementation.
 - No active product implementation.
 
 ## Current goal
