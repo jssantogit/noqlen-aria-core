@@ -96,7 +96,7 @@ All items must pass. Document any failures with the reason.
 - [x] Safety summary exists at `docs/safety-summary.md`
 - [x] Post-core backlog summary exists at `docs/post-core-backlog.md`
 - [x] Handoff document updated at `docs/handoff.md`
-- [x] Changelog or release notes cover completed Blocos 0-6 scope
+- [x] Changelog or release notes cover completed Blocos 0-7 MVP scope
 - [x] Release notes distinguish implemented features from future/backlog
 - [x] Release notes include safety boundaries, known limitations, and version information
 

@@ -16,4 +16,4 @@ This file is the canonical permanent scope boundary for Aria Core.
 - Do not touch a real music library.
 - Do not run real Navidrome without an explicit block/spec.
 - Product behavior requires a spec and explicit block scope.
-- Blocos 0–7 are complete. Final release audit and tag decision are next. Do not start post-core features without a dedicated spec.
+- Blocos 0-7 are the Aria Core MVP and are complete. Blocos 8-20 are post-core feature expansion. Final release audit and tag decision are next. Do not start post-core features without a dedicated spec.

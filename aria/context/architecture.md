@@ -4,6 +4,8 @@ Aria Core exposes a music-player-core API facade while keeping UI/app adapters t
 
 Repository-local handoff and broader architecture context live in `docs/aria-core-handoff.md`.
 
+MVP architecture scope is Blocos 0-7. Media source, library, queue, now playing, offline/cache, capability, smart playlist, multi-provider, and real Android integration work is post-core Blocos 8-20.
+
 ## Layer Model
 
 - Public API / Snapshot Layer
@@ -24,6 +26,8 @@ Repository-local handoff and broader architecture context live in `docs/aria-cor
 ## Boundary Roles
 
 `ControlClient` is the control-plane boundary for status, diagnostics, readiness, lifecycle preview, and control-plane capability. Anchor is one adapter/backend for this boundary.
+
+Anchor is not the center of Aria. Additional providers must come through Anchor/provider boundaries later, not direct provider internals.
 
 `MediaSourceClient` is the future media-source boundary for library, search, playlists, metadata, stream handles, normalized IDs, and source capabilities.
 

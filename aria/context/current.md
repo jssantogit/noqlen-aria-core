@@ -11,6 +11,7 @@
 - Bloco 5 minimal UI shell planning artifacts are complete.
 - Bloco 6 Aria MVP hardening is complete.
 - Bloco 7 Aria Core Release Preparation is complete.
+- Final roadmap alignment: Aria Core MVP is Blocos 0-7; post-core feature expansion is Blocos 8-20.
 - Next: Final release audit and tag decision. Do not create a release tag or publish until the release checklist passes and the maintainer approves.
 
 ## Active spec
@@ -24,6 +25,7 @@
 ## Current goal
 
 - Aria Core MVP release preparation is complete. Release artifacts are documented.
+- Advanced library/player features and Android real integration remain post-core backlog, not MVP blockers.
 - Final release audit and tag decision are next.
 - No tag, no publish until approved.
 

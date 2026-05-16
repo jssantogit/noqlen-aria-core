@@ -4,13 +4,15 @@
 
 - Bloco 0 is complete.
 - Bloco 1 is complete.
-- Bloco 1 ControlClient refinement is complete.
+- Bloco 1.5 ControlClient refinement is complete.
 - Bloco 2 is complete.
 - Bloco 3 is complete.
 - Bloco 4 Android/player boundary contracts are complete.
 - Bloco 5 minimal UI shell planning artifacts are complete.
 - Bloco 6 Aria MVP hardening is complete.
 - Bloco 7 Aria Core Release Preparation is complete. Release artifacts are documented under `docs/release-checklist.md`, `docs/release-notes.md`, `docs/api-surface.md`, `docs/safety-summary.md`, and `docs/post-core-backlog.md`.
+- Aria Core MVP scope is Blocos 0-7. Post-core feature expansion is Blocos 8-20.
+- Advanced library/player features are post-core backlog, not MVP blockers.
 - Aria Workflow vNext context compression is active for future tasks. Start with `aria/context/current.md`, `aria/context/delta.md`, and `aria/context/context-packages.md` before escalating to this full handoff.
 - This document is the canonical local repository handoff and source of truth for the current Aria direction.
 - The next product step is final release audit and tag decision. Do not create a release tag or publish until the release checklist passes and the maintainer approves.
@@ -19,7 +21,9 @@
 
 Noqlen Aria Core is the modular core of a music player.
 
-Aria must model and orchestrate:
+Aria Core MVP models and orchestrates control-plane contracts, fake-first services, Android/player boundary vocabulary, UI shell planning boundaries, safe serialization, release artifacts, and safety documentation.
+
+Post-core Aria work will expand the core to model and orchestrate:
 
 - control plane;
 - media providers;
@@ -43,6 +47,8 @@ Aria must model and orchestrate:
 - automation intents;
 - state snapshots;
 - safe errors/warnings.
+
+Android real integration and the Android app/UI shell remain separate from Aria Core. They consume Aria Core through contracts and future adapters; they are not implemented in the MVP.
 
 Aria is:
 
@@ -105,6 +111,8 @@ Aria Core is organized around these layers:
 
 `PlaybackEngine` is a future real audio engine boundary. It is not part of the current core implementation and must not be implemented without a dedicated spec.
 
+Android app/UI remains separate. Future Android real integration, app shell, media controls, notification/lock-screen controls, Bluetooth/headset handling, Android Auto, widgets, and foreground service wiring must be planned and implemented outside the core MVP through future dedicated specs.
+
 ## Anchor Position
 
 - Anchor is not the center of Aria.
@@ -114,6 +122,7 @@ Aria Core is organized around these layers:
 - Aria must not use Anchor CLI as an integration API.
 - Aria must not call Navidrome directly through provider internals.
 - Future provider/media support should be capability-driven and adapter-based.
+- Other providers must come through Anchor/provider boundaries later, not direct provider internals.
 
 Expected adapter direction:
 
@@ -142,55 +151,41 @@ Third-party product and provider names in Aria docs are factual research referen
 
 ## Roadmap
 
-### Fase 1 — Base / Control Plane
+### Aria Core MVP
 
-- Bloco 0 — Bootstrap / Workflow
-- Bloco 1 — Core Contracts
-- Bloco 2 — Control Services Fake-First
-- Bloco 3 — Anchor Adapter Dry-Run
-- Bloco 1–3 Audit
+- Bloco 0 — Bootstrap: repository, Aria Workflow, base docs, minimal CLI, hygiene and local handoff.
+- Bloco 0 Audit — Bootstrap Audit: initial audit of repository, workflow, docs, CLI, hygiene and scope.
+- Bloco 1 — Core Contracts: `AriaResult`, `AriaError`, `AriaWarning`, view states, lifecycle intents, permission/storage and `ControlClient`.
+- Bloco 1.5 — ControlClient Refinement: remove Anchor from the conceptual center; `ControlClient` is generic, Anchor is one future adapter.
+- Bloco 2 — Fake Control State Mapping: `FakeControlClient`, `StatusService`, `DiagnosticsService`, `ReadinessService`, `LifecycleIntentService` and `ResultMappingService`.
+- Bloco 3 — Anchor Dry-Run Adapter: `AnchorControlClient` using Anchor public API, offline/dry-run only, no real apply and no provider internals.
+- Audit 1-3 — Formal Audit: architecture, safety, tests, modularity, Anchor adapter and repository hygiene.
+- Bloco 4 — Android/Player Boundary Contracts: abstract contracts for permission/storage, lifecycle, `PlaybackEngine` boundary, `MediaSessionBridge`, `AndroidStorageBridge` and Android Auto boundary.
+- Bloco 5 — Minimal UI Shell Planning: plan future UI as a thin adapter over Aria Core, without implementing UI.
+- Bloco 6 — MVP Hardening: public API, intentional exports, safe serialization, sanitized errors, docs, tests and safety.
+- Audit 4-6 — Formal Audit: Android/player boundaries, UI planning, hardening, docs, tests, scope and safety.
+- Bloco 7 — Release Preparation: checklist, release notes, API summary, safety summary, post-core backlog, handoff and version preparation.
+- Final Release Audit — Release Gate: final audit before release tag.
+- Pre-tag Cleanup — If needed: clean working tree, reconcile docs/workflow and ensure repository is clean.
+- Tag v0.1.0 — Aria Core MVP: create the MVP tag only after release gate is green and working tree is clean.
 
-### Fase 2 — Android Boundaries / UI Planning / MVP Hardening
+### Post-Core Feature Roadmap
 
-- Bloco 4 — Android/player boundary contracts
-- Bloco 5 — Minimal UI shell planning artifacts
-- Bloco 6 — Aria MVP hardening
-- Bloco 4–6 Audit
-
-### Fase 3 — Library / Search / Playlists
-
-- Bloco 7 — Library Browse/Search
-- Bloco 8 — User Library States
-- Bloco 9 — Playlists / Smart Playlists
-- Bloco 7–9 Audit
-
-### Fase 4 — Queue / Now Playing / Playback Intents
-
-- Bloco 10 — Multiple Queues
-- Bloco 11 — Now Playing / Playback Intents
-- Bloco 12 — Playback Availability
-- Bloco 10–12 Audit
-
-### Fase 5 — Offline / Stream Quality / Output
-
-- Bloco 13 — Offline / Cache / Download Policy
-- Bloco 14 — Stream Quality / Transcoding
-- Bloco 15 — Output / Renderers / Audio Capabilities
-- Bloco 13–15 Audit
-
-### Fase 6 — Playback Policies / Android Boundaries / Backup
-
-- Bloco 16 — Transitions / Loudness Policies
-- Bloco 17 — Android Media Boundaries
-- Bloco 18 — Backup / Restore / Profiles / Preferences
-- Bloco 16–18 Audit
-
-### Fase 7 — API / Snapshot / Release
-
-- Bloco 19 — Public API / Automation Intents
-- Bloco 20 — State Snapshots / API Hardening
-- Bloco 21 — End-to-End Fake Flows / Release Prep
-- Bloco 19–21 Final Audit
+- Bloco 8 — Media Source Foundation: `MediaSourceClient`, `FakeMediaSourceClient`, source capabilities, abstract stream handle and conceptual provider support via Anchor.
+- Bloco 9 — Library Browse/Search: artists, albums, songs, safe folders, playlists and genres.
+- Bloco 10 — Library Filters and Activity: filters, sorting, recently added, recently played, favorites and library readiness/health badges.
+- Bloco 11 — Queue Foundation: `QueueState`, `QueueService`, repeat/shuffle state, predictable queue behavior and safe errors.
+- Bloco 12 — Now Playing Foundation: `NowPlayingState`, current track summary, playback availability, resumable state and unavailable media state.
+- Bloco 13 — Playback Intents: play/pause/skip/seek intent models, intent validation and blocked/unavailable playback handling.
+- Audit 8-13 — Media/Player State Audit: audit media sources, library, queue, now playing and playback intents.
+- Bloco 14 — Offline/Cache Policy: `OfflineAvailabilityState`, `CachePolicyState`, storage pressure, pending sync/cache states and safe confirmations.
+- Bloco 15 — Playback Capability Models: gapless, loudness/ReplayGain awareness, crossfade capability, bit-perfect capability and output/device capability state.
+- Bloco 16 — Smart Playlists: smart playlists, smart mixes, saved filters and Symfonium-inspired rule-based playlist planning.
+- Bloco 17 — Multi-provider via Anchor: support additional providers beyond Navidrome through Anchor, without Aria calling provider internals directly.
+- Audit 14-17 — Offline/Capabilities/Providers Audit: audit offline/cache policy, capabilities, smart playlists and multi-provider boundaries.
+- Bloco 18 — Android Platform Real Integration Planning: detailed planning for real media controls, lock-screen, notification controls, Bluetooth/headset, Android Auto, foreground service and widgets.
+- Bloco 19 — Android Shell Handoff: handoff for the future Android app/UI to consume Aria Core without moving heavy logic into the interface.
+- Bloco 20 — Post-core Release Prep: release/handoff for the post-core phase, with docs, checklist, updated backlog and next steps for the real app.
 
 ## Block Summaries
 
@@ -210,33 +205,31 @@ Bloco 6 hardens the MVP surface with intentional exports, safe serialization/san
 
 Bloco 7 implements Aria Core Release Preparation: release checklist, release notes, public API surface summary, safety summary, post-core backlog, handoff update, and README refresh.
 
-Bloco 8 defines user library states including recently added, recently played, favorites, play count, last played, resume points, unavailable/missing media, and health badges.
+Bloco 8 defines media source foundation work, including `MediaSourceClient`, `FakeMediaSourceClient`, source capabilities, abstract stream handles, and conceptual provider support through Anchor boundaries.
 
-Bloco 9 defines playlists, playlist items, playlist availability, smart playlist rules, saved filters, and smart mixes.
+Bloco 9 defines library browse/search for artists, albums, songs, safe folders, playlists, genres, and search entry points.
 
-Bloco 10 defines multiple queues, active queue selection, queue history, add/remove/move/clear operations, play next, replace queue, and repeat/shuffle per queue.
+Bloco 10 defines library filters and activity state, including sorting, recently added, recently played, favorites, and library readiness/health badges.
 
-Bloco 11 defines `NowPlayingState`, current track summary, playback position, playback intents, and commands such as play, pause, skip, seek, and play item.
+Bloco 11 defines queue foundation, including `QueueState`, `QueueService`, repeat/shuffle state, predictable queue behavior, and safe queue errors.
 
-Bloco 12 defines `PlaybackAvailabilityState`, unavailable reasons, source unavailable, stream unavailable, permission denied, unsupported format, and provider errors.
+Bloco 12 defines now playing foundation, including `NowPlayingState`, current track summary, playback availability, resumable state, and unavailable media state.
 
-Bloco 13 defines offline inventory, download queue state, offline rules, automatic offline rules, playback cache, permanent cache, rolling cache, provider offline cache, and storage-pressure policy without destructive cache/download implementation.
+Bloco 13 defines playback intents for play, pause, skip, seek, intent validation, and blocked/unavailable playback handling.
 
-Bloco 14 defines stream quality policy, original quality, max bitrate, transcoding capability, network quality policy, and offline quality policy.
+Bloco 14 defines offline/cache policy, including `OfflineAvailabilityState`, `CachePolicyState`, storage pressure, pending sync/cache states, and safe confirmations without destructive cache/download implementation.
 
-Bloco 15 defines playback renderer, output routes, USB DAC, Bluetooth, remote route, high-res, bit-perfect capability, sample rate, bit depth, DSD/MQA capability metadata, and processing bypass state without real driver implementation.
+Bloco 15 defines playback capability models, including gapless, loudness/ReplayGain awareness, crossfade capability, bit-perfect capability, and output/device capability state without real drivers or DSP/EQ.
 
-Bloco 16 defines fade, crossfade, smart fade, gapless, ReplayGain/loudness, and conflicts with bit-perfect output without implementing EQ/DSP.
+Bloco 16 defines smart playlists, smart mixes, saved filters, and rule-based playlist planning.
 
-Bloco 17 defines the Android media boundary for MediaSession, notification controls, lock-screen controls, Bluetooth/headset events, Android Auto browse model, foreground service intent, and widget boundary without Android SDK implementation.
+Bloco 17 defines multi-provider support through Anchor/provider boundaries without Aria calling provider internals directly.
 
-Bloco 18 defines backup manifest, restore plan, encrypted backup requirement, provider-bound backup data, application profiles, and preferences.
+Bloco 18 defines Android platform real integration planning for media controls, lock-screen, notification controls, Bluetooth/headset, Android Auto, foreground service, and widgets without implementing them in Aria Core.
 
-Bloco 19 defines core automation intents for sync, playback commands, start media, settings, queue load, backup, cache cleanup, provider connection, and renderer selection.
+Bloco 19 defines Android shell handoff for the future Android app/UI to consume Aria Core without moving heavy logic into the interface.
 
-Bloco 20 defines `AriaStateSnapshot`, safe serialization, compatibility rules, public API surface, and stable exports.
-
-Bloco 21 defines the full fake flow from provider to sync to library to queue to now playing to cache/output/diagnostics/backup, plus release preparation and final hardening.
+Bloco 20 defines post-core release preparation with docs, checklist, updated backlog, and next steps for the real app.
 
 ## Safety Rules
 
@@ -246,6 +239,9 @@ Bloco 21 defines the full fake flow from provider to sync to library to queue to
 - No Media3/ExoPlayer, real playback engine, real MediaSession, real Android Auto, real audio driver, bit-perfect driver, DSP/EQ, queue engine, or destructive cache/download implementation without explicit future scope.
 - No real provider integration, provider hard coupling, Anchor internals, Anchor CLI integration API, direct Navidrome calls, real music library mutation, secrets, raw logs, or personal paths.
 - No broad git add; commit only allowlisted files.
+- Aria Core represents and orchestrates states, intents, policies, and boundaries.
+- Aria Core does not become real UI, a real player engine, Media3/ExoPlayer, or Android SDK-coupled code.
+- Android app/UI remains separate and consumes Aria Core.
 
 ## Current Next Step
 

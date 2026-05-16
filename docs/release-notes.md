@@ -5,7 +5,9 @@ date: 2026-05-16
 
 ## Summary
 
-Noqlen Aria Core MVP is the first public release of the modular app/player-facing core of a music player. This release includes control-plane contracts, source-agnostic services, a dry-run/offline Anchor adapter, Android/player boundary vocabulary, minimal UI shell planning artifacts, and MVP hardening with safe serialization and intentional public exports.
+Noqlen Aria Core MVP is release-prepared as the first public release candidate for the modular app/player-facing core of a music player. These draft release notes cover control-plane contracts, source-agnostic services, a dry-run/offline Anchor adapter, Android/player boundary vocabulary, minimal UI shell planning artifacts, and MVP hardening with safe serialization and intentional public exports.
+
+MVP scope is Blocos 0-7. Post-core feature expansion is Blocos 8-20 and remains backlog.
 
 ## What Is Included
 
@@ -53,6 +55,10 @@ Noqlen Aria Core MVP is the first public release of the modular app/player-facin
 - Hardening tests covering public exports, safe serialization, sanitized errors, optional Anchor absence, and dry-run/apply safety.
 - 368 tests passing.
 
+### Bloco 7 — Release Preparation
+- Release readiness checklist, release notes, public API surface summary, safety summary, post-core backlog, and handoff updates.
+- Version preparation remains pending; no tag or publish action has happened.
+
 ## Safety Boundaries
 
 - No real music-library access.
@@ -91,21 +97,19 @@ Anchor is one optional `ControlClient` adapter, not the center of Aria. Aria dep
 See `docs/post-core-backlog.md` for the full post-core roadmap.
 
 Key future areas:
-- Library browse/search (Bloco 7)
-- User library states (Bloco 8)
-- Playlists / smart playlists (Bloco 9)
-- Multiple queues (Bloco 10)
-- Now playing / playback intents (Bloco 11)
-- Playback availability (Bloco 12)
-- Offline / cache / download policy (Bloco 13)
-- Stream quality / transcoding (Bloco 14)
-- Output / renderers / audio capabilities (Bloco 15)
-- Playback transitions / loudness policies (Bloco 16)
-- Android media boundaries (Bloco 17)
-- Backup / restore / profiles / preferences (Bloco 18)
-- Public API / automation intents (Bloco 19)
-- State snapshots / API hardening (Bloco 20)
-- End-to-end fake flows / final release (Bloco 21)
+- Media source foundation and `MediaSourceClient` (Bloco 8)
+- Library browse/search for artists, albums, songs, folders, playlists, and genres (Bloco 9)
+- Library filters, recently added, recently played, and favorites (Bloco 10)
+- Queue, repeat/shuffle, predictable queue behavior, and safe errors (Bloco 11)
+- Now playing, playback availability, resumable state, and unavailable media state (Bloco 12)
+- Playback intents for play, pause, skip, seek, and unavailable playback handling (Bloco 13)
+- Offline/cache policy, pending sync/cache states, and storage pressure (Bloco 14)
+- Gapless, loudness/ReplayGain awareness, crossfade, bit-perfect, and output/device capability state (Bloco 15)
+- Smart playlists, smart mixes, saved filters, and rule-based playlist planning (Bloco 16)
+- Additional providers via Anchor/provider boundaries, without direct provider internals (Bloco 17)
+- Android platform real integration planning for media controls, Bluetooth/headset, Android Auto, foreground service, and widgets (Bloco 18)
+- Android shell handoff for the separate future app/UI (Bloco 19)
+- Post-core release prep and next steps for the real app (Bloco 20)
 
 All future blocks require dedicated specs before implementation.
 

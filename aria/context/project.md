@@ -16,6 +16,8 @@ Current architecture direction:
 
 Anchor is not the center of Aria. Anchor is one `ControlClient` adapter/control-plane backend, and Aria must depend on contracts rather than Anchor internals.
 
+Roadmap direction: Aria Core MVP is Blocos 0-7; post-core feature expansion is Blocos 8-20. Android app/UI remains separate and consumes Aria Core.
+
 ## Non-Goals
 
 Canonical scope boundaries live in `aria/context/scope-boundaries.md`.

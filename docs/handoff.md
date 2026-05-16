@@ -18,6 +18,8 @@ Not implemented:
 
 Bloco 1 status: complete. Aria Core contracts implemented in `src/noqlen_aria/contracts.py` with source-agnostic `ControlClient`/`FakeControlClient`, plus comprehensive tests in `tests/test_contracts.py`.
 
+Bloco 1.5 status: complete. `ControlClient` is generic and source-agnostic; Anchor is one adapter, not the center of Aria.
+
 Bloco 2 status: complete. Five services implemented in `src/noqlen_aria/services.py` (`ResultMappingService`, `StatusService`, `DiagnosticsService`, `LifecycleIntentService`, `ReadinessService`) plus `LifecycleIntentPreview`. `FakeControlClient` extended with failure-injection/value-override hooks.
 
 Bloco 3 status: complete. `AnchorControlClient` adapter implemented in `src/noqlen_aria/anchor_adapter.py` with `AnchorResultMapper` mapping layer. Adapter uses lazy optional `noqlen_anchor` import and constructor dependency injection. `send_lifecycle_intent` uses dry-run helpers only; apply-mode is blocked.
@@ -29,6 +31,8 @@ Bloco 5 status: planning artifacts complete. Minimal UI Shell boundary documenta
 Bloco 6 status: complete. Aria MVP hardening added explicit public exports, safe serialization/sanitization helpers, safer Anchor adapter error output, optional Anchor absence coverage, dry-run/apply safety tests, forbidden integration checks, and documentation updates. No Android/UI/playback/queue/cache/provider implementation exists.
 
 Bloco 7 status: complete. Aria Core Release Preparation implemented. Release artifacts created: release checklist (`docs/release-checklist.md`), release notes (`docs/release-notes.md`), public API surface summary (`docs/api-surface.md`), safety summary (`docs/safety-summary.md`), and post-core backlog summary (`docs/post-core-backlog.md`). All validation commands pass (368 tests). No tag or publish action was taken.
+
+Roadmap status: Aria Core MVP scope is Blocos 0-7. Post-core feature expansion is Blocos 8-20 and is documented in `docs/post-core-backlog.md`. Advanced library/player features, Android real integration, and the Android app/UI shell are not MVP blockers and are not implemented.
 
 Repository direction: Aria Core is the modular app/player-facing core of a music player. The canonical local handoff is `docs/aria-core-handoff.md`.
 
@@ -43,4 +47,4 @@ Release artifacts:
 
 Third-party names in research docs are factual references only. They do not imply Noqlen affiliation, endorsement, sponsorship, association, official support, or compatibility.
 
-Next step: Final release audit and tag decision. Do not create a release tag or publish until all checklist items pass and the maintainer approves.
+Next step: Final release audit and tag decision. Release is prepared only; do not create a release tag or publish until all checklist items pass and the maintainer approves.

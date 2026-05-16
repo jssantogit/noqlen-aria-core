@@ -8,6 +8,8 @@ Aria Workflow is the development method used in this repository. Aria Workflow i
 
 ## What Is Implemented (MVP)
 
+MVP scope is Blocos 0-7. Post-core feature expansion is Blocos 8-20 and remains backlog.
+
 - Control-plane contracts and fake-first services.
 - Dry-run/offline Anchor adapter.
 - Android/player boundary contracts (abstract vocabulary and fakes, not Android SDK).
