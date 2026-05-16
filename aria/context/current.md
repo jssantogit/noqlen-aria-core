@@ -21,11 +21,13 @@
 - Audit 8-13 (Media/Library/Queue/Playback Audit) is complete.
 - Bloco 14 (Offline, Cache and Storage Policy) is implemented.
 - Bloco 15 (Internet Radio Foundation) is implemented.
+- Bloco 16 (Stream Quality, Transcoding and Network Policy) is implemented.
 
 ## Active spec
 
 - `aria/specs/features/offline-cache-storage-policy/` — spec and implementation complete.
 - `aria/specs/features/internet-radio-foundation/` — spec and implementation complete.
+- `aria/specs/features/stream-quality-transcoding-network-policy/` — spec and implementation complete.
 - `aria/specs/features/library-filters-activity-favorites/` — spec and implementation complete.
 - `aria/specs/features/queue-foundation/` — spec and implementation complete.
 - `aria/specs/features/playback-renderer-automation-intents/` — spec and implementation complete.
@@ -49,10 +51,11 @@
 - Bloco 13 Playback, Renderer and Automation Intents is implemented and validated.
 - Bloco 14 Offline, Cache and Storage Policy is implemented and validated.
 - Bloco 15 Internet Radio Foundation is implemented and validated.
+- Bloco 16 Stream Quality, Transcoding and Network Policy is implemented and validated.
 - Roadmap clarification complete: Bloco 15 is now Internet Radio Foundation; Bloco 16 is Stream Quality, Transcoding and Network Policy; Bloco 17 is Playback Capability Models.
 - Bloco 17 Playback Capability Models wording includes bit-perfect, USB DAC, exclusive output, sample-rate/bit-depth support, output/device readiness, playback quality preferences, and future driver bridge vocabulary. Bloco 17 remains capability/readiness/preference models only.
 - Future Android Player audio output phase (phases A–E) documented outside Aria Core in `docs/aria-core-handoff.md` and `docs/post-core-backlog.md`.
-- Do not start Bloco 16 without explicit approval and a dedicated spec.
+- Do not start Bloco 17 without explicit approval and a dedicated spec.
 - Do not run Audit 14-17 yet.
 - No publish until approved.
 
@@ -68,7 +71,7 @@
 - Product behavior without an approved spec.
 - Android, UI, navigation, player, further queue expansion, playback intents, playback engine, cache/offline mutation, or storage UX implementation.
 - Real Anchor, Navidrome, Jellyfin, Emby, provider, or media-source integration.
-- Real download, cache write/delete, destructive cleanup, filesystem traversal, device storage inspection, Android storage APIs, stream resolution, radio streaming, Shoutcast/HLS/DASH parsing, provider direct integration, Bloco 16 behavior, or Bloco 17 behavior.
+- Real download, cache write/delete, destructive cleanup, filesystem traversal, device storage inspection, Android storage APIs, stream resolution, radio streaming, Shoutcast/HLS/DASH parsing, provider direct integration, Bloco 17 behavior, or later post-core behavior without a dedicated spec.
 
 ## Key risks
 
