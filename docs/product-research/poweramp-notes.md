@@ -2,6 +2,10 @@
 
 Product research notes for Aria Core planning only. These notes do not authorize implementation.
 
+Trademark/reference notice: third-party product and company names are used only as factual research references. Noqlen is not affiliated with, endorsed by, sponsored by, or associated with those products or companies. Do not copy logos, screenshots, icons, UI assets, branding, or long text from third-party products.
+
+Use generic Aria domain names such as `MediaProviderRegistry`, `SmartPlaylist`, `MultipleQueue`, `OutputProfile`, and `BitPerfectCapability`. Do not create brand-based class or feature names.
+
 - Local library/folder browsing: model folders, artists, albums, tracks, playlists, genres, sorting, filtering, and pagination.
 - Dynamic queue: represent add/remove/move/clear, play next, replace queue, and queue history.
 - Per-output settings: model profile/preference and output-route policy state.

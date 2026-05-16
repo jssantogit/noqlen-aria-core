@@ -133,6 +133,8 @@ Provider concepts are future/core-domain concerns for capability-driven normaliz
 
 Provider real integrations are not implemented by this documentation update. Aria should normalize provider differences through provider and source capabilities, and the provider capability matrix matters for every future provider-facing block.
 
+Third-party product and provider names in Aria docs are factual research references only. Noqlen is not affiliated with, endorsed by, sponsored by, or associated with those products or companies. Do not copy logos, screenshots, icons, UI assets, branding, or long text from third-party products. Use generic Aria domain names such as `MediaProviderRegistry`, `SmartPlaylist`, `MultipleQueue`, `OutputProfile`, and `BitPerfectCapability`; do not use brand-based class or feature names.
+
 ## Roadmap
 
 ### Fase 1 — Base / Control Plane

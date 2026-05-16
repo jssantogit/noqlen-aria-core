@@ -2,6 +2,8 @@
 
 This file records future music-player-core product planning context only. The canonical roadmap and block summaries live in `docs/aria-core-handoff.md`.
 
+Third-party products and providers may appear in research notes only as factual references. Noqlen is not affiliated with, endorsed by, sponsored by, or associated with those products or companies. Product planning must use generic Aria domain names instead of brand-based class or feature names.
+
 Planned product areas:
 
 - Control plane.
