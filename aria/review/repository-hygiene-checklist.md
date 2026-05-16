@@ -2,6 +2,8 @@
 
 - Confirm `git add .` was not used.
 - Confirm explicit staging only.
+- Confirm context package and scope did not cause broad repository edits.
+- Confirm `aria/context/delta.md` was updated when the task required it.
 - Confirm no forbidden local/tooling files are tracked.
 - Confirm `.git/info/exclude` may be used locally but is not committed.
 - Confirm no secrets.

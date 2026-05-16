@@ -7,6 +7,7 @@
 - Bloco 1 ControlClient refinement is complete.
 - Bloco 2 is complete.
 - Bloco 3 is complete.
+- Aria Workflow vNext context compression is active for future tasks. Start with `aria/context/current.md`, `aria/context/delta.md`, and `aria/context/context-packages.md` before escalating to this full handoff.
 - This document is the canonical local repository handoff and source of truth for the current Aria direction.
 - The next product step is the formal Blocos 1-3 audit. Do not start Bloco 4 until that audit passes.
 

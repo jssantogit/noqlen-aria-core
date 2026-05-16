@@ -4,6 +4,10 @@
 
 ## Context files read
 
+## Context package
+
+Tiny | Standard | Full. See `aria/context/context-packages.md`.
+
 ## Existing project context
 
 ## Files to create
@@ -20,7 +24,15 @@
 
 ## Dependencies
 
+## Behavior Budget
+
+See `aria/context/behavior-budget.md`.
+
 ## Risks
+
+## Risk classification
+
+Reference `aria/context/test-risk-matrix.md`.
 
 ## Rollback strategy
 

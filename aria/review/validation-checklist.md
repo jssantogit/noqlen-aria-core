@@ -2,7 +2,7 @@
 
 Before commit, record evidence for relevant commands.
 
-Use `aria/review/repository-hygiene-checklist.md` for repository contamination checks. Use `aria/review/block-audit-checklist.md` or `aria/review/bloco-0-audit-checklist.md` for audit-specific validation.
+Use `aria/review/repository-hygiene-checklist.md` for repository contamination checks. Use `aria/review/block-audit-checklist.md` or `aria/review/bloco-0-audit-checklist.md` for audit-specific validation. Use `aria/context/test-risk-matrix.md` for proportional test expectations.
 
 Bloco 0 baseline:
 
@@ -20,6 +20,10 @@ Bloco 0 baseline:
 Review for:
 
 - Active spec compliance.
+- `aria/context/current.md` and `aria/context/delta.md` status.
+- Context package used.
+- Behavior Budget result.
+- Test Risk Matrix coverage.
 - Non-goals.
 - Changed files.
 - Validation evidence.

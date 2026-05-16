@@ -12,6 +12,10 @@
 
 ## Functional requirements
 
+## Canonical Examples
+
+Use a few concrete, testable Given / When / Then examples.
+
 ## Non-functional requirements
 
 ## Edge cases
