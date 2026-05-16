@@ -2,6 +2,8 @@
 
 Bloco 5 defines planning artifacts for a future minimal UI/app shell. This document is documentation only. It does not implement screens, navigation, an app shell, Android code, playback, media sessions, queues, now playing, cache, or provider integrations.
 
+Bloco 23 adds the future Android shell handoff in `docs/android-shell-handoff.md`. It keeps the same thin-shell rule and expands it into Android-specific startup, diagnostics, library/search, queue/now-playing, playback, provider readiness, permission/storage, media controls, Android Auto, and audio-boundary flows.
+
 ## Roles
 
 ### Future UI/App Shell

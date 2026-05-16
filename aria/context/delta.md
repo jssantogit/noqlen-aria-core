@@ -2,6 +2,8 @@
 
 ## What changed
 
+- Bloco 23 completed: Android shell handoff spec and `docs/android-shell-handoff.md` document future Android shell responsibilities, Aria Core ownership, platform adapter ownership, Android Player/audio ownership, startup/readiness, diagnostics/support snapshots, library/search, queue/now-playing, playback controls/intents, offline/cache/radio/quality/capability, provider readiness, permission/storage UX, media controls/Android Auto, strict must-not-bypass rules, and future audio output/driver boundaries. Documentation/handoff only; no Android SDK, Kotlin/Java/Gradle, Compose/Activity/Fragment/UI, MediaSession, Media3/ExoPlayer, Android Auto, notification/lock-screen/Bluetooth/headset/widget, playback engine, audio driver, USB output, provider, source, test, network, or filesystem/device behavior was added.
+
 - Bloco 22 completed: Android real integration planning spec and `docs/android-real-integration-plan.md` document future Android media controls, MediaSession, notification/lock-screen controls, Bluetooth/headset controls, Android Auto, foreground service expectations, widgets, permission/storage UX handoff, playback engine adapter expectations, Android app/platform adapter responsibilities, and future audio output/driver research boundaries. Documentation/planning only; no Android SDK, Kotlin/Java/Gradle, MediaSession, Media3/ExoPlayer, Android Auto, notification/lock-screen/Bluetooth/headset/widget, foreground service, playback engine, audio driver, USB output, UI, source, test, provider, network, or filesystem/device behavior was added.
 
 - Bloco 21 implemented: provider extension readiness models (ProviderExtensionId, ProviderExtensionRef, ProviderExtensionSummary, ProviderExtensionKind, ProviderExtensionStatus, ProviderExtensionCapabilitySummary, ProviderExtensionReadinessState, ProviderExtensionCompatibilityState, ProviderExtensionRequirement, ProviderExtensionUnavailableReason, ProviderExtensionWarning), adapter/registry/discovery contracts (ProviderBoundaryPolicy, ProviderAdapterDescriptor, ProviderAdapterReadiness, ProviderCapabilityDiscoveryPreview, ProviderCapabilityDiscoveryIssue, ProviderExtensionRegistryState), deterministic services (ProviderExtensionReadinessService, ProviderCapabilityDiscoveryService), deterministic fake provider-extension scenarios, and safe serialization support for set-like provider fields. Current Anchor-backed integration remains Navidrome-focused and is not treated as multi-provider. No real provider integration, direct Navidrome/Jellyfin/Emby calls, Anchor provider internals, provider sign-in handling, network behavior, provider mutation, streaming, playback, Android/UI, or Bloco 22 behavior added.
@@ -49,6 +51,8 @@
 
 ## Evidence
 
+- Bloco 23 handoff validation: `pwd` passed; `git status --short --branch` showed expected docs/spec/context changes before commit; `find docs aria/specs/features/android-shell-handoff aria/context -maxdepth 6 -type f | sort` confirmed handoff files; `git diff --check` clean; `python3 -m py_compile src/noqlen_aria/*.py` clean; CLI help/doctor pass; `python3 -m pytest` 911/911 pass; tracked contamination clean. Required boundary searches found no forbidden Android/player/audio-driver/provider implementation; expected matches were limited to existing Bloco 17 test literals, ignored generated `__pycache__` binary matches, handoff-only negative/future phrases, and validation-command text. Docs claim search found no claim that an Android shell exists or Android integration is implemented.
+
 - Bloco 22 planning validation: `pwd` passed; `git status --short --branch` showed expected docs/spec/context changes before commit; `find docs aria/specs/features/android-real-integration-planning aria/context -maxdepth 6 -type f | sort` confirmed planning files; `git diff --check` clean; `python3 -m py_compile src/noqlen_aria/*.py` clean; CLI help/doctor pass; `python3 -m pytest` 911/911 pass; tracked contamination clean. Required boundary searches found no forbidden Android/player/audio-driver implementation; expected matches were limited to existing Bloco 17 test literals, ignored generated `__pycache__` binary matches, planning-only negative/future phrases, and validation-command text. Docs claim search found no claim that Android integration is implemented.
 
 - Bloco 21 implementation validation: `python3 -m pytest` 911/911 pass; targeted provider readiness/export tests passed with 24 tests; `py_compile` clean; CLI help/doctor pass; `git diff --check` clean; tracked contamination clean. Required boundary searches show no forbidden implementation; expected matches are limited to historical boundary-test string literals, existing sanitization vocabulary/tests/spec text, Bloco 21 boundary-test string literals, and ignored generated `__pycache__` binary matches after validation.
@@ -88,11 +92,11 @@
 
 ## Next step
 
-- Bloco 22 Android Real Integration Planning is complete and validated.
-- Do not start Bloco 23 without explicit approval and a dedicated spec/task.
+- Bloco 23 Android Shell Handoff is complete and validated.
+- Do not start Bloco 24 without explicit approval and a dedicated spec/task.
 - Roadmap documentation update: Bloco 17 wording clarified to include bit-perfect capability, USB DAC capability, exclusive output capability, audio output route state, sample-rate support, bit-depth support, output/device readiness, playback quality preferences, and driver bridge vocabulary for a future Android player. Bloco 17 remains capability/readiness/preference models only; no real audio driver, USB driver, Android USB Host API, JNI/NDK, AAudio/Oboe, Media3/ExoPlayer, real bit-perfect output, real sample-rate switching, real DAC control, or DSP/EQ.
 - Future Android Player audio output phase (phases A–E) added to `docs/aria-core-handoff.md` and `docs/post-core-backlog.md` as a future project outside Aria Core. Invariant added: Aria Core may model requirements for a future custom/exclusive audio output layer; Aria Core must not implement an audio driver; a future Android Player phase may research or implement an exclusive USB/audio output bridge if feasible.
-- Blocos 14-21 are implemented and validated. Bloco 22 planning/docs are complete and validated.
+- Blocos 14-21 are implemented and validated. Blocos 22-23 planning/handoff docs are complete and validated.
 
 ## Open decisions
 

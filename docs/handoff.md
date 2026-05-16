@@ -70,3 +70,5 @@ Blocos 18-21 status: implemented. Audit 18-20 is deferred to the final post-core
 Future Android Player audio output phases (A–E) are documented in `docs/aria-core-handoff.md` and `docs/post-core-backlog.md` as a future project outside Aria Core. Aria Core remains driver-free.
 
 Bloco 22 status: planning complete. `docs/android-real-integration-plan.md` documents future Android media controls, MediaSession, notification/lock-screen controls, Bluetooth/headset, Android Auto, foreground service, widgets, permission/storage UX, playback engine adapter expectations, and audio output/driver boundaries. No Android implementation exists.
+
+Bloco 23 status: handoff complete. `docs/android-shell-handoff.md` documents how the future Android shell consumes Aria Core state/results/intents without moving heavy logic into UI/platform code. No Android shell implementation exists.

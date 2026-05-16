@@ -4,6 +4,8 @@ Bloco 22 is planning documentation only. It does not implement Android SDK calls
 
 Future Android real integration belongs to the Android app/platform layer. Aria Core remains platform-independent Python/core logic and continues to own app-facing state, intents, policy, readiness, validation, safety, snapshots, provider/source abstractions, and sanitized output.
 
+Bloco 23 adds the Android shell handoff in `docs/android-shell-handoff.md`. That handoff explains how the future Android app/shell consumes Aria Core across startup, diagnostics, library/search, queue/now-playing, playback controls, provider readiness, permission/storage UX, media controls, Android Auto, and future audio boundaries.
+
 ## Integration Model
 
 Future Android integration should follow this shape:

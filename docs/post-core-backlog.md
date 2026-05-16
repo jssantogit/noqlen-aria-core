@@ -27,7 +27,7 @@ The roadmap in `docs/aria-core-handoff.md` defines Aria Core MVP as Blocos 0-7. 
 | Audit 18-20 | Profiles/Smart/Snapshots Audit | Deferred to final post-core/core audit |
 | 21 | Provider Extension Readiness: generic provider/source abstractions, no direct Jellyfin/Emby/Navidrome integrations, no assumption that Anchor already supports multiple providers, and future providers through public boundaries/adapters exposed by Anchor or another approved integration layer | Implemented |
 | 22 | Android Real Integration Planning: real media controls, lock-screen controls, notification controls, Bluetooth/headset, Android Auto, foreground service, and widgets planning | Planning complete |
-| 23 | Android Shell Handoff: handoff for future Android app/UI; UI consumes Aria Core and does not own heavy logic | Not started |
+| 23 | Android Shell Handoff: handoff for future Android app/UI; UI consumes Aria Core and does not own heavy logic | Handoff complete |
 | Audit 21-23 | Providers/Android Handoff Audit | Deferred to final post-core/core audit unless explicitly requested |
 | 24 | Post-core Release Prep: checklist, release notes, backlog update, docs, handoff, and release preparation for the post-core phase | Not started |
 
@@ -67,6 +67,7 @@ The post-core roadmap includes these required feature families:
 - Aria Core must not implement an audio driver.
 - A future Android Player phase may research or implement an exclusive USB/audio output bridge if feasible.
 - Bloco 22 planning for real Android integration lives in `docs/android-real-integration-plan.md`. It is documentation only; Android app/platform code still requires future dedicated specs.
+- Bloco 23 Android shell handoff lives in `docs/android-shell-handoff.md`. It is documentation only; the Android shell does not exist yet and still requires future dedicated specs.
 
 ## Still Out of Scope Without Future Specs
 

@@ -10,6 +10,8 @@ Bloco 5 documents how a future UI/app shell consumes those boundaries: the UI do
 
 Bloco 22 adds planning for future real Android integration in `docs/android-real-integration-plan.md`. It covers media controls, MediaSession, notification and lock-screen controls, Bluetooth/headset events, Android Auto, foreground service expectations, widgets, permission/storage UX handoff, playback engine adapter expectations, and the audio output/driver research boundary. It is documentation only and does not implement Android code.
 
+Bloco 23 adds the Android shell handoff in `docs/android-shell-handoff.md`. It documents how the future Android shell consumes Aria Core state/results/intents and delegates Android SDK calls to platform adapters.
+
 Future Android integration must remain a thin adapter over Aria Core and requires specs before implementation.
 
 Forbidden without a future dedicated spec:
@@ -26,3 +28,4 @@ Allowed at the planning level:
 - Documenting how platform permission prompts are delegated to a future Android adapter.
 - Documenting that playback/media controls emit Aria intents rather than owning playback logic.
 - Documenting how future Android platform events become Aria-safe intents through an app/platform adapter.
+- Documenting how the future Android shell consumes Aria Core without bypassing provider, playback, storage, readiness, or safety boundaries.
