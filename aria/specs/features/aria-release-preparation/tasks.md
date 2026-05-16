@@ -153,7 +153,7 @@ This task implements the approved Bloco 7 release preparation spec.
 - [x] Release checklist re-run and all items pass.
 - [x] All release artifacts created.
 - [x] Context files updated.
-- [ ] Commit with explicit allowlisted paths (pending).
+- [x] Commit with explicit allowlisted paths.
 
 ## Validation checklist
 
