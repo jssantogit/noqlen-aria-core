@@ -7,17 +7,18 @@
 - Bloco 1 contracts are complete.
 - Bloco 2 fake control state mapping is complete.
 - Bloco 3 `AnchorControlClient` dry-run/offline adapter is complete.
+- Bloco 4 spec (Android/player boundary contracts) is drafted.
 
 ## Active slice
 
-- Formal Blocos 1-3 audit is the next major review step unless already completed.
+- Bloco 4 spec is created; implementation is deferred.
 - Do not redo Bloco 3.
-- Do not start Bloco 4 before the Blocos 1-3 audit passes.
+- Do not implement Bloco 4 before the Blocos 1-3 audit passes.
 
 ## Active spec
 
-- No active product implementation spec.
-- Next implementation block after audit is Bloco 4 spec/planning.
+- `aria/specs/features/android-player-boundary-contracts/` — spec complete (requirements, design, tasks, review).
+- No active product implementation.
 
 ## Current goal
 
